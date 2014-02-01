@@ -1,15 +1,14 @@
 - if @unsaved
 
+  %p
+    To get updates on our progress and to show your support for this effort, please join our low-frequency mailing list by filling out the form below. Thanks!
+
   = form_for @subscription, :url => subscriptions_path do |f|
     = f.text_field :email, :placeholder => @subscription.message
     = f.submit "Sign Up"
 
 - else
 
-  %h2.top_margin
+  %p
     Thanks for signing up! Check your email for a message confirming your subscription.
 
-  %h2
-    Join the authors on Google Plus:
-    %br
-    = link_to "Register for an upcoming roundtable", "https://docs.google.com/forms/d/15viAkMBqhBr6focqVlti8t1g8lPw-am9uJZhZmvlfHA/viewform"
