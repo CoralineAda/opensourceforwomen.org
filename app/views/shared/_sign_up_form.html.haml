@@ -1,7 +1,7 @@
 - if @unsaved
 
   %p
-    To get updates on our progress and to show your support for this effort, please join our low-frequency mailing list by filling out the form below. Thanks!
+    To get updates on our progress and to show your support for this effort, please join our low-frequency mailing list by filling out the form below. You can also follow us on Twitter @OS4Women. Thanks!
 
   = form_for @subscription, :url => subscriptions_path do |f|
     = f.text_field :email, :placeholder => @subscription.message
@@ -10,5 +10,5 @@
 - else
 
   %p
-    Thanks for signing up! Check your email for a message confirming your subscription.
+    Thanks for signing up! Check your email for a message confirming your subscription. Be sure to follow us on Twitter @OS4Women.
 
