@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/css?family=Homenaje);
+@import 'variables.less';
+
+html {
+  background-color: @border-color;
+}
+
+body {
+  position: relative;
+  font-family: @base-font;
+  color: @base-font-color;
+  font-size: 24px;
+  height: 100%;
+  min-height: 600px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.clear {
+  clear: both;
+}
+
+.content {
+  background-color: @background-color;
+  border: 10px solid @border-color;
+  border-radius: 20px;
+}
+
+.col {
+  float: left;
+  width: 40%;
+  margin-right: 6%;  
+  padding: 1em;
+}
+
+p {
+  text-align: left;
+}
+
+a:link, a:visited {
+  color: @link-color;
+}
+
+input[type=text] {
+  padding: .5em;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: @base-font;
+  width: 200px;
+}
+
+input[type=submit] {
+  padding: .5em;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: @base-font;
+  border: 1px;
+  background: @contrast-font-color;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  color: @contrast-font-color;
+  background-color: @border-color;
+  font-size: .75em;
+  bottom: 0em;
+  width: 100%;
+  padding: 1.25em;
+  margin: 1em -10px -10px -10px;
+  text-align: center;
+  a:link, a:visited {
+    color: @contrast-font-color;
+  }
+}
+
+h1 {
+  color: @dark-font-color;
+  line-height: 60px;
+  font-size: 72px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: .25em;
+  margin-bottom: .25em;
+  text-transform: uppercase;
+  .contrast {
+    color: @contrast-font-color;
+  }
+}

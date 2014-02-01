@@ -6,6 +6,8 @@ gem 'rails', '>= 4.0.0'
 
 gem 'devise'
 gem 'dotenv-rails'
+gem 'gibbon'
+gem 'google-analytics-rails'
 gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
