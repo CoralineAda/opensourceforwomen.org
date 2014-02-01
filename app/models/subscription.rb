@@ -13,13 +13,9 @@ class Subscription
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-  def default_mailing_list_id
-    "ae537a59f9"
-  end
-
   def register_with_mailchimp
     return unless Gibbon::API.new.api_key
-    if Gibbon::API.new.list_subscribe(:id => default_mailing_list_id, :email_address => self.email)
+    if Gibbon::API.new.lists.subscribe(:id => "ae537a59f9", :email => {:email => self.email})
       self.update_attribute(:synced_to_mailchip, true)
     end
   end
