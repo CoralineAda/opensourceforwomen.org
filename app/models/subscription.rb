@@ -11,10 +11,10 @@ class Subscription
 
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_format_of :email, with: /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   def default_mailing_list_id
-    Gibbon::API.new.lists['data'][0]['id']
+    "ae537a59f9"
   end
 
   def register_with_mailchimp
@@ -26,7 +26,7 @@ class Subscription
 
   def reset
     self.email = nil
-    self.message = "Invalid email."
+    self.message = "Invalid email or already subscribed."
   end
 
 end
