@@ -20,7 +20,7 @@ production:
   sessions:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>
-    options:
-      max_retries_on_connection_failure: 20
-      persist_in_safe_mode: true
-      skip_version_check: true
+      options:
+        max_retries_on_connection_failure: 20
+        persist_in_safe_mode: true
+        skip_version_check: true
