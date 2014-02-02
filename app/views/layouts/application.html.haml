@@ -9,7 +9,15 @@
     = stylesheet_link_tag "application"
     = csrf_meta_tags
   %body
-    = yield
+    %h1
+      Open
+      %span.contrast
+        Source
+      %br
+      For Women
+
+    .content
+      = yield
 
     %footer
       &copy; 2014
