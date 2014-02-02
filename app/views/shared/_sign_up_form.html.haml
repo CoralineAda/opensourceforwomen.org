@@ -2,8 +2,8 @@
 
   %p
     To get updates on our progress and to show your support for this effort, please join our low-frequency mailing list by filling out the form below. You can also follow us on Twitter 
-    = link_to "@OS4Women", "https://twitter.com/OS4Women"
-    = ". Thanks!"
+    = succeed ". Thanks!" do
+      = link_to "@OS4Women", "https://twitter.com/OS4Women"
 
   = form_for @subscription, :url => subscriptions_path do |f|
     = f.text_field :email, :placeholder => @subscription.message
@@ -12,7 +12,10 @@
 - else
 
   %p
-    Thanks for signing up! Check your email for a message confirming your subscription. Be sure to follow us on Twitter 
-    = link_to "@OS4Women", "https://twitter.com/OS4Women"
-    = "."
+    Thanks for signing up! Check your email for a message confirming your subscription.
+
+  %p
+    Be sure to follow us on Twitter 
+    = succeed "." do
+      = link_to "@OS4Women", "https://twitter.com/OS4Women"
 
