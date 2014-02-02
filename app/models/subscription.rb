@@ -15,8 +15,11 @@ class Subscription
 
   def register_with_mailchimp
     return unless Gibbon::API.new.api_key
-    if Gibbon::API.new.lists.subscribe(:id => "ae537a59f9", :email => {:email => self.email})
+    begin
+      Gibbon::API.new.lists.subscribe(:id => "ae537a59f9", :email => {:email => self.email})
       self.update_attribute(:synced_to_mailchip, true)
+    rescue Exception => e
+      Rails.logger.error("!!! #{e} #{e.backtrace}")
     end
   end
 
