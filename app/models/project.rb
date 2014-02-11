@@ -2,7 +2,6 @@ class Project
 
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Project::Github
 
   field :name
   field :full_name
@@ -19,8 +18,30 @@ class Project
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url
 
-  def self.import_from(repo_url)
-    Project.new(repo_url: repo_url).update
+  def self.from(repo_url)
+    new(repo_url: repo_url).update
+  end
+
+  def update
+    begin
+      latest = Octokit.repo repo_path
+      update_attributes(
+        name:         latest.name,
+        full_name:    latest.full_name,
+        description:  latest.description,
+        homepage:     latest.homepage,
+        language:     latest.language,
+        remote_id:    latest.id
+      )
+    rescue Exception => e
+      errors.add(:update, "failed from #{repo_path} with message #{e}")
+    ensure
+      return self
+    end
+  end
+
+  def repo_path
+    URI.parse(self.repo_url).path[1..-1]
   end
 
 end
