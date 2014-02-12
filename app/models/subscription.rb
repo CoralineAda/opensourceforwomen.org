@@ -4,9 +4,8 @@ class Subscription
   include Mongoid::Timestamps
 
   field :email
-  field :synced_to_mailchip, :type => Boolean, :default => false
+  field :synced_to_mailchimp, :type => Boolean, :default => false
 
-#  attr_accessible :email, :message, :synced_to_mailchimp
   attr_accessor :message
 
   validates_presence_of :email
@@ -17,7 +16,7 @@ class Subscription
     return unless Gibbon::API.new.api_key
     begin
       Gibbon::API.new.lists.subscribe(:id => "ae537a59f9", :email => {:email => self.email})
-      self.update_attribute(:synced_to_mailchip, true)
+      self.update_attribute(:synced_to_mailchimp, true)
     rescue Exception => e
       Rails.logger.error("!!! #{e} #{e.backtrace}")
     end

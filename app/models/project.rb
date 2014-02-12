@@ -11,15 +11,19 @@ class Project
   field :repo_url
   field :remote_id
 
-  # has_many :maintainers
+  has_many :contributors
+  has_one  :owner
   # has_many :signals
-  # has_one  :owner
 
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url
 
   def self.from(repo_url)
     new(repo_url: repo_url).update
+  end
+
+  def repo_path
+    URI.parse(self.repo_url).path[1..-1]
   end
 
   def update
@@ -38,10 +42,6 @@ class Project
     ensure
       return self
     end
-  end
-
-  def repo_path
-    URI.parse(self.repo_url).path[1..-1]
   end
 
 end
