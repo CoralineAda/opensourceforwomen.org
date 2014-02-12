@@ -44,7 +44,4 @@ class Project
     end
   end
 
-  def owner=(args)
-  end
-
 end

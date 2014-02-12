@@ -1,0 +1,12 @@
+.content
+
+  .col
+    %h2
+      Projects
+
+    - @projects.each do |project|
+      = link_to project.name, project.repo_url
+      %br
+      = project.description
+      %br
+      %br
