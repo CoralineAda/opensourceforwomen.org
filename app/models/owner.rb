@@ -1,15 +1,18 @@
 class Owner
 
-  include Mongoid::Base
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
   has_many :projects
 
   field :login
   field :remote_id
   field :type
+  field :gravatar_id
+  field :site_admin
 
   def self.find_or_create_by(params={})
-    where(params).first || create(params)
+    where(remote_id: params[:id]).first || create!(params)
   end
 
   def id=(value)

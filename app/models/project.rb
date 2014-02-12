@@ -11,8 +11,7 @@ class Project
   field :repo_url
   field :remote_id
 
-  has_many :contributors
-  has_one  :owner
+  belongs_to  :owner
   # has_many :signals
 
   validates_presence_of :repo_url
@@ -35,13 +34,17 @@ class Project
         description:  latest.description,
         homepage:     latest.homepage,
         language:     latest.language,
-        remote_id:    latest.id
+        remote_id:    latest.id,
+        owner_id:     Owner.find_or_create_by(latest.owner.to_hash).id
       )
     rescue Exception => e
       errors.add(:update, "failed from #{repo_path} with message #{e}")
     ensure
       return self
     end
+  end
+
+  def owner=(args)
   end
 
 end
