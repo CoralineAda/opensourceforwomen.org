@@ -7,6 +7,11 @@
     - @projects.each do |project|
       = link_to project.name, project.repo_url
       %br
+      %em
+        = project.owner.login
+      %br
       = project.description
       %br
+      - project.signs.each do |sign|
+        = sign.name
       %br

@@ -12,7 +12,7 @@ class Project
   field :remote_id
 
   belongs_to  :owner
-  # has_many :signals
+  has_and_belongs_to_many :signs
 
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url
