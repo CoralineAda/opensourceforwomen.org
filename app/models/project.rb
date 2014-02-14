@@ -39,6 +39,7 @@ class Project
       )
     rescue Exception => e
       errors.add(:update, "failed from #{repo_path} with message #{e}")
+      Rails.logger.info("Update failed with message #{e}")
     ensure
       return self
     end

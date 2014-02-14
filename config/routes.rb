@@ -5,8 +5,7 @@ Opensourceforwomen::Application.routes.draw do
 
   root :to => 'subscriptions#index'
 
-  get '/projects' => "projects#index"
-
+  resources :projects
   resources :subscriptions
 
 end

@@ -1,0 +1,6 @@
+%h2
+  Import a Project from GitHub
+
+  = form_for(@project) do |form|
+    = form.text_field :repo_url, :placeholder => 'Project URL'
+    = form.submit "Submit"
