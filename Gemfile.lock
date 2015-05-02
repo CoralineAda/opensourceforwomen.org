@@ -98,7 +98,7 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
-    kgio (2.8.1)
+    kgio (2.9.2)
     less (2.4.0)
       commonjs (~> 0.2.7)
     less-rails (2.4.2)
