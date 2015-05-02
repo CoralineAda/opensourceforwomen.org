@@ -1,6 +1,6 @@
 class Owner
 
-  include Mongoid::Base
+  include Mongoid::Document
 
   has_many :projects
 
