@@ -13,7 +13,8 @@
       %nav.top-bar{data: 'topbar', role: 'navigation'}
         %ul.title-area
           %li.name
-            = link_to "Open Source for Women", "/"
+            .logo
+              = link_to image_tag("/assets/os4w_logo_small.png"), "/"
         %section.top-bar-section
           %ul.right
             %li
@@ -22,6 +23,8 @@
               = link_to "About OS4W", "/"
             %li
               = link_to "Support Us", "/"
+            %li
+              = link_to "How to Be An Ally", "/"
             %li
               = link_to "Contact Info", "/"
     = yield
