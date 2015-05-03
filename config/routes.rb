@@ -1,7 +1,9 @@
 Opensourceforwomen::Application.routes.draw do
 
-  get '/auth/:provider/callback' => "sessions#create"
-  get '/sign_out' => "sessions#destroy", :as => 'sign_out'
+  devise_for :users
+
+  # get '/auth/:provider/callback' => "sessions#create"
+  # get '/sign_out' => "sessions#destroy", :as => 'sign_out'
 
   # Static content
   get '/about' => "home#about", :as => 'about'
