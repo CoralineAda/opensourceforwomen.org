@@ -1,4 +1,4 @@
 - if flash.any?
   - flash.each do |f|
     :javascript
-      toastr.info('#{f[1].to_sentence}');
+      toastr.info('#{f[1].kind_of?(Array) ? f[1].to_sentence : f[1]}');
