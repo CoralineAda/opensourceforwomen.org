@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title= content_for?(:title) ? yield(:title) : "Open Source for Women"
+    %title= content_for?(:title) ? "OS4W | #{yield(:title)}" : "Open Source for Women"
     = stylesheet_link_tag    "application"
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag "application" 'data-turbolinks-track' => true
