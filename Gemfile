@@ -6,6 +6,7 @@ gem 'rails', '>= 4.0.0'
 
 gem 'devise'
 gem 'dotenv-rails'
+gem 'foundation-rails', '~> 5.5.0'
 gem 'gibbon'
 gem 'google-analytics-rails'
 gem 'haml'
@@ -25,7 +26,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'sass-rails'
+  gem 'sass-rails', "~> 5.0.0"
 end
 
 group :development do
