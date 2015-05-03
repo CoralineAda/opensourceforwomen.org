@@ -1,11 +1,10 @@
-- content_for :title, "Sign Up"
+- content_for :title, "Create an Account"
 
 .content
   .row
     .large-5.columns
       %h1 Create a New Account
-      = form_for(resource, :as => resource_name, :url => user_registration_path) do |f|
-        = devise_error_messages!
+      = form_for(@user, :url => users_path) do |f|
         %div
           = f.label :username
           = f.email_field :username

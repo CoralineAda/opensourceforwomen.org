@@ -1,10 +1,5 @@
 Opensourceforwomen::Application.routes.draw do
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
-
-  # get '/auth/:provider/callback' => "sessions#create"
-  # get '/sign_out' => "sessions#destroy", :as => 'sign_out'
-
   # Static content
   get '/about' => "home#about", :as => 'about'
   get '/support' => "home#support", :as => 'support'
@@ -13,6 +8,19 @@ Opensourceforwomen::Application.routes.draw do
 
   root :to => 'home#index'
 
+  # Users
+  resources :users, only: [:new, :create] do
+    member do
+      get :activate
+    end
+  end
+
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/sign_up', to: 'users#new', as: :sign_up
+  get '/sign_in', to: 'sessions#new', as: :sign_in
+  delete '/sign_out', to: 'sessions#destroy', as: :sign_out
+
+  # Other
   resources :subscriptions
 
 end

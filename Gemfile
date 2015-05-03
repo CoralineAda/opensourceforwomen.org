@@ -4,7 +4,6 @@ ruby '2.2.1'
 
 gem 'rails', '>= 4.0.0'
 
-gem 'devise'
 gem 'dotenv-rails'
 gem 'foundation-rails', '~> 5.5.0'
 gem 'gibbon'
@@ -20,8 +19,10 @@ gem 'octokit'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
+gem "sorcery"
 gem 'therubyracer'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3'
+gem 'toastr-rails'
+gem 'validates_email_format_of'
 
 group :assets do
   gem 'coffee-rails'
@@ -34,6 +35,7 @@ group :development do
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'rack-mini-profiler'
+  gem 'pry'
 end
 
 group :test do

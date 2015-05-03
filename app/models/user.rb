@@ -1,37 +1,14 @@
 class User
 
   include Mongoid::Document
+  include Sorcery::Model
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  authenticates_with_sorcery!
 
-  ## Database authenticatable
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
+  index({ activation_token: 1 }, { unique: true, background: true })
 
-  ## Recoverable
-  field :reset_password_token,   type: String
-  field :reset_password_sent_at, type: Time
-
-  ## Rememberable
-  field :remember_created_at, type: Time
-
-  ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
-  field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
-  field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
-
-  ## Confirmable
-  field :confirmation_token,   type: String
-  field :confirmed_at,         type: Time
-  field :confirmation_sent_at, type: Time
-  field :unconfirmed_email,    type: String # Only if using reconfirmable
-
-  include Mongoid::Timestamps
-
-  field :email
-  field :username
+  validates :password, length: { minimum: 8 }
+  validates :password, confirmation: true
+  validates :email, uniqueness: true, email_format: { message: 'has invalid format' }
 
 end

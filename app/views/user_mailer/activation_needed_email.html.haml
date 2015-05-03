@@ -1,0 +1,12 @@
+%p
+  Welcome,
+  = @user.name
+  !
+
+%p
+  Please follow
+  = link_to 'this link', activate_user_url(@user.activation_token)
+  to activate your OS4W account.
+
+%p
+  Thanks for joining!
