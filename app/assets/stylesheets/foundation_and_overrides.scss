@@ -114,6 +114,7 @@ $font-family-sans-serif: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 // $oil         : #333333;
 // $jet         : #222222;
 // $black       : #000000;
+$maroon         : #990a26;
 
 // We use these as default colors throughout
 $primary-color: #990A26;
@@ -198,14 +199,14 @@ $primary-color: #990A26;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $maroon;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
+$h1-font-size: rem-calc(37);
 // $h2-font-size: rem-calc(37);
 // $h3-font-size: rem-calc(27);
 // $h4-font-size: rem-calc(23);
