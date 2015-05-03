@@ -9,7 +9,7 @@ Opensourceforwomen::Application.routes.draw do
   root :to => 'home#index'
 
   # Users
-  resources :users, only: [:new, :create] do
+  resources :users do
     member do
       get :activate
     end

@@ -18,6 +18,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash.now[:info] = 'Your account has been updated.'
+      redirect_to root_path
+    else
+      flash.now[:error] = @user.errors.full_messages
+      render 'show'
+    end
+  end
+
   def activate
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!
@@ -27,6 +38,10 @@ class UsersController < ApplicationController
       flash[:warning] = 'Could not activate this account.'
       redirect_to root_path
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private
