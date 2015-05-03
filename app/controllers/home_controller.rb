@@ -12,4 +12,7 @@ class HomeController < ApplicationController
   def allies
   end
 
+  def thank_you
+  end
+
 end
