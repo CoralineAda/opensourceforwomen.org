@@ -7,14 +7,21 @@
       = form_for(@user, :url => user_path(@user)) do |f|
         %div
           = f.label :username
-          = f.email_field :username
+          = f.text_field :username, placeholder: "Required"
         %div
           = f.label :email
-          = f.email_field :email
+          = f.email_field :email, placeholder: "Required"
+        %div
+          = f.label :twitter_handle
+          = f.text_field :twitter_handle, placeholder: "Optional"
+        %div
+          = f.label :github_username
+          = f.text_field :github_username, placeholder: "Optional"
         %div
           = f.label :password
           = f.password_field :password
         %div
           = f.label :password_confirmation
           = f.password_field :password_confirmation
-        %div= f.submit "Create account", class: "small button"
+
+        %div= f.submit "Update account", class: "small button"

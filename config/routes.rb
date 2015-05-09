@@ -5,6 +5,7 @@ Opensourceforwomen::Application.routes.draw do
   get '/support' => "home#support", :as => 'support'
   get '/be-an-ally' => "home#allies", :as => 'allies'
   get '/thank-you' => "home#thank_you", :as => 'thank_you'
+  get '/code-of-conduct' => "home#code_of_conduct", :as => "code_of_conduct"
 
   root :to => 'home#index'
 

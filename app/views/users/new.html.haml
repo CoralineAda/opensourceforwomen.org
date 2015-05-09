@@ -7,30 +7,38 @@
       .large-5.columns
         %div
           = f.label :username
-          = f.email_field :username
+          = f.text_field :username, placeholder: "Required"
         %div
           = f.label :email
-          = f.email_field :email
+          = f.email_field :email, placeholder: "Required"
         %div
           = f.label :password
-          = f.password_field :password
+          = f.password_field :password, placeholder: "Required"
         %div
           = f.label :password_confirmation
-          = f.password_field :password_confirmation
+          = f.password_field :password_confirmation, placeholder: "Required"
+        %div
+          = f.label :twitter_handle
+          = f.text_field :twitter_handle, placeholder: "Optional"
+        %div
+          = f.label :github_username
+          = f.text_field :github_username, placeholder: "Optional"
         %div= f.submit "Create account", class: "small button"
+
       .large-5.columns
         %div
           %p
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            OpenSourceForWomen.org is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form.
+          %p
+            Please read our
+            = link_to "Code of Conduct", code_of_conduct_path
+            before creating your account.
           %label.checkbox{ :for => "accepts_coc" }
             = f.check_box :accepts_coc, :class => "checkbox"
-            %div.check-box-label
-              I agree to abide by this code of conduct.
+            I agree to abide by the Code of Conduct.
         %div
           %p
-            Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          %label.checkbox{ :for => "accepts_terms" }
+            This site is intended to provide a safe, welcoming space for anyone who identifies as a woman. By checking the box below you indicate that you identify as such.
+          %label.checkbox{ :for => "accepts_coc" }
             = f.check_box :accepts_terms, :class => "checkbox"
-            I accept these terms.
-
-
+            I identify as a woman.

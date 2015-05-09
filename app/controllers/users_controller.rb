@@ -19,13 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
-  # HERE ignore password if nil
-  # FIXME allows account hijacking
   def update
-    @user = User.find(params[:id])
-    user_params.delete(:password, :password_confirmation) unless user_params[:password]
+    @user = current_user
+    if user_params[:password].empty?
+      user_params.delete('password')
+      user_params.delete('password_confirmation')
+    end
+
     if @user.update_attributes(user_params)
-      flash.now[:info] = 'Your account has been updated.'
+      flash[:info] = 'Your account has been updated.'
       redirect_to root_path
     else
       flash.now[:error] = @user.errors.full_messages
@@ -45,13 +47,22 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :username, :accepts_coc, :accepts_terms)
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :username,
+      :accepts_coc,
+      :accepts_terms,
+      :twitter_handle,
+      :github_username
+    )
   end
 
 end
