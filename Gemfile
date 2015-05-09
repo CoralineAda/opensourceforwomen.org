@@ -34,7 +34,7 @@ group :development do
   gem 'unicorn'
   gem 'hpricot'
   gem 'ruby_parser'
-  gem 'rack-mini-profiler'
+#  gem 'rack-mini-profiler'
   gem 'pry'
 end
 

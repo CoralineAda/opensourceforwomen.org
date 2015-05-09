@@ -2,9 +2,9 @@
 
 .content
   .row
-    .large-5.columns
-      %h1 Create a New Account
-      = form_for(@user, :url => users_path) do |f|
+    %h1 Create a New Account
+    = form_for(@user, :url => users_path) do |f|
+      .large-5.columns
         %div
           = f.label :username
           = f.email_field :username
@@ -18,3 +18,19 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation
         %div= f.submit "Create account", class: "small button"
+      .large-5.columns
+        %div
+          %p
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :accepts_coc, :class => "checkbox"
+            %div.check-box-label
+              I agree to abide by this code of conduct.
+        %div
+          %p
+            Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+          %label.checkbox{ :for => "accepts_terms" }
+            = f.check_box :accepts_terms, :class => "checkbox"
+            I accept these terms.
+
+

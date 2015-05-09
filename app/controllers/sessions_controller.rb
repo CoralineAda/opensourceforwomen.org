@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       flash[:success] = 'Welcome back!'
       redirect_to root_path
     else
+      @user = User.new
       flash.now[:warning] = 'E-mail and/or password is incorrect.'
       render 'new'
     end

@@ -1,9 +1,10 @@
+# FIXME add password reset
 class UsersController < ApplicationController
 
   before_action :require_login, except: [:new, :create, :activate]
 
   def new
-    @user = User.new(user_params)
+    @user = User.new
   end
 
   def create
@@ -18,8 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # HERE ignore password if nil
+  # FIXME allows account hijacking
   def update
     @user = User.find(params[:id])
+    user_params.delete(:password, :password_confirmation) unless user_params[:password]
     if @user.update_attributes(user_params)
       flash.now[:info] = 'Your account has been updated.'
       redirect_to root_path
@@ -47,7 +51,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :username)
+    params.require(:user).permit(:email, :password, :password_confirmation, :username, :accepts_coc, :accepts_terms)
   end
 
 end

@@ -6,6 +6,10 @@
   border-top: 1px solid #000000;
 }
 
+.field_with_errors checkbox {
+  float: left;
+}
+
 .logo {
   margin-left: 1em;
   margin-top: -4px;
@@ -57,7 +61,7 @@
 }
 
 .featured-row:first-child {
-  margin-top: 12%;
+  margin-top: 10%;
 }
 
 .centered {
@@ -65,7 +69,7 @@
 }
 
 .featured-row {
-  margin-top: 7%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   color: #eeeeee;
