@@ -17,9 +17,12 @@ Opensourceforwomen::Application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
+
+  # Session management
   get '/sign_up', to: 'users#new', as: :sign_up
   get '/sign_in', to: 'sessions#new', as: :sign_in
-  delete '/sign_out', to: 'sessions#destroy', as: :sign_out
+  get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   # Other
   resources :subscriptions

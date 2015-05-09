@@ -6,7 +6,6 @@ class User
 
   authenticates_with_sorcery!
 
-  field :username
   field :twitter_handle
   field :github_username
   field :accepts_coc, type: Boolean
@@ -23,13 +22,18 @@ class User
               }
   validates :password, confirmation: true
   validates :email, uniqueness: true, email_format: { message: 'has invalid format' }
-  validates :accepts_coc, acceptance: true
-  validates :accepts_terms, acceptance: true
+  validates :accepts_coc, :acceptance => {:accept => true}
+  validates :accepts_terms, :acceptance => {:accept => true}
   validates_uniqueness_of :username
 
   def formatted_twitter_handle
     return unless self.twitter_handle
     "@#{self.twitter_handle}".gsub("@@", "@")
+  end
+
+  def formatted_username
+    return email unless username.present?
+    username
   end
 
 end
