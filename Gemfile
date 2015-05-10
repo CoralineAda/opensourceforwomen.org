@@ -6,6 +6,7 @@ gem 'rails', '>= 4.0.0'
 
 gem 'dotenv-rails'
 gem 'foundation-rails', '~> 5.5.0'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'gibbon'
 gem 'google-analytics-rails'
 gem 'haml'

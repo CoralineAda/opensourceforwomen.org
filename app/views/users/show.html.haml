@@ -10,7 +10,7 @@
           = f.text_field :username, placeholder: "Required"
         %div
           = f.label :email
-          = f.email_field :email, placeholder: "Required"
+          = f.text_field :email, disabled: true
         %div
           = f.label :twitter_handle
           = f.text_field :twitter_handle, placeholder: "Optional"
@@ -23,5 +23,11 @@
         %div
           = f.label :password_confirmation
           = f.password_field :password_confirmation
+
+        %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", :value => @user.subscribed?
+            Subscribe to our mailing list
+
 
         %div= f.submit "Update account", class: "small button"

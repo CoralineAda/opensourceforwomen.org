@@ -8,23 +8,41 @@ class Subscription
 
   attr_accessor :message
 
+  belongs_to :user
+
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   def register_with_mailchimp
-    return unless Gibbon::API.new.api_key
+    return unless api.api_key
     begin
-      Gibbon::API.new.lists.subscribe(:id => "ae537a59f9", :email => {:email => self.email})
+      api.lists.subscribe(
+        :id => ENV['MAILCHIMP_LIST_ID'],
+        :email => {:email => self.email}
+      )
       self.update_attribute(:synced_to_mailchimp, true)
     rescue Exception => e
       Rails.logger.error("!!! #{e} #{e.backtrace}")
     end
   end
 
+  def unsubscribe
+    api.lists.unsubscribe(
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email},
+      :delete_member => true,
+      :send_notify => true
+    )
+  end
+
   def reset
     self.email = nil
     self.message = "Invalid email or already subscribed."
+  end
+
+  def api
+    @api ||= Gibbon::API.new(ENV['MAILCHIMP_API_KEY'])
   end
 
 end

@@ -24,6 +24,10 @@
           = f.label :github_username
           = f.text_field :github_username, placeholder: "Optional"
         %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", value: @user.subscribed
+            Subscribe to our mailing list
+        %div
           = f.submit "Create account", class: "small button"
 
         Already have an account? Please
