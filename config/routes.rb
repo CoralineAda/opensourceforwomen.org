@@ -6,8 +6,12 @@ Opensourceforwomen::Application.routes.draw do
   get '/be-an-ally' => "home#allies", :as => 'allies'
   get '/thank-you' => "home#thank_you", :as => 'thank_you'
   get '/code-of-conduct' => "home#code_of_conduct", :as => "code_of_conduct"
+  get '/contact' => 'contacts#new', :as => "contact_us"
 
-  root :to => 'home#index'
+  # Session management
+  get '/sign_up', to: 'users#new', as: :sign_up
+  get '/sign_in', to: 'sessions#new', as: :sign_in
+  get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   # Users
   resources :users do
@@ -16,15 +20,12 @@ Opensourceforwomen::Application.routes.draw do
     end
   end
 
+  # Other
+  resources :contacts, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
-
-  # Session management
-  get '/sign_up', to: 'users#new', as: :sign_up
-  get '/sign_in', to: 'sessions#new', as: :sign_in
-  get '/sign_out', to: 'sessions#destroy', as: :sign_out
-
-  # Other
   resources :subscriptions
+
+  root :to => 'home#index'
 
 end

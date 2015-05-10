@@ -1,0 +1,17 @@
+- content_for :title, "Contact Us"
+
+.content
+  .row
+    .large-5.columns
+      %h1 Contact Us
+      = form_for(@contact) do |f|
+        %div
+          = f.label :name
+          = f.text_field :name, placeholder: "Required"
+        %div
+          = f.label :email
+          = f.email_field :email, placeholder: "Required", disabled: current_user ? true : false
+        %div
+          = f.label :message
+          = f.text_area :message, placeholder: "Required"
+        %div= f.submit "Send message", class: "small button"
