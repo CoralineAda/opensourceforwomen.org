@@ -36,7 +36,7 @@ class User
   def subscribe_me=(value)
     self.subscription ||= Subscription.find_or_create_by(email: self.email)
     self.update_attribute(:subscribed, value)
-    if value
+    if value && value == 1
       subscription.register_with_mailchimp
     else
       subscription.unsubscribe

@@ -41,6 +41,8 @@ class Subscription
     self.message = "Invalid email or already subscribed."
   end
 
+  private
+
   def api
     @api ||= Gibbon::API.new(ENV['MAILCHIMP_API_KEY'])
   end
