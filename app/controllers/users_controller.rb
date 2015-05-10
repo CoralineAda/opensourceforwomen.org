@@ -1,4 +1,3 @@
-# FIXME add password reset
 class UsersController < ApplicationController
 
   before_action :require_login, except: [:new, :create, :activate]

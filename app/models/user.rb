@@ -28,6 +28,7 @@ class User
   validates_uniqueness_of :username
 
   has_one :subscription
+  has_and_belongs_to_many :projects
 
   def subscribe_me
     self.subscribed
@@ -51,7 +52,7 @@ class User
 
   def formatted_username
     return email unless username.present?
-    username
+    username.gsub(/[^a-zA-Z 0-9]/u, "")
   end
 
 end

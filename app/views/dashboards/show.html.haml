@@ -1,0 +1,55 @@
+- content_for :title, "#{current_user.formatted_username}'s Dashboard".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1= "#{current_user.formatted_username}'s Dashboard"
+
+  .row
+
+    .large-6.columns
+
+      %h3
+        My Projects (
+        = @dashboard.project_count
+        )
+      - if @dashboard.project_count == 0
+        %p
+          You don't have any projects yet!
+      - else
+        %ul
+        - @dashboard.projects.each do |project|
+          %l1
+            = link_to project.name, project_path(project)
+
+      %h3
+        My Pair Partners (
+        = @dashboard.pair_partner_count
+        )
+      - if @dashboard.pair_partner_count == 0
+        %p
+          You don't have any pair partners yet!
+      - else
+        %ul
+        - @dashboard.pair_partners.each do |partner|
+          %l1
+            = link_to partner.formatted_username, user_path(partner)
+
+    .large-6.columns
+
+      %h3 More
+      %ul
+        %li
+          = link_to "Open Source Projects", "#"
+          %p
+            Look for a curated open source project, or submit a new one for other members to check out.
+        %li
+          = link_to "Pair Programming", "#"
+          %p
+            Connect with other women who want to pair program on an open source project.
+
+        %li
+          = link_to "Forums", "#"
+          %p
+            Hang out and chat with other members.
+

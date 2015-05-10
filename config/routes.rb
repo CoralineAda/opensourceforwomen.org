@@ -22,8 +22,9 @@ Opensourceforwomen::Application.routes.draw do
 
   # Other
   resources :contacts, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :dashboards, only: [:show]
   resources :password_resets
+  resources :sessions, only: [:new, :create, :destroy]
   resources :subscriptions
 
   root :to => 'home#index'

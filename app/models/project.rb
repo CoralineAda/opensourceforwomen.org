@@ -13,7 +13,7 @@ class Project
 
   has_many :contributors
   has_one  :owner
-  # has_many :signals
+  has_and_belongs_to_many :users
 
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url
