@@ -2,11 +2,11 @@ Opensourceforwomen::Application.routes.draw do
 
   # Static content
   get '/about' => "home#about", :as => 'about'
-  get '/support' => "home#support", :as => 'support'
   get '/be-an-ally' => "home#allies", :as => 'allies'
-  get '/thank-you' => "home#thank_you", :as => 'thank_you'
   get '/code-of-conduct' => "home#code_of_conduct", :as => "code_of_conduct"
   get '/contact' => 'contacts#new', :as => "contact_us"
+  get '/support' => "home#support", :as => 'support'
+  get '/thank-you' => "home#thank_you", :as => 'thank_you'
 
   # Session management
   get '/sign_up', to: 'users#new', as: :sign_up
@@ -21,9 +21,11 @@ Opensourceforwomen::Application.routes.draw do
   end
 
   # Other
+  resources :bookmarks, only: [:create]
   resources :contacts, only: [:new, :create]
   resources :dashboards, only: [:show]
   resources :password_resets
+  resources :projects
   resources :sessions, only: [:new, :create, :destroy]
   resources :subscriptions
 

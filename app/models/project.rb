@@ -10,9 +10,8 @@ class Project
   field :language
   field :repo_url
   field :remote_id
+  field :has_coc, type: Boolean
 
-  has_many :contributors
-  has_one  :owner
   has_and_belongs_to_many :users
 
   validates_presence_of :repo_url

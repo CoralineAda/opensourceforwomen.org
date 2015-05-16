@@ -1,0 +1,33 @@
+- content_for :title, "Open Source Projects".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1 Open Source Projects
+
+  .row
+
+    .large-12.columns
+
+      %table{ summary: "This table lists curated open source projects submitted by members and staff." }
+        %thead
+          %tr
+            %td
+              Name
+            %td
+              Description
+            %td
+              Language
+            %td
+              Code of Conduct?
+        %tbody
+          - @projects.each do |project|
+            %tr
+              %td
+                = link_to project.name, project_path(project)
+              %td
+                = project.description
+              %td
+                = project.language
+              %td
+                = project.has_coc? ? "Yes" : "No"

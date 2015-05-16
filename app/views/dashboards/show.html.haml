@@ -19,7 +19,7 @@
       - else
         %ul
         - @dashboard.projects.each do |project|
-          %l1
+          %li
             = link_to project.name, project_path(project)
 
       %h3
@@ -40,16 +40,21 @@
       %h3 More
       %ul
         %li
-          = link_to "Open Source Projects", "#"
+          = link_to "Open Source Projects", projects_path
           %p
             Look for a curated open source project, or submit a new one for other members to check out.
         %li
           = link_to "Pair Programming", "#"
           %p
-            Connect with other women who want to pair program on an open source project.
+            Manage your pair profile and connect with other women who want to pair program on an open source project.
 
         %li
-          = link_to "Forums", "#"
+          = link_to "Mentoring", "#"
           %p
-            Hang out and chat with other members.
+            Sign up to be a mentor, or find a mentor to work with you.
+
+        %li
+          = link_to "Slack", "#"
+          %p
+            Sign up to join our Slack community.
 
