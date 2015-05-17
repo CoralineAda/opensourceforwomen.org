@@ -1,0 +1,21 @@
+.large-5.columns
+  %div
+    = f.label :languages, "Preferred Languages*"
+    = f.text_field :languages, placeholder: "What languages do you like to use?"
+  %div
+    = f.label :availability, "General availability*"
+    = f.text_area :availability, placeholder: "e.g. Saturday afternoon"
+  %div
+    = f.label :time_zone, "Your time zone"
+    = f.time_zone_select(:time_zone, ActiveSupport::TimeZone.all.sort, default: "Central Time (US & Canada)")
+  %div
+    = f.label :skill_level, "How would you describe your skill level?"
+    = f.text_area :skill_level, placeholder: "Don't be modest!"
+  %div
+    = f.label :special_interests, "Areas of interest"
+    = f.text_area :special_interests, placeholder: "Anything in particular?"
+  %div
+    = f.label :notes, "Other notes"
+    = f.text_area :notes, placeholder: "Anything else?"
+  %div
+    = f.submit "Save", class: "small button"

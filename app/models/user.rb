@@ -2,6 +2,7 @@
 class User
 
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Sorcery::Model
 
   authenticates_with_sorcery!
@@ -20,13 +21,14 @@ class User
                 !user.password.blank? ||
                 !user.password_confirmation.blank? ||
                 user.new_record?
-              }
+            }
   validates :password, confirmation: true
   validates :email, uniqueness: true, email_format: { message: 'has invalid format' }
   validates :accepts_coc, :acceptance => {:accept => true}
   validates :accepts_terms, :acceptance => {:accept => true}
   validates_uniqueness_of :username
 
+  has_one :pair_profile
   has_one :subscription
   has_and_belongs_to_many :projects
 

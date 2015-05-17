@@ -1,0 +1,56 @@
+- content_for :title, "Pairing Opportunities".html_safe
+
+.content
+  .row
+    .large-12.columns
+      %h1 Pairing Opportunities
+
+  .row
+
+    .large-8.columns
+
+      %h2 Potential Pair Partners
+      - if @pair_profiles.any?
+        %ul
+          - @pair_profiles.each do |pair_profile|
+            %li
+              %p
+                = link_to pair_profile.username, pair_profile_path(pair_profile)
+                %br
+                Languages:
+                = pair_profile.languages
+      - else
+        %p
+          %strong
+            Sorry, no pair partners found yet!
+
+    .large-4.columns
+
+      - if @current_user.pair_profile
+        %h2 My Pair Profile
+        .panel
+          %div
+            %label Preferred Languages
+            = text_field_tag :languages, @pair_profile.languages, disabled: true
+          %div
+            %label General availability
+            = text_field_tag :availability, @pair_profile.availability, disabled: true
+          %div
+            %label Your time zone
+            = text_field_tag :time_zone, @pair_profile.time_zone, disabled: true
+          %div
+            %label How would you describe your skill level?
+            = text_area_tag :skill_level, @pair_profile.skill_level, disabled: true
+          %div
+            %label Areas of interest
+            = text_area_tag :interests, @pair_profile.special_interests, disabled: true
+          %div
+            %label Other notes
+            = text_area_tag :notes, @pair_profile.notes, disabled: true
+        %div
+          = link_to "Edit my profile", edit_pair_profile_path(@pair_profile.id), class: "button small"
+      - else
+        %h2 Get Started
+        %p
+          Create your own pair profile now!
+        = link_to "Create profile", new_pair_profile_path, class: "button small"

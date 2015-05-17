@@ -1,0 +1,47 @@
+- content_for :title, "#{@pair_profile.username}'s Pair Profile"
+
+.content
+  .row
+    %h1
+      = "#{@pair_profile.username}'s Pair Profile"
+
+    .large-7.columns
+      %div
+        %p
+          %strong
+            Preferred Languages
+          %br
+            = @pair_profile.languages
+        %p
+          %strong
+            General Availability
+          %br
+            = @pair_profile.availability || "Not specified"
+        %p
+          %strong
+            Time Zone
+          %br
+            = @pair_profile.time_zone || "Not specified"
+        %p
+          %strong
+            Skill Level
+          %br
+            = @pair_profile.skill_level || "Not specified"
+        %p
+          %strong
+            Special Interests
+          %br
+            = @pair_profile.special_interests || "Not specified"
+        %p
+          %strong
+            Notes
+          %br
+            = @pair_profile.notes || "Not specified"
+
+    .large-5.columns
+
+      .panel
+        %p
+          Does this profile look interesting? Take the first step and send them a pair request!
+        %div
+          = link_to "Send a pair request", "#", class: "button small"

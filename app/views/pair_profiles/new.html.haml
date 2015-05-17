@@ -1,0 +1,7 @@
+- content_for :title, "Create a Pair Profile"
+
+.content
+  .row
+    %h1 Create a New Pair Profile
+    = form_for(@pair_profile, :url => pair_profiles_path) do |f|
+      = render "form"

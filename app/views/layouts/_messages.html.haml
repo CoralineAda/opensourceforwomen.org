@@ -1,4 +1,9 @@
 - if flash.any?
   - flash.each do |f|
+    - if f[1].is_a? Array
+      - f[1].each do |message|
+        - message.gsub!("'", %q(\\\'))
+    - else
+      - f[1].gsub!("'", %q(\\\'))
     :javascript
       toastr.info('#{f[1].kind_of?(Array) ? f[1].to_sentence : f[1]}');
