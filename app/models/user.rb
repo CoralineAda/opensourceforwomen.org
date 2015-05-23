@@ -32,6 +32,16 @@ class User
   has_one :subscription
   has_and_belongs_to_many :projects
 
+  def formatted_twitter_handle
+    return unless self.twitter_handle
+    "@#{self.twitter_handle}".gsub("@@", "@")
+  end
+
+  def formatted_username
+    return email unless username.present?
+    username.gsub(/[^a-zA-Z 0-9]/u, "")
+  end
+
   def subscribe_me
     self.subscribed
   end
@@ -47,14 +57,8 @@ class User
     end
   end
 
-  def formatted_twitter_handle
-    return unless self.twitter_handle
-    "@#{self.twitter_handle}".gsub("@@", "@")
-  end
-
-  def formatted_username
-    return email unless username.present?
-    username.gsub(/[^a-zA-Z 0-9]/u, "")
+  def username=(requested)
+    @username = requested.gsub(/[^a-zA-Z0-9 \-\_]/, '')
   end
 
 end

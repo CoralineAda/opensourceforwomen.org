@@ -28,12 +28,16 @@ class Subscription
   end
 
   def unsubscribe
-    api.lists.unsubscribe(
-      :id => ENV['MAILCHIMP_LIST_ID'],
-      :email => {:email => self.email},
-      :delete_member => true,
-      :send_notify => true
-    )
+    begin
+      api.lists.unsubscribe(
+        :id => ENV['MAILCHIMP_LIST_ID'],
+        :email => {:email => self.email},
+        :delete_member => true,
+        :send_notify => true
+      )
+    rescue
+      Rails.logger.info("Cannot unsubscribe user #{user.username}")
+    end
   end
 
   def reset

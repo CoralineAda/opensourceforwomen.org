@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(user_params)
       flash[:info] = 'Your account has been updated.'
-      redirect_to root_path
+      redirect_to dashboard_path(1)
     else
       flash.now[:error] = @user.errors.full_messages
       render 'show'
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       redirect_to sign_in_path
     else
       flash[:warning] = 'Could not activate this account.'
-      redirect_to root_path
+      redirect_to dashboard_path(1)
     end
   end
 
