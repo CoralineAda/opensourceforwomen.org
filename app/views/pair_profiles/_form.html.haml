@@ -1,8 +1,5 @@
 .large-5.columns
   %div
-    = f.label :languages, "Preferred Languages*"
-    = f.text_field :languages, placeholder: "What languages do you like to use?"
-  %div
     = f.label :availability, "General availability*"
     = f.text_area :availability, placeholder: "e.g. Saturday afternoon"
   %div
@@ -19,3 +16,13 @@
     = f.text_area :notes, placeholder: "Anything else?"
   %div
     = f.submit "Save", class: "small button"
+.large-5.columns
+  %div
+    = f.label :languages, "Preferred Languages*"
+    - @languages.each do |language|
+      %label.checkbox{ :for => "languages" }
+        = check_box_tag "pair_profile[language_ids][]", language.id, @pair_profile.languages.include?(language)
+        = language.name
+  %div
+    = f.label :other_language, "Other Language"
+    = f.text_area :other_language, placeholder: "Language name"

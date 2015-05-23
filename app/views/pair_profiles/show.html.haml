@@ -11,7 +11,7 @@
           %strong
             Preferred Languages
           %br
-            = @pair_profile.languages
+            = @pair_profile.languages.map(&:name).sort.join(", ")
         %p
           %strong
             General Availability

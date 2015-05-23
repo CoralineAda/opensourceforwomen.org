@@ -4,4 +4,4 @@
   .row
     %h1 Create a New Pair Profile
     = form_for(@pair_profile, :url => pair_profiles_path) do |f|
-      = render "form"
+      = render partial: "form", locals: {f: f}

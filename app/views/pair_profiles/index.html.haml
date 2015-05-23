@@ -18,7 +18,7 @@
                 = link_to pair_profile.username, pair_profile_path(pair_profile)
                 %br
                 Languages:
-                = pair_profile.languages
+                = pair_profile.languages.map(&:name).to_sentence
       - else
         %p
           %strong
@@ -31,7 +31,7 @@
         .panel
           %div
             %label Preferred Languages
-            = text_field_tag :languages, @pair_profile.languages, disabled: true
+            = text_field_tag :languages, @pair_profile.languages.map(&:name).join(", "), disabled: true
           %div
             %label General availability
             = text_field_tag :availability, @pair_profile.availability, disabled: true
