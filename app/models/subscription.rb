@@ -16,28 +16,21 @@ class Subscription
 
   def register_with_mailchimp
     return unless api.api_key
-    # begin
-      api.lists.subscribe(
-        :id => ENV['MAILCHIMP_LIST_ID'],
-        :email => {:email => self.email}
-      )
-      self.update_attribute(:synced_to_mailchimp, true)
-    # rescue Exception => e
-    #   Rails.logger.error("!!! #{e} #{e.backtrace}")
-    # end
+    api.lists.subscribe(
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email}
+    )
+    self.update_attribute(:synced_to_mailchimp, true)
   end
 
   def unsubscribe
-    begin
-      api.lists.unsubscribe(
-        :id => ENV['MAILCHIMP_LIST_ID'],
-        :email => {:email => self.email},
-        :delete_member => true,
-        :send_notify => true
-      )
-    rescue
-      Rails.logger.info("Cannot unsubscribe user #{user.username}")
-    end
+    return unless self.user.subscribed
+    api.lists.unsubscribe(
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email},
+      :delete_member => true,
+      :send_notify => true
+    )
   end
 
   def reset

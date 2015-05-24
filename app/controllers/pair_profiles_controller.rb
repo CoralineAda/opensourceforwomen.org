@@ -4,7 +4,11 @@ class PairProfilesController < ApplicationController
   ]
   def index
     @pair_profile = current_user.pair_profile
-    @pair_profiles = PairProfile.all.excludes(id: current_user.pair_profile.id)
+    if current_user.pair_profile
+      @pair_profiles = PairProfile.all.excludes(id: current_user.pair_profile.id)
+    else
+      @pair_profiles = PairProfile.all
+    end
   end
 
   def create
