@@ -16,15 +16,15 @@ class Subscription
 
   def register_with_mailchimp
     return unless api.api_key
-    begin
+    # begin
       api.lists.subscribe(
         :id => ENV['MAILCHIMP_LIST_ID'],
         :email => {:email => self.email}
       )
       self.update_attribute(:synced_to_mailchimp, true)
-    rescue Exception => e
-      Rails.logger.error("!!! #{e} #{e.backtrace}")
-    end
+    # rescue Exception => e
+    #   Rails.logger.error("!!! #{e} #{e.backtrace}")
+    # end
   end
 
   def unsubscribe

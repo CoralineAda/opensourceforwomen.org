@@ -32,6 +32,8 @@ class User
   has_one :subscription
   has_and_belongs_to_many :projects
 
+  attr_accessor :requested_username
+
   def formatted_twitter_handle
     return unless self.twitter_handle
     "@#{self.twitter_handle}".gsub("@@", "@")
@@ -47,18 +49,18 @@ class User
   end
 
   def subscribe_me=(value)
-    self.subscription ||= Subscription.find_or_create_by(email: self.email)
-    self.update_attribute(:subscribed, value)
-    if value && value == 1
-      subscription.register_with_mailchimp
-    else
-      subscription.unsubscribe
-      subscription.destroy
-    end
+    # self.subscription ||= Subscription.find_or_create_by(email: self.email)
+    # self.update_attribute(:subscribed, value)
+    # if value && value == 1
+    #   subscription.register_with_mailchimp
+    # else
+    #   subscription.unsubscribe
+    #   subscription.destroy
+    # end
   end
 
-  def username=(requested)
-    @username = requested.gsub(/[^a-zA-Z0-9 \-\_]/, '')
+  def requested_username=(requested)
+    self.username = requested.gsub(/[^a-zA-Z0-9 \-\_]/, '')
   end
 
 end

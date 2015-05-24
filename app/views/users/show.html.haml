@@ -7,7 +7,7 @@
       = form_for(@user, :url => user_path(@user)) do |f|
         %div
           = f.label :username
-          = f.text_field :username, placeholder: "Required"
+          = f.text_field :requested_username, placeholder: "Required", value: @user.username
         %div
           = f.label :email
           = f.text_field :email, disabled: true

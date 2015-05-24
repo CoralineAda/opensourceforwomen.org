@@ -6,8 +6,8 @@
     = form_for(@user, :url => users_path) do |f|
       .large-5.columns
         %div
-          = f.label :username
-          = f.text_field :username, placeholder: "Required"
+          = f.label :requested_username
+          = f.text_field :requested_username, placeholder: "Required", value: @user.username
         %div
           = f.label :email
           = f.email_field :email, placeholder: "Required"
@@ -24,7 +24,7 @@
           = f.label :github_username
           = f.text_field :github_username, placeholder: "Optional"
         %div
-          %label.checkbox{ :for => "accepts_coc" }
+          %label.checkbox{ :for => "subscribe_me" }
             = f.check_box :subscribe_me, :class => "checkbox", value: @user.subscribed
             Subscribe to our mailing list
         %div
