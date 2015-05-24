@@ -4,7 +4,7 @@
   .row
     .large-6.columns
       %h1 Project Details
-      %p
+      %p.back-navigation
         &laquo;
         = link_to "Back to Projects", projects_path
   .row
@@ -22,7 +22,12 @@
         %li.bullet-item
           = @project.repo_url
     .large-6.columns
-      - unless @current_user.projects.include? @project
+      - if @current_user.projects.include? @project
+        = form_tag "/bookmarks" do
+          = hidden_field_tag :project_id, @project.id
+          = hidden_field_tag :remove, true
+          = submit_tag "Remove Bookmark", class: "button small"
+      - else
         = form_tag "/bookmarks" do
           = hidden_field_tag :project_id, @project.id
           = submit_tag "Save to Bookmarks", class: "button small"
