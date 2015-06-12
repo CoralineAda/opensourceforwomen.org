@@ -10,28 +10,36 @@
     .large-6.columns
 
       %h3
-        Bookmarked Projects
-      - if @dashboard.project_count == 0
-        %p
-          You don't have any projects yet!
-      - else
+        Projects
+      - if @dashboard.projects.any?
         %ul
         - @dashboard.projects.each do |project|
           %li
             = link_to project.name, project_path(project)
+      - else
+        %p
+          You haven't bookmarked any projects yet.
 
       %h3
         Pair Partners
-      - if @dashboard.pair_partner_count == 0
-        %p
-          You don't have any pair partners yet. Why not
-          = link_to "find one now", pair_profiles_path
-          ?
-      - else
+      - if @dashboard.pair_partners.any?
         %ul
         - @dashboard.pair_partners.each do |partner|
           %l1
             = link_to partner.formatted_username, user_path(partner)
+      - elsif @dashboard.incoming_pair_requests.any?
+        %p
+          You have pair requests from the following amazing women:
+          %ul
+            - @dashboard.incoming_pair_requests.each do |pair_request|
+              %li
+                = link_to pair_request.sender.username, pair_request_path(pair_request)
+      - else
+        %p
+          You don't have any pair partners yet. Why not
+          = link_to "find one now", pair_profiles_path
+          ?
+
 
     .large-6.columns
 

@@ -33,6 +33,7 @@ class User
   has_and_belongs_to_many :projects
   has_many :sent_pair_requests, inverse_of: :sender, class_name: "PairRequest"
   has_many :received_pair_requests, inverse_of: :recipient, class_name: "PairRequest"
+  has_and_belongs_to_many :pair_partners, class_name: "User"
 
   attr_accessor :requested_username
 

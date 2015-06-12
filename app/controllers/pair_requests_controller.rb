@@ -1,6 +1,6 @@
 class PairRequestsController < ApplicationController
 
-  before_filter :scope_recipient, except: [:show]
+  before_filter :scope_recipient, except: [:show, :destroy]
 
   def new
     @pair_request = PairRequest.new
@@ -16,7 +16,12 @@ class PairRequestsController < ApplicationController
   end
 
   def show
-    pair_request = PairRequest.find(params[:id])
+    @pair_request = PairRequest.find(params[:id])
+  end
+
+  def destroy
+    PairRequest.find(params[:id]).destroy
+    redirect_to dashboard_path(1)
   end
 
   def scope_recipient

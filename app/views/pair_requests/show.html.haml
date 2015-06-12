@@ -1,0 +1,19 @@
+- content_for :title, "Pair Request from #{@pair_request.sender.username}"
+
+.content
+  .row
+    %h1
+      Pair Request from
+      = @pair_request.sender.username
+
+    = form_for(@pair_request, :url => pair_request_path(@pair_request)) do |f|
+      .large-5.columns
+        %div
+          = f.label :pair_with
+          = f.text_field :sender_username, value: @pair_request.sender.username, disabled: true
+        %div
+          = f.label :message
+          = f.text_area :message, placeholder: "Introduce yourself!", disabled: true
+        %div
+          = f.submit "Accept Request", class: "small button"
+            = link_to "Refuse Request", @pair_request, method: :delete, data: { confirm: 'Are you sure?' }, class: "small button"
