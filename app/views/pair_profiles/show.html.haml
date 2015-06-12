@@ -40,8 +40,17 @@
 
     .large-5.columns
 
-      .panel
-        %p
-          Does this profile look interesting? Take the first step and send them a pair request!
-        %div
-          = link_to "Send a pair request", "#", class: "button small"
+      - if @pair_request && ! @pair_request.rejected?
+        .panel
+          %p
+            You sent
+            = @pair_profile.username
+            a pairing request on
+            = @pair_request.created_at.strftime("%m/%d/%Y.")
+
+      - else @pair_request
+        .panel
+          %p
+            Does this profile look interesting? Take the first step and send them a pair request!
+          %div
+            = link_to "Send a pair request", new_pair_request_path(recipient_id: @pair_profile.user_id), class: "button small"
