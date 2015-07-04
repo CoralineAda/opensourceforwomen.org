@@ -1,0 +1,41 @@
+%section.sidebar
+  %h3
+    Messages
+  %h4
+    = @current_user.received_pair_requests.count
+    unread
+  %h4
+    = link_to "View all", "#"
+  %br
+
+  %h3
+    Projects
+  - @current_user.projects.sort_by(&:name).each do |project|
+    %h4
+      = link_to project.name, project_path(project)
+  %br
+
+  %h3
+    Pair Requests
+  %h4
+    = @current_user.received_pair_requests.count
+    received
+  %h4
+    = @current_user.sent_pair_requests.count
+    sent
+  %h4
+    = link_to "View all", "#"
+  %br
+
+  %h3
+    Mentoring Requests
+  %h4
+    = @current_user.received_pair_requests.count
+    received
+  %h4
+    = @current_user.sent_pair_requests.count
+    sent
+  %h4
+    = link_to "View all", "#"
+  %br
+%br.clear

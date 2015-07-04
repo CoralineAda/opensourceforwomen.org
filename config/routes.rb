@@ -17,6 +17,7 @@ Opensourceforwomen::Application.routes.draw do
   resources :users do
     member do
       get :activate
+      resources :messages
     end
   end
 

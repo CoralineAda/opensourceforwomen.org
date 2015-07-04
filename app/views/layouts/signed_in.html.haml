@@ -11,7 +11,8 @@
   %body
     %header
       = render "shared/navigation"
+
     = render "layouts/messages"
-    .wrapper
-      = yield
+    = render "shared/sidebar"
+    = yield
     = render 'shared/footer'

@@ -6,10 +6,6 @@ class Dashboard
     @user = args[:user]
   end
 
-  def incoming_pair_requests
-    self.user.received_pair_requests.pending
-  end
-
   def pair_partners
     self.user.pair_partners
   end

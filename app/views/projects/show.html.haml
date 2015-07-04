@@ -31,3 +31,12 @@
         = form_tag "/bookmarks" do
           = hidden_field_tag :project_id, @project.id
           = submit_tag "Save to Bookmarks", class: "button small"
+      - if @project.bookmarking_users
+        %h3
+          Bookmarked by
+          = pluralize(@project.bookmarking_users.count, "person")
+        %ul
+          - @project.bookmarking_users.each do |user|
+            - next unless user.pair_profile
+            %li
+              = link_to user.formatted_username, pair_profile_path(user.pair_profile)

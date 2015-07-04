@@ -21,6 +21,10 @@ class Project
     new(repo_url: repo_url).update
   end
 
+  def bookmarking_users
+    self.users
+  end
+
   def repo_path
     URI.parse(self.repo_url).path[1..-1]
   end

@@ -1,14 +1,8 @@
-class PairProfilesController < ApplicationController
+class MessagesController < ApplicationController
   before_action :require_login
-  before_action :scope_languages, only: [:new, :create, :update, :edit]
 
   def index
-    @pair_profile = current_user.pair_profile
-    if current_user.pair_profile
-      @pair_profiles = PairProfile.all.excludes(id: current_user.pair_profile.id)
-    else
-      @pair_profiles = PairProfile.all
-    end
+    @messages = current_user.received_messages
   end
 
   def create

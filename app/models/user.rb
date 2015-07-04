@@ -31,9 +31,11 @@ class User
   has_one :pair_profile
   has_one :subscription
   has_and_belongs_to_many :projects
+  has_and_belongs_to_many :pair_partners, class_name: "User"
   has_many :sent_pair_requests, inverse_of: :sender, class_name: "PairRequest"
   has_many :received_pair_requests, inverse_of: :recipient, class_name: "PairRequest"
-  has_and_belongs_to_many :pair_partners, class_name: "User"
+  has_many :sent_messages, inverse_of: :sender, class_name: "Message"
+  has_many :received_messages, inverse_of: :recipient, class_name: "Message"
 
   attr_accessor :requested_username
 
