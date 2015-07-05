@@ -53,4 +53,4 @@
           %p
             Does this profile look interesting? Take the first step and send them a pair request!
           %div
-            = link_to "Send a pair request", new_pair_request_path(recipient_id: @pair_profile.user_id), class: "button small"
+            = link_to "Send a pair request", new_message_path(recipient_id: @pair_profile.user_id), class: "button small"

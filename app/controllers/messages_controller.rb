@@ -1,62 +1,48 @@
 class MessagesController < ApplicationController
-  before_action :require_login
+
+  before_filter :scope_recipient, except: [:index, :show, :destroy]
 
   def index
-    @messages = current_user.received_messages
+    @messages = current_user.incoming_messages
+  end
+
+  def new
+    @message = Message.new
   end
 
   def create
-    @pair_profile = PairProfile.new({user: current_user}.merge(profile_params))
-    if profile_params[:other_language].present? && language = Language.create(name: profile_params[:other_language])
-      @pair_profile.languages << language
-    end
-    if @pair_profile.save
-      redirect_to pair_profiles_path
+    @message = Message.new(
+      sender_id: current_user.id,
+      recipient_id: message_params[:recipient_id],
+      subject: message_params[:subject],
+      body: message_params[:body]
+    )
+    if @message.save
+      flash[:success] = 'Message sent successfully.'
+      redirect_to pair_profile_path(@message.recipient.pair_profile)
     else
-      flash[:error] = @pair_profile.errors.full_messages
+      flash.now[:error] = @message.errors.full_messages
       render 'new'
     end
   end
 
-  def edit
-    @pair_profile = current_user.pair_profile
-  end
-
   def show
-    @pair_profile = PairProfile.find(params[:id])
-    @pair_request = current_user.last_pair_request_sent_to(@pair_profile.user)
+    @message = Message.find(params[:id])
   end
 
-  def new
-    @pair_profile = PairProfile.new(user: current_user)
-  end
-
-  def update
-    @pair_profile = current_user.pair_profile
-    @pair_profile.update_attributes(profile_params)
-    if profile_params[:other_language].present? && language = Language.create(name: profile_params[:other_language])
-      @pair_profile.languages << language
-    end
-    flash[:info] = "Your profile has been updated."
-    redirect_to pair_profiles_path
+  def destroy
+    Message.find(params[:id]).destroy
+    redirect_to dashboard_path(1)
   end
 
   private
 
-  def profile_params
-    params.require(:pair_profile).permit(
-      :other_language,
-      :availability,
-      :time_zone,
-      :skill_level,
-      :special_interests,
-      { language_ids: [] },
-      :notes
-    )
+  def message_params
+    params[:message]
   end
 
-  def scope_languages
-    @languages = Language.all.sort_by(&:name)
+  def scope_recipient
+    @recipient = User.find(params[:recipient_id] || message_params[:recipient_id])
   end
 
 end

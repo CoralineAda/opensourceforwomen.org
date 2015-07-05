@@ -10,6 +10,10 @@ class Dashboard
     self.user.pair_partners
   end
 
+  def unread_messages
+    self.user.unread_messages
+  end
+
   def projects
     @projects ||= self.user.projects.order_by(&:name)
   end

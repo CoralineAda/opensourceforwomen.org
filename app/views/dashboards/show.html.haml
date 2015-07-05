@@ -10,6 +10,17 @@
     .large-6.columns
 
       %h3
+        Messages
+      - if @dashboard.unread_messages.any?
+        %p
+          You have #{pluralize(@dashboard.unread_messages.count, "unread message")}.
+          = link_to "View your inbox", messages_path
+      - else
+        %p
+          You have no unread messages.
+          = link_to "View your inbox", messages_path
+
+      %h3
         Bookmarked Projects
       - if @dashboard.projects.any?
         %ul.tight_spacing

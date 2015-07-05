@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       flash[:success] = 'Please check your email for account activation.'
       redirect_to sign_in_path
     else
-      binding.pry
       flash.now[:error] = @user.errors.full_messages
       render 'new'
     end

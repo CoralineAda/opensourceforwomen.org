@@ -1,0 +1,18 @@
+- content_for :title, "Message from #{@message.sender.username}"
+
+.content
+  .row
+    %h1
+      Message from
+      = @message.sender.username
+
+    = form_for(@message, :url => message_path(@message)) do |f|
+      .large-5.columns
+        %div
+          = f.label :pair_with
+          = f.text_field :sender_username, value: @message.sender.username, disabled: true
+        %div
+          = f.label :message
+          = f.text_area :message, disabled: true
+        %div
+          = link_to "Reply", new_message_path(original_message_id: @message.id), class: "small button"

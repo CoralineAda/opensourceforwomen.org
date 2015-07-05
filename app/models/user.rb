@@ -32,10 +32,8 @@ class User
   has_one :subscription
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :pair_partners, class_name: "User"
-  has_many :sent_pair_requests, inverse_of: :sender, class_name: "PairRequest"
-  has_many :received_pair_requests, inverse_of: :recipient, class_name: "PairRequest"
   has_many :sent_messages, inverse_of: :sender, class_name: "Message"
-  has_many :received_messages, inverse_of: :recipient, class_name: "Message"
+  has_many :incoming_messages, inverse_of: :recipient, class_name: "Message"
 
   attr_accessor :requested_username
 
@@ -47,10 +45,6 @@ class User
   def formatted_username
     return email unless username.present?
     username.gsub(/[^a-zA-Z 0-9]/u, "")
-  end
-
-  def last_pair_request_sent_to(user)
-    self.sent_pair_requests.recent.for_recipient(user).last
   end
 
   def subscribe_me
@@ -71,5 +65,10 @@ class User
   def requested_username=(requested)
     self.username = requested.gsub(/[^a-zA-Z0-9 \-\_]/, '')
   end
+
+  def unread_messages
+    self.incoming_messages.unread
+  end
+
 
 end

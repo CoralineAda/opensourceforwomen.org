@@ -30,7 +30,6 @@ class PairProfilesController < ApplicationController
 
   def show
     @pair_profile = PairProfile.find(params[:id])
-    @pair_request = current_user.last_pair_request_sent_to(@pair_profile.user)
   end
 
   def new

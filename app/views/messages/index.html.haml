@@ -1,0 +1,24 @@
+- content_for :title, "Messages".html_safe
+
+.content
+  .row
+    .large-12.columns
+      %h1 Messages
+
+  .row
+    .large-12.columns
+    %table
+      %thead
+        %tr
+          %th.narrow Received
+          %th.narrow From
+          %th Subject
+      %tbody
+        - @messages.each do |message|
+          %tr
+            %td
+              = message.created_at.strftime("%m/%d/%Y at %I:%M%p")
+            %td
+              = message.sender.username
+            %td
+              = message.subject

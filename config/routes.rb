@@ -26,7 +26,6 @@ Opensourceforwomen::Application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :dashboards, only: [:show]
   resources :pair_profiles
-  resources :pair_requests
   resources :password_resets
   resources :projects
   resources :sessions, only: [:new, :create, :destroy]

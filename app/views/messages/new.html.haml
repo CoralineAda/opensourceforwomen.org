@@ -1,0 +1,19 @@
+- content_for :title, "Send a Message"
+
+.content
+  .row
+    %h1 Send a Message
+    = form_for(@message, :url => messages_path) do |f|
+      .large-5.columns
+        %div
+          = f.label :recipient
+          = f.text_field :recipient_username, value: @recipient.username, disabled: true
+          = f.hidden_field :recipient_id, value: @recipient.id
+        %div
+          = f.label :subject
+          = f.text_field :subject, value: "Pair Request"
+        %div
+          = f.label :message
+          = f.text_area :body, placeholder: "Your message"
+        %div
+          = f.submit "Send a Message", class: "small button"
