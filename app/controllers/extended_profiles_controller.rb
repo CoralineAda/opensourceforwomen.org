@@ -55,6 +55,8 @@ class ExtendedProfilesController < ApplicationController
       :time_zone,
       :skill_level,
       :special_interests,
+      :is_mentor,
+      :is_pair_partner,
       { language_ids: [] },
       :notes
     )

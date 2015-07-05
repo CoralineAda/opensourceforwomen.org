@@ -15,6 +15,13 @@
     = f.label :notes, "Other notes"
     = f.text_area :notes, placeholder: "Anything else?"
   %div
+    = f.check_box :is_mentor
+    = f.label :is_mentor, "I am interested in being a mentor."
+  %div
+    = f.check_box :is_pair_partner
+    = f.label :is_pair_partner, "I am interested in pair programming with someone."
+
+  %div
     = f.submit "Save", class: "small button"
 .large-5.columns
   %div
