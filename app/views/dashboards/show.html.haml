@@ -31,31 +31,6 @@
         %p
           You haven't bookmarked any projects yet.
 
-      %h3
-        Pair Partners
-      - if @dashboard.pair_partners.any?
-        %ul.tight_spacing
-        - @dashboard.pair_partners.each do |partner|
-          %l1
-            = link_to partner.formatted_username, user_path(partner)
-      - else
-        %p
-          You don't have any pair partners yet. Why not
-          = link_to "find one now?", pair_profiles_path
-
-      %h3
-        Mentoring
-      - if @dashboard.pair_partners.any?
-        %ul.tight_spacing
-        - @dashboard.pair_partners.each do |partner|
-          %l1
-            = link_to partner.formatted_username, user_path(partner)
-      - else
-        %p
-          You don't have any mentors or mentees yet. Why not
-          = link_to "find one now?", pair_profiles_path
-
-
     .large-6.columns
 
       .panel
@@ -65,17 +40,13 @@
             %p
               Look for a curated open source project, or submit a new one for other members to check out.
           %li
-            = link_to "Pair Programming", pair_profiles_path
+            = link_to "Pair Programming", "/pair_partners"
             %p
-              Manage your pair profile and connect with other women who want to pair program on an open source project.
+              Connect with other women who want to pair program on an open source project.
 
           %li
-            = link_to "Mentoring", "#"
+            = link_to "Mentoring", "/mentors"
             %p
-              Sign up to be a mentor, or find a mentor to work with you.
+              Find a mentor to work with you.
 
-          %li
-            = link_to "Slack", "#"
-            %p
-              Sign up to join our Slack community.
 

@@ -28,7 +28,7 @@ class User
   validates :accepts_terms, :acceptance => {:accept => true}
   validates_uniqueness_of :username
 
-  has_one :pair_profile
+  has_one :extended_profile
   has_one :subscription
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :pair_partners, class_name: "User"

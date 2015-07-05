@@ -1,6 +1,6 @@
 # TODO language normalization for searchability
 
-class PairProfile
+class ExtendedProfile
 
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -12,12 +12,16 @@ class PairProfile
   field :availability
   field :time_zone
   field :notes
+  field :is_mentor, type: Boolean, default: false
+  field :is_pair_partner, type: Boolean, default: false
+
+  scope :mentors,       ->{ where(is_mentor: true) }
+  scope :pair_partners, ->{ where(is_pair_partner: true) }
 
   validates_uniqueness_of :user_id
 
   belongs_to :user
   has_and_belongs_to_many :languages
-  has_and_belongs_to_many :pair_profiles
 
   def username
     self.user.username

@@ -1,0 +1,7 @@
+- content_for :title, "Complete Your Profile"
+
+.content
+  .row
+    %h1 Complete Your Profile
+    = form_for(@extended_profile, :url => extended_profiles_path) do |f|
+      = render partial: "form", locals: {f: f}

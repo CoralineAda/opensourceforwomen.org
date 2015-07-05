@@ -21,7 +21,7 @@
     = f.label :languages, "Preferred Languages*"
     - @languages.each do |language|
       %label.checkbox{ :for => "languages" }
-        = check_box_tag "pair_profile[language_ids][]", language.id, @pair_profile.languages.include?(language)
+        = check_box_tag "extended_profile[language_ids][]", language.id, @extended_profile.languages.include?(language)
         = language.name
   %div
     = f.label :other_language, "Other Language"

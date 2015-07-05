@@ -1,0 +1,56 @@
+- content_for :title, "Pairing Opportunities".html_safe
+
+.content
+  .row
+    .large-12.columns
+      %h1 Pairing Opportunities
+
+  .row
+
+    .large-6.columns
+
+      %h2 Potential Pair Partners
+      - if @pair_partners.any?
+        %ul
+          - @pair_partners.compact.each do |pair_profile|
+            %li
+              %p
+                = link_to pair_profile.username, pair_profile_path(pair_profile)
+                %br
+                Languages:
+                = pair_profile.languages.map(&:name).to_sentence
+      - else
+        %p
+          %strong
+            Sorry, no potential pair partners found yet!
+
+    .large-6.columns
+
+      - if @current_user.extended_profile && !@current_user.extended_profile.new_record?
+        %h2 My Profile
+        .panel
+          %div
+            %label Preferred Languages
+            = text_field_tag :languages, @extended_profile.languages.map(&:name).join(", "), disabled: true
+          %div
+            %label General availability
+            = text_field_tag :availability, @extended_profile.availability, disabled: true
+          %div
+            %label Your time zone
+            = text_field_tag :time_zone, @extended_profile.time_zone, disabled: true
+          %div
+            %label How many years of experience do you have?
+            = text_area_tag :years_experience, @extended_profile.years_experience, disabled: true
+          %div
+            %label Areas of interest
+            = text_area_tag :interests, @extended_profile.special_interests, disabled: true
+          %div
+            %label Other notes
+            = text_area_tag :notes, @extended_profile.notes, disabled: true
+        %div
+          = link_to "Edit my profile", extended_profile_path(@extended_profile.id), class: "button small"
+      - else
+        %h2 Get Started
+        %p
+          Complete your profile now!
+        = link_to "Create profile", new_extended_profile_path, class: "button small"

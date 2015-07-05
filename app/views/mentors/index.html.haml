@@ -1,0 +1,56 @@
+- content_for :title, "Mentorship Opportunities".html_safe
+
+.content
+  .row
+    .large-12.columns
+      %h1 Mentorship Opportunities
+
+  .row
+
+    .large-6.columns
+
+      %h2 Potential Mentors
+      - if @mentor_profiles.any?
+        %ul
+          - @mentor_profiles.compact.each do |mentor_profile|
+            %li
+              %p
+                = link_to mentor_profile.username, mentor_profile_path(mentor_profile)
+                %br
+                Languages:
+                = mentor_profile.languages.map(&:name).to_sentence
+      - else
+        %p
+          %strong
+            Sorry, no mentors found yet!
+
+    .large-6.columns
+
+      - if @current_user.extended_profile && !@current_user.extended_profile.new_record?
+        %h2 My Profile
+        .panel
+          %div
+            %label Preferred Languages
+            = text_field_tag :languages, @extended_profile.languages.map(&:name).join(", "), disabled: true
+          %div
+            %label General availability
+            = text_field_tag :availability, @extended_profile.availability, disabled: true
+          %div
+            %label Your time zone
+            = text_field_tag :time_zone, @extended_profile.time_zone, disabled: true
+          %div
+            %label How many years of experience do you have?
+            = text_area_tag :years_experience, @extended_profile.years_experience, disabled: true
+          %div
+            %label Areas of interest
+            = text_area_tag :interests, @extended_profile.special_interests, disabled: true
+          %div
+            %label Other notes
+            = text_area_tag :notes, @extended_profile.notes, disabled: true
+        %div
+          = link_to "Edit my profile", edit_extended_profile(@extended_profile.id), class: "button small"
+      - else
+        %h2 Get Started
+        %p
+          Complete your profile now!
+        = link_to "Complete profile", new_extended_profile_path, class: "button small"

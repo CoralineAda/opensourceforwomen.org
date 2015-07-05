@@ -1,9 +1,9 @@
-- content_for :title, "#{@pair_profile.username}'s Pair Profile".html_safe
+- content_for :title, "#{@extended_profile.username}'s Profile".html_safe
 
 .content
   .row
     %h1
-      = "#{@pair_profile.username}'s Pair Profile"
+      = "#{@extended_profile.username}'s Profile"
 
     .large-7.columns
       %div
@@ -11,32 +11,32 @@
           %strong
             Preferred Languages
           %br
-            = @pair_profile.languages.map(&:name).sort.join(", ")
+            = @extended_profile.languages.map(&:name).sort.join(", ")
         %p
           %strong
             General Availability
           %br
-            = @pair_profile.availability || "Not specified"
+            = @extended_profile.availability || "Not specified"
         %p
           %strong
             Time Zone
           %br
-            = @pair_profile.time_zone || "Not specified"
+            = @extended_profile.time_zone || "Not specified"
         %p
           %strong
             Skill Level
           %br
-            = @pair_profile.skill_level || "Not specified"
+            = @extended_profile.skill_level || "Not specified"
         %p
           %strong
             Special Interests
           %br
-            = @pair_profile.special_interests || "Not specified"
+            = @extended_profile.special_interests || "Not specified"
         %p
           %strong
             Notes
           %br
-            = @pair_profile.notes || "Not specified"
+            = @extended_profile.notes || "Not specified"
 
     .large-5.columns
 
@@ -44,7 +44,7 @@
         .panel
           %p
             You sent
-            = @pair_profile.username
+            = @extended_profile.username
             a pairing request on
             = @pair_request.created_at.strftime("%m/%d/%Y.")
 
@@ -53,4 +53,4 @@
           %p
             Does this profile look interesting? Take the first step and send them a pair request!
           %div
-            = link_to "Send a pair request", new_message_path(recipient_id: @pair_profile.user_id), class: "button small"
+            = link_to "Send a pair request", new_message_path(recipient_id: @extended_profile.user_id), class: "button small"

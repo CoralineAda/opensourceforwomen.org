@@ -1,7 +1,0 @@
-- content_for :title, "Edit Your Pair Profile"
-
-.content
-  .row
-    %h1 Edit Your Pair Profile
-    = form_for(@pair_profile, :url => pair_profile_path(@pair_profile)) do |f|
-      = render partial: "form", locals: {f: f}
