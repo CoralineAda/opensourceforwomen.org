@@ -30,6 +30,7 @@ class User
 
   has_one :extended_profile
   has_one :subscription
+  has_many :conversations
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :pair_partners, class_name: "User"
   has_many :sent_messages, inverse_of: :sender, class_name: "Message"

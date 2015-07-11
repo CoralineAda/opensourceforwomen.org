@@ -206,3 +206,24 @@ li {
 .sidebar a, .sidebar a:visited {
   color: #999;
 }
+
+.pull-right {
+  text-align: right;
+}
+
+.float-left {
+  float: left;
+  margin-right: 1em;
+}
+
+.float-right {
+  float: right;
+}
+
+input[type=text]:disabled {
+  background-color: #fff;
+}
+
+textarea {
+  height: 10em;
+}

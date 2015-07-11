@@ -1,24 +1,26 @@
-- content_for :title, "Messages".html_safe
+- content_for :title, "Conversations".html_safe
 
 .content
   .row
     .large-12.columns
-      %h1 Messages
+      %h1 Conversations
 
   .row
     .large-12.columns
     %table
       %thead
         %tr
-          %th.narrow Received
+          %th.narrow Last Reply
           %th.narrow From
-          %th Subject
+          %th Topic
       %tbody
-        - @messages.each do |message|
+        - @conversations.each do |conversation|
           %tr
             %td
-              = message.created_at.strftime("%m/%d/%Y at %I:%M%p")
+              = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M%p")
             %td
-              = message.sender.username
+              = conversation.other_participant(current_users)
             %td
-              = message.subject
+              = link_to conversations.messages.last.subject, message_path(conversations.messages.last)
+
+    = link_to "New Conversation", new_message_path, class: "small button"

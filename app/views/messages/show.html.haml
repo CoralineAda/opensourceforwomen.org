@@ -6,13 +6,29 @@
       Message from
       = @message.sender.username
 
-    = form_for(@message, :url => message_path(@message)) do |f|
-      .large-5.columns
-        %div
-          = f.label :pair_with
-          = f.text_field :sender_username, value: @message.sender.username, disabled: true
-        %div
-          = f.label :message
-          = f.text_area :message, disabled: true
-        %div
-          = link_to "Reply", new_message_path(original_message_id: @message.id), class: "small button"
+    - @conversation.messages.each do |message|
+      %table
+        %tbody
+          %tr
+            %td
+              %b From:
+              = message.sender.username
+            %td.pull-right
+              = message.created_at.strftime("%m/%d/%Y at %I:%m %P")
+          %tr
+            %td{colspan: 2}
+              %b Subject:
+              = message.subject
+          %tr
+            %td{colspan: 3}
+
+              = message.body
+
+    %div
+      = form_for(@message, :url => message_path(@message)) do |f|
+        .float-left
+          = link_to "Reply", new_message_path(conversation_id: @message.conversation_id), class: "small button"
+        .float-left
+          = link_to 'Delete', @message, method: :delete, data: { confirm: 'Are you sure?' }, class: "small button"
+        .float-right
+          = link_to "Report Abuse", new_message_path(original_message_id: @message.id), class: "small button"
