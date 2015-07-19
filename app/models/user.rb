@@ -42,6 +42,7 @@ class User
   has_many :incoming_messages, inverse_of: :recipient, class_name: "Message"
   has_and_belongs_to_many :abuse_reports, inverse_of: :reporter
   has_and_belongs_to_many :abuse_reports, inverse_of: :offender
+  has_and_belongs_to_many :invitations, inverse_of: :sender
 
   attr_accessor :requested_username
 

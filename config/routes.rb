@@ -26,11 +26,12 @@ Opensourceforwomen::Application.routes.draw do
   end
 
   # Other
-  resources :abuse_reports, only: [:new, :create, :index]
+  resources :abuse_reports, only: [:new, :create]
   resources :bookmarks, only: [:create]
   resources :contacts, only: [:new, :create]
   resources :dashboards, only: [:show]
   resources :extended_profiles
+  resources :invitations, only: [:new, :create]
   resources :password_resets
   resources :projects
   resources :sessions, only: [:new, :create, :destroy]
