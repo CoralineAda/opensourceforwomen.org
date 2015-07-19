@@ -26,6 +26,7 @@ Opensourceforwomen::Application.routes.draw do
   end
 
   # Other
+  resources :abuse_reports, only: [:new, :create, :index]
   resources :bookmarks, only: [:create]
   resources :contacts, only: [:new, :create]
   resources :dashboards, only: [:show]

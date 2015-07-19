@@ -20,6 +20,7 @@ gem 'octokit'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem "sorcery"
 gem 'therubyracer'
 gem 'toastr-rails'

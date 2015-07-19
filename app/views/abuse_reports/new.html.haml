@@ -1,0 +1,25 @@
+- content_for :title, "Report Abuse"
+
+.content
+  .row
+    .large-5.columns
+      %h1 Report Abuse
+      = form_for(@abuse_report) do |f|
+        %div
+          = f.label :offender
+          = f.text_field :offender, placeholder: "Required"
+        %div
+          = f.label :description
+          = f.text_area :description, placeholder: "Required"
+        %div= f.submit "Send abuse report", class: "small button"
+
+    .large-5.columns
+
+      .panel
+        %p
+          We take your safety and comfort very seriously. All abuse reports are
+          sent to our admin team for investigation within 24 hours.
+
+        %p
+          In the mean time, the account being reported for abuse will be frozen
+          pending resolution of the issue.

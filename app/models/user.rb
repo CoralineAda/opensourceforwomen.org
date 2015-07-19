@@ -12,6 +12,11 @@ class User
   field :accepts_coc, type: Boolean
   field :accepts_terms, type: Boolean
   field :subscribed, type: Boolean
+  field :is_frozen, type: Boolean, default: false
+  field :is_admin, type: Boolean, default: false
+  field :last_login_at, type: DateTime
+  field :last_logout_at, type: DateTime
+  field :last_activity_at, type: DateTime
 
   index({ activation_token: 1 }, { unique: true, background: true })
   index({ email: 1 }, { unique: true, background: true })
@@ -35,8 +40,26 @@ class User
   has_and_belongs_to_many :pair_partners, class_name: "User"
   has_many :sent_messages, inverse_of: :sender, class_name: "Message"
   has_many :incoming_messages, inverse_of: :recipient, class_name: "Message"
+  has_and_belongs_to_many :abuse_reports, inverse_of: :reporter
+  has_and_belongs_to_many :abuse_reports, inverse_of: :offender
 
   attr_accessor :requested_username
+
+  def self.signed_in_users
+    where(:last_logout_at < :last_activity_at)
+  end
+
+  def can_sign_in?
+    ! self.is_frozen || self.is_admin
+  end
+
+  def is_signed_in?
+    User.signed_in_users.map(&:id).include?(self.id)
+  end
+
+  def freeze_account
+    self.update_attributes(is_frozen: true)
+  end
 
   def formatted_twitter_handle
     return unless self.twitter_handle

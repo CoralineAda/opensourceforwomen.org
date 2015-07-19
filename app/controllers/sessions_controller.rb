@@ -5,9 +5,15 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @user = User.find_by(email: params[:email])
     if login(params[:email], params[:password])
-      flash[:success] = 'Welcome back!'
-      redirect_to dashboard_path(1)
+      if @user.can_sign_in?
+        flash[:success] = "Welcome back, #{@user.username}!"
+        redirect_to dashboard_path(1)
+      else
+        flash.now[:warning] = 'Your account has been frozen pending an abuse investigation.'
+        render 'new'
+      end
     else
       @user = User.new
       flash.now[:warning] = 'E-mail and/or password is incorrect.'
@@ -20,9 +26,5 @@ class SessionsController < ApplicationController
     flash[:success] = 'You have been signed out.'
     redirect_to root_path
   end
-
-  # def user_params
-  #   params.require(:user).permit(:email, :password, :password_confirmation, :username)
-  # end
 
 end

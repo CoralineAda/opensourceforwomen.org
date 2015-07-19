@@ -1,0 +1,14 @@
+%p
+  The following message was sent by
+  = "#{@reporter.username} #{@reporter.email}"
+  on
+  = @abuse_report.created_at
+  via the abuse report form on OS4W:
+
+%blockquote
+  Offender:
+  = @abuse_report.offender.username
+
+%blockquote
+  = @abuse_report.description
+

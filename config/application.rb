@@ -5,10 +5,12 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 
 require 'dotenv'
-
+Bundler.require(*Rails.groups)
 Bundler.require(:default, Rails.env)
 
 I18n.enforce_available_locales = false
+
+Dotenv::Railtie.load
 
 module Opensourceforwomen
   class Application < Rails::Application
