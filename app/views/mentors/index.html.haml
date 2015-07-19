@@ -10,12 +10,12 @@
     .large-6.columns
 
       %h2 Potential Mentors
-      - if @mentor_profiles.any?
+      - if @mentors.any?
         %ul
-          - @mentor_profiles.compact.each do |mentor_profile|
+          - @mentors.compact.each do |mentor_profile|
             %li
               %p
-                = link_to mentor_profile.username, mentor_profile_path(mentor_profile)
+                = link_to mentor_profile.username, extended_profile_path(mentor_profile)
                 %br
                 Languages:
                 = mentor_profile.languages.map(&:name).to_sentence

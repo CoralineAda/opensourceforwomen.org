@@ -17,7 +17,7 @@ class ExtendedProfilesController < ApplicationController
       @extended_profile.languages << language
     end
     if @extended_profile.save
-      redirect_to extended_profiles_path
+      redirect_to extended_profile_path(@extended_profile)
     else
       flash[:error] = @extended_profile.errors.full_messages
       render 'new'
@@ -43,7 +43,7 @@ class ExtendedProfilesController < ApplicationController
       @extended_profile.languages << language
     end
     flash[:info] = "Your profile has been updated."
-    redirect_to extended_profiles_path
+      redirect_to extended_profile_path(@extended_profile)
   end
 
   private

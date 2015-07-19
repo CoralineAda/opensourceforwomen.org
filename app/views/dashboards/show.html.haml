@@ -36,6 +36,13 @@
       .panel
         %ul
           %li
+            - if current_user.extended_profile
+              = link_to "My Profile", extended_profile_path(current_user.extended_profile)
+            - else
+              = link_to "My Profile", new_extended_profile_path
+            %p
+              Keep your profile up-to-date with your skills and interest areas.
+          %li
             = link_to "Open Source Projects", projects_path
             %p
               Look for a curated open source project, or submit a new one for other members to check out.
