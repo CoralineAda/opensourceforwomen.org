@@ -1,10 +1,4 @@
-class Message
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :subject
-  field :body
-  field :is_read, type: Boolean, default: false
+class Message < ActiveRecord::Base
 
   scope :unread, ->{ where(is_read: false) }
 

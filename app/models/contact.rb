@@ -1,11 +1,4 @@
-class Contact
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
-  field :email
-  field :message
+class Contact < ActiveRecord::Base
 
   validates :email, email_format: { message: 'has invalid format' }
   validates_presence_of :message

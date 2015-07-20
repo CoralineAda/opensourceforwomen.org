@@ -1,26 +1,6 @@
-# FIXME uniqueness test for usernames should be case-insensitive
-class User
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Sorcery::Model
+class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
-
-  field :twitter_handle
-  field :github_username
-  field :accepts_coc, type: Boolean
-  field :accepts_terms, type: Boolean
-  field :subscribed, type: Boolean
-  field :is_frozen, type: Boolean, default: false
-  field :is_admin, type: Boolean, default: false
-  field :last_login_at, type: DateTime
-  field :last_logout_at, type: DateTime
-  field :last_activity_at, type: DateTime
-
-  index({ activation_token: 1 }, { unique: true, background: true })
-  index({ email: 1 }, { unique: true, background: true })
-  index({ username: 1 }, { unique: true, background: true })
 
   validates :password, length: { minimum: 8 }, :if => Proc.new { |user|
                 !user.password.blank? ||
@@ -37,7 +17,6 @@ class User
   has_one :subscription
   has_many :conversations
   has_and_belongs_to_many :projects
-  has_and_belongs_to_many :pair_partners, class_name: "User"
   has_many :sent_messages, inverse_of: :sender, class_name: "Message"
   has_many :incoming_messages, inverse_of: :recipient, class_name: "Message"
   has_and_belongs_to_many :abuse_reports, inverse_of: :reporter
@@ -76,16 +55,16 @@ class User
     self.subscribed
   end
 
-  def subscribe_me=(value)
-    # self.subscription ||= Subscription.find_or_create_by(email: self.email)
-    # self.update_attribute(:subscribed, value)
-    # if value && value == 1
-    #   subscription.register_with_mailchimp
-    # else
-    #   subscription.unsubscribe
-    #   subscription.destroy
-    # end
-  end
+  # def subscribe_me=(value)
+  #   # self.subscription ||= Subscription.find_or_create_by(email: self.email)
+  #   # self.update_attribute(:subscribed, value)
+  #   # if value && value == 1
+  #   #   subscription.register_with_mailchimp
+  #   # else
+  #   #   subscription.unsubscribe
+  #   #   subscription.destroy
+  #   # end
+  # end
 
   def requested_username=(requested)
     self.username = requested.gsub(/[^a-zA-Z0-9 \-\_]/, '')

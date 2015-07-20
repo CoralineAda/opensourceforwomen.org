@@ -1,18 +1,4 @@
-class Project
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :name
-  field :full_name
-  field :description
-  field :homepage
-  field :language
-  field :repo_url
-  field :remote_id
-  field :has_coc, type: Boolean
-
-  has_and_belongs_to_many :users
+class Project < ActiveRecord::Base
 
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url

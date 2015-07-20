@@ -1,6 +1,4 @@
-class Conversation
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Conversation < ActiveRecord::Base
 
   has_many :messages
   has_and_belongs_to_many :participants, class_name: "User"

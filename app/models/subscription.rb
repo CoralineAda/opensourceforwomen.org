@@ -1,10 +1,4 @@
-class Subscription
-
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :email
-  field :synced_to_mailchimp, :type => Boolean, :default => false
+class Subscription < ActiveRecord::Base
 
   attr_accessor :message
 

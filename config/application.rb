@@ -1,10 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
-
+require 'rails/all'
 require 'dotenv'
+
 Bundler.require(*Rails.groups)
 Bundler.require(:default, Rails.env)
 
@@ -23,5 +21,6 @@ module Opensourceforwomen
     config.secret_key_base = "123098asdlkjlk123j19238098asdlkjaslkdasdkajlsdk1230912830912jlkasjdalksdjsa"
     config.assets.enabled = false
     config.assets.version = '1.0'
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end
