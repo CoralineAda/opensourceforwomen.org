@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720174104) do
+ActiveRecord::Schema.define(version: 20150829182457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20150720174104) do
     t.text     "description"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "reporter_id_id"
     t.integer  "offender_id_id"
+    t.integer  "reporter_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -67,6 +67,11 @@ ActiveRecord::Schema.define(version: 20150720174104) do
     t.datetime "updated_at"
   end
 
+  create_table "extended_profiles_languages", force: :cascade do |t|
+    t.integer "extended_profile_id"
+    t.integer "language_id"
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.string   "invitee_email"
     t.text     "message"
@@ -80,13 +85,14 @@ ActiveRecord::Schema.define(version: 20150720174104) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "subject"
     t.text     "body"
-    t.boolean  "is_read"
+    t.boolean  "is_read",         default: false
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "conversation_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -100,6 +106,12 @@ ActiveRecord::Schema.define(version: 20150720174104) do
     t.boolean  "has_coc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "homepage"
+  end
+
+  create_table "projects_users", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -137,6 +149,8 @@ ActiveRecord::Schema.define(version: 20150720174104) do
     t.integer  "failed_logins_count",             default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
+    t.string   "username"
+    t.boolean  "subscribe_me"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree

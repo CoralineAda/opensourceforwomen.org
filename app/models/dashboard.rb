@@ -15,7 +15,7 @@ class Dashboard
   end
 
   def projects
-    @projects ||= self.user.projects.order_by(&:name)
+    @projects ||= self.user.projects.order(:name)
   end
 
 end

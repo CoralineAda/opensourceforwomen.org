@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :repo_url
   validates_uniqueness_of :repo_url
 
+  has_and_belongs_to_many :users
+
   def self.from(repo_url)
     new(repo_url: repo_url).update
   end

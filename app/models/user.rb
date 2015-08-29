@@ -15,15 +15,18 @@ class User < ActiveRecord::Base
 
   has_one :extended_profile
   has_one :subscription
-  has_many :conversations
   has_and_belongs_to_many :projects
-  has_many :sent_messages, inverse_of: :sender, class_name: "Message"
-  has_many :incoming_messages, inverse_of: :recipient, class_name: "Message"
+  has_many :sent_messages, inverse_of: :sender, foreign_key: :sender_id, class_name: "Message"
+  has_many :incoming_messages, inverse_of: :recipient, foreign_key: :recipient_id, class_name: "Message"
   has_and_belongs_to_many :abuse_reports, inverse_of: :reporter
   has_and_belongs_to_many :abuse_reports, inverse_of: :offender
   has_and_belongs_to_many :invitations, inverse_of: :sender
 
   attr_accessor :requested_username
+
+  def self.admin
+    User.where(is_admin: true).first
+  end
 
   def self.signed_in_users
     where(:last_logout_at < :last_activity_at)
@@ -31,6 +34,10 @@ class User < ActiveRecord::Base
 
   def can_sign_in?
     ! self.is_frozen || self.is_admin
+  end
+
+  def conversations
+    [self.sent_messages + self.incoming_messages].flatten.map(&:conversation).uniq
   end
 
   def is_signed_in?

@@ -1,4 +1,4 @@
-class AbuseReport < ActiveRecord::Bases
+class AbuseReport < ActiveRecord::Base
 
   belongs_to :reporter, class_name: "User"
   belongs_to :offender, class_name: "User"

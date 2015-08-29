@@ -5,7 +5,7 @@ class PairPartnersController < ApplicationController
   def index
     @extended_profile = current_user.extended_profile
     if current_user.extended_profile
-      @pair_partners = ExtendedProfile.pair_partners.excludes(id: current_user.extended_profile.id)
+      @pair_partners = ExtendedProfile.pair_partners - [current_user.extended_profile]
     else
       @pair_partners = ExtendedProfile.pair_partners
     end

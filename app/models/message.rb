@@ -6,7 +6,14 @@ class Message < ActiveRecord::Base
   belongs_to :sender, class_name: "User", inverse_of: :sent_messages
   belongs_to :conversation
 
-  validates_presence_of :subject
   validates_presence_of :body
+
+  def is_unread_by?(user)
+    if user == sender
+      false
+    else
+      ! self.is_read
+    end
+  end
 
 end

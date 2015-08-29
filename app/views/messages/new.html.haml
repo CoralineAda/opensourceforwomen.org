@@ -7,13 +7,12 @@
       .large-5.columns
         %div
           = f.label :recipient
-          = f.text_field :recipient_username, value: @recipient.username
+          = f.text_field :recipient_username, value: @recipient.username, disabled: ! @recipient.new_record?
           = f.hidden_field :recipient_id, value: @recipient.id
-        %div
-          = f.label :subject
-          = f.text_field :subject
+          = f.hidden_field :conversation_id, value: @conversation.id
         %div
           = f.label :message
           = f.text_area :body, placeholder: "Your message"
         %div
           = f.submit "Send", class: "small button"
+          = link_to "Cancel", :back, class: "small button"

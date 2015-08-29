@@ -8,24 +8,24 @@ class MessagesController < ApplicationController
   end
 
   def new
-    conversation = params[:conversation_id] ? Conversation.find(params[:conversation_id]) : Conversation.new
+    in_reply_to = params[:message_id] && Message.find(params[:message_id])
+    @conversation = in_reply_to ? in_reply_to.conversation : Conversation.new
+    @recipient = @conversation.other_participant(current_user) || User.new
     @message = Message.new(
-      conversation: conversation,
-      recipient: conversation.other_participant(current_user)
+      conversation: @conversation,
+      recipient: @recipient
     )
   end
 
   def create
     @message = Message.new(
       sender_id: current_user.id,
-      recipient: User.where(username: message_params[:recipient_username]).first,
-      subject: message_params[:subject],
-      body: message_params[:body]
+      recipient_id: message_params[:recipient_id],
+      body: message_params[:body],
+      conversation_id: message_params[:conversation_id]
     )
 
-    if params[:conversation_id]
-      @message.conversation = Conversation.find(params[:conversation_id])
-    else
+    unless @message.conversation
       conversation = Conversation.new
       conversation.participants = [current_user, @message.recipient]
       conversation.save
@@ -43,6 +43,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+    @message.update_attribute(:is_read, true)
     @conversation = @message.conversation
   end
 

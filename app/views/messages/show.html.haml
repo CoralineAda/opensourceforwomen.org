@@ -1,10 +1,10 @@
-- content_for :title, "Message from #{@message.sender.username}"
+- content_for :title, "Conversation with #{@message.conversation.other_participant(current_user).username}"
 
 .content
   .row
     %h1
-      Message from
-      = @message.sender.username
+      Conversation with
+      = @message.conversation.other_participant(current_user).username
 
     - @conversation.messages.each do |message|
       %table
@@ -16,19 +16,14 @@
             %td.pull-right
               = message.created_at.strftime("%m/%d/%Y at %I:%m %P")
           %tr
-            %td{colspan: 2}
-              %b Subject:
-              = message.subject
-          %tr
             %td{colspan: 3}
-
               = message.body
 
     %div
       = form_for(@message, :url => message_path(@message)) do |f|
         .float-left
-          = link_to "Reply", new_message_path(conversation_id: @message.conversation_id), class: "small button"
+          = link_to "Reply", new_message_path(message_id: @message.id), class: "small button"
         .float-left
           = link_to 'Delete', @message, method: :delete, data: { confirm: 'Are you sure?' }, class: "small button"
         .float-right
-          = link_to "Report Abuse", new_message_path(original_message_id: @message.id), class: "small button"
+          = link_to "Report Abuse", new_abuse_report_path, class: "small button"
