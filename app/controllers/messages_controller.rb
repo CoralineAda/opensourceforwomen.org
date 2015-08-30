@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_filter :scope_recipient, except: [:index, :show, :destroy]
 
   def index
-    @conversations = current_user.conversations.sort_by(&:created_at).reverse
+    @conversations = current_user.conversations.sort_by(&:created_at).reverse.uniq
   end
 
   def new
@@ -29,7 +29,6 @@ class MessagesController < ApplicationController
         recipient: params[:recipient_username],
         body: message_params[:body]
       )
-
       flash.now[:error] = "No member found with that username!"
       render 'new' and return
     end

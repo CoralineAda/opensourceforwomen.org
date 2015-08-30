@@ -13,18 +13,19 @@
       %table
         %tbody
           %tr
+            %td{style: "width: 75px;"}
+              = image_tag(message.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
             %td
-              %b From:
               = message.sender.username
+              %br
+              = message.body
             %td.pull-right
               = message.created_at.strftime("%m/%d/%Y at %I:%m %P")
           %tr
-            %td{colspan: 3}
-              = message.body
 
     %div
       = form_for(@message, :url => user_message_path(current_user, @message)) do |f|
         .float-left
-          = link_to "Reply", new_user_message_path(current_user, message_id: @message.id), class: "small button"
+          = link_to "Reply", new_user_message_path(current_user, message_id: @message.id, conversation_id: @conversation.id), class: "small button"
         .float-right
           = link_to "Report Abuse", new_abuse_report_path, class: "small button"

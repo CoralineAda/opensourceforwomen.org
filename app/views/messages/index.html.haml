@@ -9,6 +9,7 @@
     .large-12.columns
       - @conversations.each do |conversation|
         - if conversation.messages.last.is_unread_by?(current_user)
+          = image_tag(conversation.other_participant(current_user).gravatar_url(default: "identicon"), class: "small-gravatar")
           %em
             = conversation.other_participant(current_user).username
             %br
@@ -17,6 +18,7 @@
             = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M %P")
         - else
           = conversation.other_participant(current_user).username
+          = image_tag(conversation.other_participant(current_user).gravatar_url(default: "identicon"), class: "small-gravatar")
           %br
           = link_to truncate(conversation.messages.last.body, length: 30), user_message_path(current_user, conversation.messages.last)
           %br

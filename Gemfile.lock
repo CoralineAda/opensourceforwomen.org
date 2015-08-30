@@ -66,6 +66,7 @@ GEM
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     google-analytics-rails (0.0.6)
+    gravtastic (3.2.6)
     haml (4.0.6)
       tilt
     hashie (3.4.1)
@@ -238,6 +239,7 @@ DEPENDENCIES
   foundation-rails (~> 5.5.0)
   gibbon
   google-analytics-rails
+  gravtastic
   haml
   hpricot
   jquery-datatables-rails
@@ -261,3 +263,6 @@ DEPENDENCIES
   uglifier
   unicorn
   validates_email_format_of
+
+BUNDLED WITH
+   1.10.6

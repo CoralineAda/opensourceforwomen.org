@@ -3,7 +3,9 @@
 .content
   .row
     .large-12.columns
-      %h1= "#{current_user.formatted_username}'s Dashboard"
+      %h1
+        = gravatar_image_tag("#{current_user.email}", class: "float-right")
+        = "#{current_user.formatted_username}'s Dashboard"
 
   .row
 
@@ -14,7 +16,7 @@
       - if @dashboard.unread_messages.any?
         %p
           You have #{pluralize(@dashboard.unread_messages.count, "unread message")}.
-          = link_to "View your inbox", messages_path
+          = link_to "View your inbox", user_messages_path(current_user)
       - else
         %p
           You have no unread messages.

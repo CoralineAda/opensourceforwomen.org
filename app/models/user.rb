@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  include Gravtastic
+  gravtastic
+
   authenticates_with_sorcery!
 
   validates :password, length: { minimum: 8 }, :if => Proc.new { |user|
