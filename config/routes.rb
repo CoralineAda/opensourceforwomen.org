@@ -19,9 +19,9 @@ Opensourceforwomen::Application.routes.draw do
 
   # Users
   resources :users do
+    resources :messages
     member do
       get :activate
-      resources :messages
     end
   end
 
@@ -37,6 +37,13 @@ Opensourceforwomen::Application.routes.draw do
   resources :project_comments, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :subscriptions
+
+  # Admin
+  namespace :admin do
+    resources :users do
+      resources :messages
+    end
+  end
 
   root :to => "home#index"
 

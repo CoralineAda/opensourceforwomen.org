@@ -12,15 +12,15 @@
           %em
             = conversation.other_participant(current_user).username
             %br
-            = link_to truncate(conversation.messages.last.body, length: 30), message_path(conversation.messages.last)
+            = link_to truncate(conversation.messages.last.body, length: 30), user_message_path(current_user, conversation.messages.last)
             %br
-            = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M%p")
+            = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M %P")
         - else
           = conversation.other_participant(current_user).username
           %br
-          = link_to truncate(conversation.messages.last.body, length: 30), message_path(conversation.messages.last)
+          = link_to truncate(conversation.messages.last.body, length: 30), user_message_path(current_user, conversation.messages.last)
           %br
-          = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M%p")
+          = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M %P")
         %hr
 
-    = link_to "New Conversation", new_message_path, class: "small button"
+    = link_to "New Conversation", new_user_message_path(current_user), class: "small button"

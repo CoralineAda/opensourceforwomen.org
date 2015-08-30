@@ -58,6 +58,10 @@ class User < ActiveRecord::Base
     username.gsub(/[^a-zA-Z 0-9]/u, "")
   end
 
+  def messages
+    Message.where('recipient_id = ? OR sender_id = ?', self.id, self.id)
+  end
+
   def subscribe_me
     self.subscribed
   end

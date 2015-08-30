@@ -7,7 +7,7 @@
       = @message.conversation.other_participant(current_user).username
     %p.back-navigation
       &laquo;
-      = link_to "Back to Inbox", messages_path
+      = link_to "Back to Inbox", user_messages_path(current_user)
 
     - @conversation.messages.each do |message|
       %table
@@ -23,10 +23,8 @@
               = message.body
 
     %div
-      = form_for(@message, :url => message_path(@message)) do |f|
+      = form_for(@message, :url => user_message_path(current_user, @message)) do |f|
         .float-left
-          = link_to "Reply", new_message_path(message_id: @message.id), class: "small button"
-        .float-left
-          = link_to 'Delete', @message, method: :delete, data: { confirm: 'Are you sure?' }, class: "small button"
+          = link_to "Reply", new_user_message_path(current_user, message_id: @message.id), class: "small button"
         .float-right
           = link_to "Report Abuse", new_abuse_report_path, class: "small button"

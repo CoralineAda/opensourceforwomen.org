@@ -1,0 +1,39 @@
+- content_for :title, "OS4W Users".html_safe
+- content_for :css, "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css'>".html_safe
+- content_for :js, "<script src='https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js'></script>".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1 User Admin
+
+  .row
+    .large-12.columns
+
+      %table#users
+        %thead
+          %tr
+            %td
+              Username
+            %td
+              Email
+            %td
+              Signup Date
+            %td.centered
+              Flagged?
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td
+                = link_to user.username, admin_user_path(user)
+              %td
+                = link_to user.email, admin_user_path(user)
+              %td
+                = user.created_at.strftime("%m/%d/%Y")
+              %td.centered
+                = user.is_frozen?
+
+    :javascript
+      $(document).ready(function(){
+          $('#users').DataTable({'pageLength': 100});
+      });

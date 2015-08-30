@@ -18,7 +18,7 @@
       - else
         %p
           You have no unread messages.
-          = link_to "View your inbox", messages_path
+          = link_to "View your inbox", user_messages_path(current_user)
 
       %h3
         Bookmarked Projects
