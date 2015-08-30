@@ -5,6 +5,9 @@
     %h1
       Conversation with
       = @message.conversation.other_participant(current_user).username
+    %p.back-navigation
+      &laquo;
+      = link_to "Back to Inbox", messages_path
 
     - @conversation.messages.each do |message|
       %table

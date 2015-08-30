@@ -9,18 +9,26 @@
         = link_to "Back to Projects", projects_path
   .row
     .large-6.columns
-      %ul.pricing-table
-        %li.title
-          = @project.full_name
-        %li.bullet-item
-          = @project.description
-        %li.bullet-item
-          = @project.language
-        - if @project.homepage.present?
-          %li.bullet-item
-            = @project.homepage
-        %li.bullet-item
-          = @project.repo_url
+      %h2
+        = "#{@project.full_name} (#{@project.language})"
+      = link_to @project.repo_url, @project.repo_url, target: "_new"
+      %br
+      = @project.description
+
+      %hr
+
+      %h3
+        Comments
+      = form_tag "/project_comments" do
+        = hidden_field_tag :project_id, @project.id
+        = text_area_tag "comment"
+        = submit_tag "Leave Comment", class: "button small"
+      - @comments.each do |comment|
+        %p
+          = comment.comment
+          %span.faint
+            = "#{comment.user.username} (#{comment.created_at.strftime("%m/%d/%Y")})"
+        %hr
     .large-6.columns
       - if @current_user.projects.include? @project
         = form_tag "/bookmarks" do
@@ -32,11 +40,11 @@
           = hidden_field_tag :project_id, @project.id
           = submit_tag "Save to Bookmarks", class: "button small"
       - if @project.bookmarking_users
-        %h3
+        %em
           Bookmarked by
           = pluralize(@project.bookmarking_users.count, "person")
         %ul
           - @project.bookmarking_users.each do |user|
-            - next unless user.pair_profile
+            - next unless user.extended_profile
             %li
-              = link_to user.formatted_username, pair_profile_path(user.pair_profile)
+              = link_to user.formatted_username, extended_profile_path(user.extended_profile)

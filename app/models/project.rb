@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :repo_url
 
   has_and_belongs_to_many :users
+  has_many :project_comments
 
   def self.from(repo_url)
     new(repo_url: repo_url).update

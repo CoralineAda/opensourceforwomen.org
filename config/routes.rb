@@ -34,6 +34,7 @@ Opensourceforwomen::Application.routes.draw do
   resources :invitations, only: [:new, :create]
   resources :password_resets
   resources :projects
+  resources :project_comments, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :subscriptions
 

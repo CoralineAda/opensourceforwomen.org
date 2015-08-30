@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   # FIXME showing up empty
   def index
-    @conversations = current_user.conversations
+    @conversations = current_user.conversations.sort(&:created_at).reverse
   end
 
   def new
