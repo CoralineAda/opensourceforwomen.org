@@ -12,7 +12,7 @@
       %label
         Select a language:
       - @languages.each do |language|
-        - if @language.name == language.name
+        - if @language && @language.name == language.name
           = submit_tag "#{language.name} (#{language.project_count})", class: "disabled tiny button", disabled: true
         - else
           = submit_tag "#{language.name} (#{language.project_count})", class: "tiny button"
@@ -33,6 +33,10 @@
                 Description
               %td.centered
                 Code of Conduct?
+              %td.centered
+                Bookmarks
+              %td.centered
+                Comments
           %tbody
             - @projects.each do |project|
               %tr
@@ -45,6 +49,10 @@
                   = project.description
                 %td.centered
                   = project.has_coc? ? "Yes" : "No"
+                %td.centered
+                  = project.users.count
+                %td.centered
+                  = project.project_comments.count
 
       :javascript
         $(document).ready(function(){

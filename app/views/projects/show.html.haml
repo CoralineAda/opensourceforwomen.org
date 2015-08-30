@@ -39,8 +39,8 @@
         = form_tag "/bookmarks" do
           = hidden_field_tag :project_id, @project.id
           = submit_tag "Save to Bookmarks", class: "button small"
-      - if @project.bookmarking_users
-        %em
+      - if @project.bookmarking_users.any?
+        %p
           Bookmarked by
           = pluralize(@project.bookmarking_users.count, "person")
         %ul
