@@ -15,8 +15,13 @@ class SessionsController < ApplicationController
         render 'new'
       end
     else
-      @user = User.new
-      flash.now[:warning] = 'E-mail and/or password is incorrect.'
+      @user ||= User.new
+      require 'pry'; binding.pry
+      if @user.email.present?
+        flash.now[:warning] = 'Password is incorrect.'
+      else
+        flash.now[:warning] = 'E-mail is incorrect.'
+      end
       render 'new'
     end
   end

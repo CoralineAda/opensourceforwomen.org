@@ -1,7 +1,4 @@
 TODO
 
-- Gravatars
 - Test project submission
-- Admin view for users
 - Make first page after signup the extended profile page?
-- Submit projects

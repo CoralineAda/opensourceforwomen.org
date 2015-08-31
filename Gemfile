@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.1'
 
-gem 'rails', '>= 4.0.0'
+gem 'rails', '>= 4.2'
 
 gem 'dotenv-rails'
 gem 'foundation-rails', '~> 5.5.0'
@@ -40,5 +40,8 @@ group :development do
 end
 
 group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'capybara'
 end

@@ -8,19 +8,19 @@ describe Project do
 
     before do
       project.repo_url = "http://foo.com/foo/bar"
-      project.stub(:update_attributes) { true }
+      allow(project).to receive(:update_attributes).and_return(true)
     end
 
     it "fetches a repo" do
-      Octokit.should_receive(:repo).with("foo/bar")
+      allow(Octokit).to receive(:repo).with("foo/bar")
       project.update
     end
 
     it "handles errors" do
-      Octokit.stub(:repo).and_raise("foo")
+      expect(Octokit).to receive(:repo).and_raise("foo")
       project.update
       error = project.errors.full_messages.first
-      expect(error.include?("foo")).to be_true
+      expect(error.include?("foo")).to be_truthy
     end
 
   end

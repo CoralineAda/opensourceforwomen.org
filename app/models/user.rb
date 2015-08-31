@@ -21,8 +21,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_many :sent_messages, inverse_of: :sender, foreign_key: :sender_id, class_name: "Message"
   has_many :incoming_messages, inverse_of: :recipient, foreign_key: :recipient_id, class_name: "Message"
-  has_and_belongs_to_many :abuse_reports, inverse_of: :reporter
-  has_and_belongs_to_many :abuse_reports, inverse_of: :offender
+  has_many :invitations
+  has_and_belongs_to_many :abuse_reports, inverse_of: :reporter, foreign_key: :reporter_id
+  has_and_belongs_to_many :abuse_reports, inverse_of: :offender, foreign_key: :offender_id
   has_and_belongs_to_many :invitations, inverse_of: :sender
 
   attr_accessor :requested_username

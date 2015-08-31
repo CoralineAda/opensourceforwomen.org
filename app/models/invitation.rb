@@ -4,6 +4,6 @@ class Invitation < ActiveRecord::Base
   validates_presence_of :message
   validates_presence_of :invitee_email
 
-  belongs_to :sender, class_name: "User"
+  belongs_to :user
 
 end

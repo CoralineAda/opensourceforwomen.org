@@ -38,9 +38,8 @@ class MessagesController < ApplicationController
       body: message_params[:body],
       conversation_id: message_params[:conversation_id]
     )
-
     unless @message.conversation
-      conversation = Conversation.new
+      conversation = Conversation.create
       conversation.participants = [current_user, @message.recipient]
       conversation.save
       @message.conversation = conversation

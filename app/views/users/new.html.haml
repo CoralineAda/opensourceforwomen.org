@@ -28,7 +28,7 @@
             = f.check_box :subscribe_me, :class => "checkbox", value: @user.subscribed
             Subscribe to our mailing list
         %div
-          = f.submit "Create account", class: "small button"
+          = f.submit "Create Account", class: "small button"
 
         Already have an account? Please
         = link_to "sign in.", sign_in_path
@@ -47,6 +47,6 @@
         %div
           %p
             This site is intended to provide a safe, welcoming space for anyone who identifies as a woman. By checking the box below you indicate that you identify as such.
-          %label.checkbox{ :for => "accepts_coc" }
+          %label.checkbox{ :for => "accepts_terms" }
             = f.check_box :accepts_terms, :class => "checkbox"
             I identify as a woman.
