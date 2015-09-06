@@ -33,7 +33,7 @@
               %td
                 = user.created_at.strftime("%m/%d/%Y")
               %td.centered
-                = user.extended_profile.present? ? "Complete" : "Incomplete"
+                = user.extended_profile.present? ? "Complete" : "No"
               %td.centered
                 = user.is_frozen?
 
