@@ -2,6 +2,10 @@ body {
   min-width: 1000px !important;
 }
 
+a {
+  text-decoration: underline;
+}
+
 .narrow {
   width: 25%;
 }
@@ -31,6 +35,7 @@ body {
 
 .footer-row a {
   color: #eeeeee;
+  text-decoration: none;
 }
 
 .field_with_errors checkbox {
@@ -185,6 +190,10 @@ li {
 .back-navigation {
   margin-top: -2em;
   font-size: .8em;
+}
+
+.top-bar-section a {
+  text-decoration: none;
 }
 
 .sidebar {
