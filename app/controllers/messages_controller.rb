@@ -50,7 +50,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       flash[:success] = 'Message sent successfully.'
-      MessageWorker.perform_in(1.minutes, @message.id)
+      MessageWorker.perform_in(5.minutes, @message.id)
       redirect_to user_messages_path(current_user)
     else
       flash.now[:error] = @message.errors.full_messages
