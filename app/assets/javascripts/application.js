@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree .
 //= require foundation
 //= require toastr
-//= require_tree .
 
 $(function(){
   $(document).foundation();
