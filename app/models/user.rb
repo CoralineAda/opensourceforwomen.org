@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_and_belongs_to_many :abuse_reports, inverse_of: :reporter, foreign_key: :reporter_id
   has_and_belongs_to_many :abuse_reports, inverse_of: :offender, foreign_key: :offender_id
-  has_and_belongs_to_many :invitations, inverse_of: :sender
 
   attr_accessor :requested_username
 
