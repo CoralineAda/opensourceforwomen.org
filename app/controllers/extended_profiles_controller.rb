@@ -13,7 +13,7 @@ class ExtendedProfilesController < ApplicationController
 
   def create
     @extended_profile = ExtendedProfile.new({user: current_user}.merge(profile_params))
-    if profile_params[:other_language].present? && language = Language.create(name: profile_params[:other_language])
+    if profile_params[:other_language].present? && language = Language.find_or_create_by(name: profile_params[:other_language])
       @extended_profile.languages << language
     end
     if @extended_profile.save
@@ -39,7 +39,7 @@ class ExtendedProfilesController < ApplicationController
   def update
     @extended_profile = current_user.extended_profile
     @extended_profile.update_attributes(profile_params)
-    if profile_params[:other_language].present? && language = Language.create(name: profile_params[:other_language])
+    if profile_params[:other_language].present? && language = Language.find_or_create_by(name: profile_params[:other_language])
       @extended_profile.languages << language
     end
     flash[:info] = "Your profile has been updated."
