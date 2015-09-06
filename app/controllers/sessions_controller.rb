@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
       end
     else
       @user ||= User.new
-      require 'pry'; binding.pry
       if @user.email.present?
         flash.now[:warning] = 'Password is incorrect.'
       else
