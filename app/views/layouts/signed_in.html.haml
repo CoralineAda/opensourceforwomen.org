@@ -1,0 +1,18 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? "OS4W | #{yield(:title)}" : "Open Source for Women"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %header
+      = render "shared/navigation"
+
+    = render "layouts/messages"
+    = render "shared/sidebar"
+    = yield
+    = render 'shared/footer'

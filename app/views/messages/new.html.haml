@@ -1,0 +1,18 @@
+- content_for :title, "Send a Message"
+
+.content
+  .row
+    %h1 Send a Message
+    = form_for(@message, :url => user_messages_path(current_user)) do |f|
+      .large-5.columns
+        %div
+          = f.label :recipient
+          = f.text_field :recipient_username, value: @recipient.username, disabled: ! @recipient.new_record?
+          = f.hidden_field :recipient_id, value: @recipient.id
+          = f.hidden_field :conversation_id, value: @conversation.id
+        %div
+          = f.label :message
+          = f.text_area :body, placeholder: "Your message"
+        %div
+          = f.submit "Send", class: "small button"
+          = link_to "Cancel", :back, class: "small button"

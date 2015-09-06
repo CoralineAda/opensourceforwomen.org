@@ -1,0 +1,46 @@
+- content_for :title, "Abuse Report"
+
+.content
+  .row
+    %h1
+      Abuse Report
+
+    .large-7.columns
+      %div
+        %p
+          %strong
+            Report Date
+          %br
+            = @report.created_at.strftime("%m/%d/%Y at %I:%M %P")
+        %p
+          %strong
+            Offender
+          %br
+            = link_to @report.offender.username, admin_user_path(@report.offender)
+        %p
+          %strong
+            Reported By
+          %br
+            = link_to @report.reporter.username, admin_user_path(@report.reporter)
+        %p
+          %strong
+            Description
+          %br
+            = @report.description
+
+      = form_for(@report, url: admin_abuse_report_path(@report)) do |f|
+        = f.hidden_field :is_resolved, value: true
+        = f.submit "Mark Resolved", class: "button small"
+
+      %h3
+        Comments
+      - @report.comments.each do |comment|
+        %p
+          = comment.comment
+          %span.faint
+            = "#{comment.user.username} (#{comment.created_at.strftime("%m/%d/%Y")})"
+        %hr
+      = form_tag "/admin/abuse_report_comments" do
+        = hidden_field_tag :abuse_report_id, @report.id
+        = text_area_tag "comment"
+        = submit_tag "Leave Comment", class: "button small"

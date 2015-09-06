@@ -1,0 +1,63 @@
+- content_for :title, "#{@extended_profile.username}'s Profile".html_safe
+
+.content
+  .row
+    %h1
+      = "#{@extended_profile.username}'s Profile"
+
+    .large-7.columns
+      %div
+        %p
+          %strong
+            Preferred Languages
+          %br
+            = @extended_profile.languages.map(&:name).sort.join(", ")
+        %p
+          %strong
+            General Availability
+          %br
+            = @extended_profile.availability || "Not specified"
+        %p
+          %strong
+            Time Zone
+          %br
+            = @extended_profile.time_zone || "Not specified"
+        %p
+          %strong
+            Skill Level
+          %br
+            = @extended_profile.skill_level || "Not specified"
+        %p
+          %strong
+            Special Interests
+          %br
+            = @extended_profile.special_interests || "Not specified"
+        %p
+          %strong
+            Notes
+          %br
+            = @extended_profile.notes || "Not specified"
+
+    - if @extended_profile.user == current_user
+      %p
+        Keep your profile up-to-date so that other users can see what you're interested
+        in pairing or mentoring on.
+
+      = link_to "Edit my profile", edit_extended_profile_path(@extended_profile)
+    - else
+      .large-5.columns
+
+        - if @pair_request && ! @pair_request.rejected?
+          .panel
+            %p
+              You sent
+              = @extended_profile.username
+              a pairing request on
+              = @pair_request.created_at.strftime("%m/%d/%Y.")
+
+        - else @pair_request
+          .panel
+            %p
+              Does this profile look interesting? Take the first step and send them a mentoring or pair request!
+            %div
+              = link_to "Send a message", new_user_message_path(current_user, recipient_id: @extended_profile.user_id), class: "button small"

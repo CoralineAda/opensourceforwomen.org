@@ -1,0 +1,33 @@
+- content_for :title, "Your Account"
+
+.content
+  .row
+    .large-5.columns
+      %h1 Manage Your Account
+      = form_for(@user, :url => user_path(@user)) do |f|
+        %div
+          = f.label :username
+          = f.text_field :requested_username, placeholder: "Required", value: @user.username
+        %div
+          = f.label :email
+          = f.text_field :email, disabled: true
+        %div
+          = f.label :twitter_handle
+          = f.text_field :twitter_handle, placeholder: "Optional"
+        %div
+          = f.label :github_username
+          = f.text_field :github_username, placeholder: "Optional"
+        %div
+          = f.label :password
+          = f.password_field :password
+        %div
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+
+        %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", :value => @user.subscribed?
+            Subscribe to our mailing list
+
+
+        %div= f.submit "Update account", class: "small button"

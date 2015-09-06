@@ -1,0 +1,33 @@
+- content_for :title, "Conversations".html_safe
+
+.content
+  .row
+    .large-12.columns
+      %h1 Conversations
+
+  .row
+    .large-12.columns
+      - @conversations.each do |conversation|
+        - last_message = conversation.messages.last
+        - other_participant = conversation.other_participant(current_user)
+        - from_or_to = last_message.sender == other_participant ? "From" : "To"
+        - if last_message.is_unread_by?(current_user)
+          = image_tag(other_participant.gravatar_url(default: "identicon"), class: "small-gravatar")
+          %em
+            = from_or_to
+            = other_participant.username
+            %br
+            = link_to truncate(last_message.body, length: 30), user_message_path(current_user, last_message)
+            %br
+            = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
+        - else
+          = image_tag(other_participant.gravatar_url(default: "identicon"), class: "small-gravatar")
+          = from_or_to
+          = other_participant.username
+          %br
+          = link_to truncate(last_message.body, length: 30), user_message_path(current_user, last_message)
+          %br
+          = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
+        %hr
+
+    = link_to "New Conversation", new_user_message_path(current_user), class: "small button"

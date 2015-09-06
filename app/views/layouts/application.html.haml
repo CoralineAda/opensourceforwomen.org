@@ -3,28 +3,17 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title
-      OpenSourceForWomen.org
-      = content_for?(:title) ? " | #{yield(:title)}" : ''
-    = stylesheet_link_tag "application"
+    %title= content_for?(:title) ? "OS4W | #{yield(:title)}" : "Open Source for Women"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = yield :css
+    = yield :js
     = csrf_meta_tags
   %body
-    %h1
-      Open
-      %span.contrast
-        Source
-      %br
-      For Women
-
-    .content
+    %header
+      = render "shared/navigation"
+    = render "layouts/messages"
+    .wrapper
       = yield
-
-    %footer
-      &copy; 2015
-      = link_to 'Coraline Ada Ehmke', 'http://where.coraline.codes/'
-      &bull;
-      = link_to 'Contribute to this project on Github', 'https://github.com/coralineada/opensourceforwomen.org'
-      &bull;
-      = link_to 'Support thie project on Patreon', 'https://www.patreon.com/coraline'
-
-    = javascript_include_tag "application"
+    = render 'shared/footer'

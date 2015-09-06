@@ -1,0 +1,10 @@
+%p
+  The following message was sent by
+  = "#{@contact.name} #{@contact.email}"
+  on
+  = @contact.sent_at
+  via the contact form on OS4W:
+
+%blockquote
+  = @contact.message
+

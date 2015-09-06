@@ -1,0 +1,12 @@
+%p
+  Hello!
+  = "#{@sender.username} (#{@sender.email})"
+  has invited you to join the Open Source for Women community.
+
+%blockquote
+  = @invitation.message
+
+%p
+  To sign up, visit
+  = link_to "https://www.opensourceforwomen.org/", "https://www.opensourceforwomen.org/"
+  and click the 'Sign Up' link. We hope to see you soon!

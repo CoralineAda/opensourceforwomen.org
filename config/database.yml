@@ -1,0 +1,14 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: os4w_development
+  pool: 5
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: os4w_test
+  pool: 5
+
+cucumber:
+  <<: *test

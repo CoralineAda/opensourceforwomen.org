@@ -1,0 +1,115 @@
+- content_for :title, "#{@user.username}'s Account".html_safe
+
+.content
+  .row
+    %h1
+      = image_tag(@user.gravatar_url(default: "identicon"), class: "float-right")
+      = "#{@user.formatted_username}'s Profile"
+    %p.back-navigation
+      &laquo;
+      = link_to "Back to Users", admin_users_path
+    - if @user.reported_for_abuse?
+      .data-alert.alert-box
+        This user has been previously cited for abuse.
+    .large-5.columns
+      = form_for(@user, :url => user_path(@user)) do |f|
+        %div
+          = f.label :username
+          = f.text_field :requested_username, placeholder: "Required", value: @user.username, disabled: true
+        %div
+          = f.label :email
+          = f.text_field :email, disabled: true
+        %div
+          = f.label :twitter_handle
+          = f.text_field :twitter_handle, placeholder: "Optional", disabled: true
+        %div
+          = f.label :github_username
+          = f.text_field :github_username, placeholder: "Optional", disabled: true
+        - if @user.invited_by.any?
+          %div
+            %label
+              Invited by
+            %ul
+              - @user.invited_by.uniq.map do |user|
+                %li
+                  = link_to user.username, admin_user_path(user)
+
+        %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", :checked => @user.subscribed?, disabled: true
+            Subscribed to our mailing list
+        %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", :checked => @extended_profile.is_mentor?, disabled: true
+            Mentor
+        %div
+          %label.checkbox{ :for => "accepts_coc" }
+            = f.check_box :subscribe_me, :class => "checkbox", :checked => @extended_profile.is_pair_partner?, disabled: true
+            Pair Partner
+
+    .large-5.columns
+
+      %div
+        %p
+          %strong
+            Preferred Languages
+          %br
+            = @extended_profile.languages.map(&:name).sort.join(", ")
+        %p
+          %strong
+            General Availability
+          %br
+            = @extended_profile.availability || "Not specified"
+        %p
+          %strong
+            Time Zone
+          %br
+            = @extended_profile.time_zone || "Not specified"
+        %p
+          %strong
+            Skill Level
+          %br
+            = @extended_profile.skill_level || "Not specified"
+        %p
+          %strong
+            Special Interests
+          %br
+            = @extended_profile.special_interests || "Not specified"
+        %p
+          %strong
+            Notes
+          %br
+            = @extended_profile.notes || "Not specified"
+
+    %hr
+
+  .row
+
+    - if @user.projects.any?
+      %h2 Bookmarks
+      %ul
+        - @user.projects.each do |project|
+          %li
+            = link_to project.full_name, project_path(project)
+
+    - if @user.reported_for_abuse?
+      %h2 Abuse Reports Against This User
+      %ul
+        - @abuse_reports_cited.each do |report|
+          %li
+            = link_to "Reported by #{report.reporter.username}", admin_abuse_report_path(report)
+            .faint
+              = report.created_at.strftime("%m/%d/%Y %l:%M %p")
+      -if @user.is_frozen?
+        = form_for(@user, url: admin_user_path(@user)) do |f|
+          = f.hidden_field :is_frozen, value: false
+          = f.submit "Unfreeze User", class: "button small"
+    - if @user.conversations.any?
+      %hr
+      %h2 Conversations
+      %ul
+        - @user.conversations.each do |conversation|
+          %li
+            = link_to conversation.other_participant(@user).username, admin_user_message_path(@user, conversation.messages.last)
+            .faint
+              = conversation.messages.last.created_at.strftime("%m/%d/%Y %l:%M %p")

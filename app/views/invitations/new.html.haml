@@ -1,0 +1,15 @@
+- content_for :title, "Invite a New Member"
+
+.content
+  .row
+    .large-5.columns
+      %h1 Invite a New Member
+      = form_for(@invitation) do |f|
+        %div
+          = f.label :invitee_email
+          = f.text_field :invitee_email, placeholder: "Required"
+        %div
+          = f.label :message
+          = f.text_area :message, placeholder: "Required"
+        %div= f.submit "Send invitation", class: "small button"
+

@@ -1,0 +1,39 @@
+- content_for :title, "Abuse Reports".html_safe
+- content_for :css, "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css'>".html_safe
+- content_for :js, "<script src='https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js'></script>".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1 Abuse Reports
+
+  .row
+    .large-12.columns
+
+      %table#reports
+        %thead
+          %tr
+            %td
+              Date
+            %td
+              Offender
+            %td
+              Reported By
+            %td.centered
+              Resolved?
+        %tbody
+          - @abuse_reports.each do |report|
+            %tr
+              %td
+                = link_to report.created_at.strftime("%m/%d/%Y"), admin_abuse_report_path(report)
+              %td
+                = report.offender.username
+              %td
+                = report.reporter.username
+              %td.centered
+                = report.is_resolved?
+
+    :javascript
+      $(document).ready(function(){
+          $('#reports').DataTable({'pageLength': 100});
+      });

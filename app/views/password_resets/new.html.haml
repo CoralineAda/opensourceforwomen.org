@@ -1,0 +1,13 @@
+- content_for :title, "Sign In"
+
+.content
+  .row
+    .large-5.columns
+
+      %h1 Password Reset
+      = form_tag password_resets_path, :method => :post do
+        %div
+          = label_tag :email
+          = text_field_tag :email
+        %div
+          = submit_tag "Reset my password!", class: "button small"

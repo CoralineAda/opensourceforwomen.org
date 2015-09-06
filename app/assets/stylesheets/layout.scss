@@ -1,0 +1,279 @@
+body {
+  min-width: 1000px !important;
+}
+
+.narrow {
+  width: 25%;
+}
+
+.top-bar {
+  min-width: 800px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 3em !important;
+  border-top: 1px solid #000000;
+}
+
+.footer-row, .push {
+  height: 80px;
+  background: #333333;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+  padding: 1em 0em 0em 1em;
+  color: #eeeeee;
+}
+
+.footer-row a {
+  color: #eeeeee;
+}
+
+.field_with_errors checkbox {
+  float: left;
+}
+
+ul.tight_spacing li {
+  margin-top: .25em;
+  margin-bottom: .25em;
+}
+
+li {
+  margin-left: 1em;
+}
+
+.pricing-table li {
+  margin-left: 0em;
+}
+
+table {
+  width: 100%;
+}
+
+td .wide {
+  width: 50%;
+}
+
+.logo {
+  margin-left: 1em;
+  margin-top: -4px;
+  height: 50%;
+  width: 50%;
+}
+
+.toast-top-center {
+    top: 24px;
+    left: 40%;
+}
+
+.content {
+  clear: both;
+  margin-top: 8%;
+}
+
+#featured-content {
+  margin-top: 0px;
+  width: 100%;
+  height: 75%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3%;
+  max-width: initial;
+  text-align: center;
+  background-image: url("/assets/banner.png");
+  background-position: center;
+  font-weight: 900;
+  padding-bottom: 3em;
+  border-bottom: 3em solid #333333;
+}
+
+.featured-row:first-child {
+  margin-top: 10%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.featured-row {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #eeeeee;
+  font-size: 2em;
+}
+
+.boxed-white {
+  border: 1px solid #eeeeee;
+  padding: 1em;
+  color: #eeeeee;
+  text-decoration: none;
+  font-size: .5em;
+}
+
+.boxed-white:hover {
+  border: 3px solid #eeeeee;
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.button a {
+  color: #ffffff;
+}
+
+.button.disabled {
+  background-color: #aaa;
+}
+
+.button.small {
+  padding: 1em;
+}
+
+.button.tiny {
+  padding: .5em;
+  font-size: 12px;
+}
+
+h1 {
+  border-bottom: 1px dotted #aaaaaa;
+  margin-bottom: 1em;
+  margin-left: -17px;
+}
+
+h2 {
+  color: #333333;
+  font-size: 1.5em;
+}
+
+h3 {
+  color: #666666;
+  margin-top: -1px;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h4 {
+  color: #666666;
+  margin-top: -1px;
+  font-size: .8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+div.field_with_errors {
+  display: inline;
+}
+
+br.clear {
+  clear: both;
+}
+
+li {
+  margin-bottom: 1em;
+}
+
+.check-box-label {
+  float: right;
+}
+
+.back-navigation {
+  margin-top: -2em;
+  font-size: .8em;
+}
+
+.sidebar {
+  position: absolute;
+  top: 94px;
+  width: 12%;
+  border-right: 1px dotted #444;
+  padding: 1em;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  font-size: .8em;
+}
+
+.sidebar h3 {
+  color: #900;
+}
+
+.sidebar h4 {
+  color: #999;
+  margin-top: -1px;
+  margin-left: 5px;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 1em;
+}
+
+.sidebar ul li {
+  list-style-type: none;
+  margin-left: -5px;
+  font-size: .8em;
+  color: #ccc;
+}
+
+.sidebar a, .sidebar a:visited {
+  color: #999;
+}
+
+.pull-right {
+  text-align: right;
+}
+
+.float-left {
+  float: left;
+  margin-right: 1em;
+}
+
+.float-right {
+  float: right;
+}
+
+input[type=text]:disabled {
+  background-color: #fff;
+}
+
+textarea {
+  height: 10em;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.dataTables_length label {
+  padding-top: 22px;
+  display: block;
+  width: 50px;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.dataTables_info {
+  font-size: 11px;
+}
+
+.dataTables_paginate {
+  font-size: 11px;
+}
+
+.project_select select {
+  width: 100px !important;
+}
+
+.faint {
+  color: #aaa;
+}
+
+.small-gravatar {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-right: 1em;
+}

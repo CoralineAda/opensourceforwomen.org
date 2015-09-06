@@ -1,0 +1,22 @@
+- content_for :title, "Sign In"
+
+.content
+  .row
+    .large-5.columns
+
+      %h1 Sign In to Your Account
+      = form_tag sessions_path, method: :post do
+        %div
+          = label_tag :email
+          = email_field_tag :email
+        %div
+          = label_tag :password
+          = password_field_tag :password
+        %div
+          = submit_tag "Sign In", class: "small button"
+
+      %p
+        = link_to 'Forgot password?', new_password_reset_path
+      %p
+        New around here? Please
+        = link_to "sign up.", sign_up_path

@@ -1,0 +1,12 @@
+%p
+  Hello!
+  = "#{@sender.username} (#{@sender.email})"
+  has sent you a message.
+
+%blockquote
+  = @message.body
+
+%p
+  To reply, visit
+  = link_to "https://www.opensourceforwomen.org/", "https://www.opensourceforwomen.org/"
+  and click the 'Inbox' link.

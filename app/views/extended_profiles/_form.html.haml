@@ -1,0 +1,35 @@
+.large-5.columns
+  %div
+    = f.label :availability, "General availability*"
+    = f.text_area :availability, placeholder: "e.g. Saturday afternoon"
+  %div
+    = f.label :time_zone, "Your time zone"
+    = f.time_zone_select(:time_zone, ActiveSupport::TimeZone.all.sort, default: "Central Time (US & Canada)")
+  %div
+    = f.label :skill_level, "How would you describe your skill level?"
+    = f.text_area :skill_level, placeholder: "Don't be modest!"
+  %div
+    = f.label :special_interests, "Areas of interest"
+    = f.text_area :special_interests, placeholder: "Anything in particular?"
+  %div
+    = f.label :notes, "Other notes"
+    = f.text_area :notes, placeholder: "Anything else?"
+  %div
+    = f.check_box :is_mentor
+    = f.label :is_mentor, "I am interested in being a mentor."
+  %div
+    = f.check_box :is_pair_partner
+    = f.label :is_pair_partner, "I am interested in pair programming with someone."
+
+  %div
+    = f.submit "Save", class: "small button"
+.large-5.columns
+  %div
+    = f.label :languages, "Preferred Languages*"
+    - @languages.each do |language|
+      %label.checkbox{ :for => "languages" }
+        = check_box_tag "extended_profile[language_ids][]", language.id, @extended_profile.languages.include?(language)
+        = language.name
+  %div
+    = f.label :other_language, "Other Language"
+    = f.text_area :other_language, placeholder: "Language name"

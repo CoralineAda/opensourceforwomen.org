@@ -1,0 +1,12 @@
+- content_for :title, "Thank You for Signing Up!"
+
+.content
+  .row
+    .large-6.columns
+
+      %h1 Thank You for Signing Up!
+
+      %p
+        Please check your email for a confirmation link.
+
+      = link_to "Didn't receive confirmation instructions?", new_user_confirmation_path

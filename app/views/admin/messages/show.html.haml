@@ -1,0 +1,25 @@
+- content_for :title, "Conversation with #{@message.conversation.other_participant(@user).username}"
+
+.content
+  .row
+    %h1
+      Conversation between
+      = @user.username
+      and
+      = @message.conversation.other_participant(@user).username
+    %p.back-navigation
+      &laquo;
+      = link_to "Back to Profile", :back
+
+    - @conversation.messages.each do |message|
+      %table
+        %tbody
+          %tr
+            %td
+              %b From:
+              = message.sender.username
+            %td.pull-right
+              = message.created_at.strftime("%m/%d/%Y at %I:%m %P")
+          %tr
+            %td{colspan: 3}
+              = message.body

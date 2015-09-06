@@ -1,0 +1,63 @@
+- content_for :title, "Open Source Projects".html_safe
+- content_for :css, "<link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css'>".html_safe
+- content_for :js, "<script src='https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js'></script>".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1 Open Source Projects
+
+  .row
+    = form_tag("/projects", method: "get") do
+      %label
+        Select a language:
+      - @languages.each do |language|
+        - if @language && @language.name == language.name
+          = submit_tag "#{language.name} (#{language.project_count})", class: "disabled tiny button", disabled: true
+        - else
+          = submit_tag "#{language.name} (#{language.project_count})", class: "tiny button"
+  .row
+    - if @projects.empty? && @language
+      %p
+        Sorry, no projects found.
+
+    - if @language && @projects.any?
+      .large-12.columns
+
+        %table#projects{ summary: "This table lists curated open source projects submitted by members and staff." }
+          %thead
+            %tr
+              %td
+                Name
+              %td
+                Description
+              %td.centered
+                Code of Conduct?
+              %td.centered
+                Bookmarks
+              %td.centered
+                Comments
+          %tbody
+            - @projects.each do |project|
+              %tr
+                %td
+                  = link_to project.name, project_path(project)
+                  %br
+                  .faint
+                    = project.full_name
+                %td
+                  = project.description
+                %td.centered
+                  = project.has_coc? ? "Yes" : "No"
+                %td.centered
+                  = project.users.count
+                %td.centered
+                  = project.project_comments.count
+
+      :javascript
+        $(document).ready(function(){
+            $('#projects').DataTable({'pageLength': 50});
+        });
+  .row
+    %hr
+    = link_to "Submit a New Project", new_project_path, class: "button small"

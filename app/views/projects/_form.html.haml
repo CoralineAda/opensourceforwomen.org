@@ -1,0 +1,12 @@
+.large-5.columns
+  %div
+    = f.label :name, "Project Name"
+    = f.text_field :name, placeholder: "Required"
+  %div
+    = f.label :repo_url, "Github URL"
+    = f.text_field :repo_url, placeholder: "Required"
+  %div
+    = f.check_box :has_coc
+    = f.label :has_coc, "This project has a Code of Conduct."
+  %div
+    = f.submit "Save", class: "small button"

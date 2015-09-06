@@ -1,0 +1,43 @@
+- content_for :title, "Conversation with #{@message.conversation.other_participant(current_user).username}"
+
+.content
+  .row
+    %h1
+      Conversation with
+      = @message.conversation.other_participant(current_user).username
+    %p.back-navigation
+      &laquo;
+      = link_to "Back to Inbox", user_messages_path(current_user)
+
+    - @conversation.sorted_messages.each do |m|
+      %table
+        %tbody
+          %tr
+            %td{style: "width: 75px;"}
+              = image_tag(m.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
+            %td
+              = m.sender.username
+              %br
+              = m.body
+            %td.pull-right
+              = m.created_at.strftime("%m/%d/%Y at %I:%M %P")
+    = form_for(Message.new, :url => user_messages_path(current_user)) do |f|
+      %table
+        %tbody
+          %tr
+            %td{style: "width: 75px; vertical-align: top;"}
+              = image_tag(current_user.gravatar_url(default: "identicon"), class: "small-gravatar")
+            %td
+              = f.hidden_field :recipient_id, value: @message.conversation.other_participant(current_user).id
+              = f.hidden_field :conversation_id, value: @conversation.id
+              = f.text_area :body, placeholder: "Your message"
+              .float-right
+                = f.submit "Reply", class: "small button"
+
+      %div
+        = link_to "Report Abuse", new_abuse_report_path(offender_id: @conversation.other_participant(current_user).id), class: "small button"
+
+:javascript
+  $(document).ready(function(){
+      $('#message_body').focus();
+  });

@@ -1,0 +1,49 @@
+#featured-content{data: "orbit"}
+  .featured-row
+    Only 2% of Open Source contributors are women.
+  .featured-row
+    With your help, we're going to change that.
+  .featured-row
+    = link_to "Get Started", sign_up_path, class: "boxed-white"
+
+.row
+
+  .large-6.columns
+    %p
+      Open source is the foundation on which the Internet is built. For its continued success, it's critical to incorporate diverse voices and engage people with different experiences, talents, and viewpoints. Otherwise we risk a world of technology created by, and supporting, a non-inclusive and hostile monoculture.
+
+    %p
+      Together we can make things better. OS4W aims to be a resource for connecting all women, including women of color and transgender women, to open source projects that are
+      = link_to "welcoming, inclusive, and appreciative of diversity", "http://contributor-covenant.org"
+      in their contributors.
+
+    %p
+      Let's start changing things and making the world of open source a better place for everyone.
+
+  .large-6.columns
+
+    %p
+      Already have an account? Please
+      = succeed "." do
+        = link_to "sign in", sign_in_path
+      New to OS4W? You can
+      = succeed "." do
+        = link_to "create an account", sign_up_path
+
+    %p
+      If you have an idea for how to make OS4W better, please submit an issue to
+      = succeed "," do
+        = link_to "our Github repository", "https://github.com/coralineada/opensourceforwomen.org/"
+      or use our
+      = link_to "contact form", "/"
+      to send us an email. We also welcome contributions in the form of pull requests.
+
+    %p
+      Be sure to follow us on Twitter at
+      = link_to "@OS4Women", "https://twitter.com/OS4Women"
+      and, if you can,
+      = succeed "." do
+        = link_to "support us on Patreon", "https://www.patreon.com/coraline"
+
+  %br.clear
+

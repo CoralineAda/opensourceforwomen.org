@@ -1,0 +1,38 @@
+- content_for :title, "Admin Dashboard"
+
+.content
+  .row
+    .large-12.columns
+      %h1
+        Admin Dashboard
+
+  .row
+
+    .large-6.columns
+
+      %p
+        %em
+          = @projects_count
+        projects
+      %p
+        %em
+          = @users_count
+        users
+      %p
+        %em
+          = @messages_count
+        messages
+      %p
+        %em
+          = @conversations_count
+        conversations
+
+
+    .large-6.columns
+
+      .panel
+        %ul
+          %li
+            = link_to "User Admin", admin_users_path
+          %li
+            = link_to "Abuse Reports", admin_abuse_reports_path
