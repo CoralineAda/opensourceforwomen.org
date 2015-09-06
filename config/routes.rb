@@ -44,6 +44,9 @@ Opensourceforwomen::Application.routes.draw do
 
   # Admin
   namespace :admin do
+    get "/admin", to: "admin#index", as: :admin_path
+    resources :abuse_reports
+    resources :abuse_report_comments
     resources :users do
       resources :messages
     end

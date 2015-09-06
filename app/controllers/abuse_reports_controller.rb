@@ -10,9 +10,9 @@ class AbuseReportsController < ApplicationController
   end
 
   def create
-    @abuse_report = AbuseReport.new(abuse_report_params)
+    @abuse_report = AbuseReport.new(description: abuse_report_params[:description])
     @abuse_report.reporter = current_user
-    unless @abuse_report.offender = User.where(username: abuse_report_params[:offender]).first
+    unless @abuse_report.offender = User.where(username: abuse_report_params[:offender_name]).first
       flash.now[:error] = 'Sorry! We were unable to find a user with that username. Please try again.'
       render :new
       return
@@ -32,7 +32,7 @@ class AbuseReportsController < ApplicationController
   private
 
   def abuse_report_params
-    params.require(:abuse_report).permit(:offender, :description)
+    params.require(:abuse_report).permit(:offender_name, :description)
   end
 
 end

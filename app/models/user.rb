@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     conversations.find{|c| c.participants.include? participant}
   end
 
+  def invited_by
+    Invitation.where(invitee_email: self.email).map(&:user)
+  end
+
   def is_signed_in?
     User.signed_in_users.map(&:id).include?(self.id)
   end
@@ -68,6 +72,10 @@ class User < ActiveRecord::Base
 
   def messages
     Message.where('recipient_id = ? OR sender_id = ?', self.id, self.id)
+  end
+
+  def reported_for_abuse?
+    AbuseReport.where(offender_id: self.id).any?
   end
 
   def subscribe_me

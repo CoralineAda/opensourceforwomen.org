@@ -6,8 +6,8 @@
       %h1 Report Abuse
       = form_for(@abuse_report) do |f|
         %div
-          = f.label :offender
-          = f.text_field :offender, placeholder: "Required", value: @abuse_report.offender.username
+          = f.label :offender_name
+          = f.text_field :offender_name, placeholder: "Required", value: @abuse_report.offender.username
         %div
           = f.label :description
           = f.text_area :description, placeholder: "Required"

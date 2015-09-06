@@ -1,5 +1,4 @@
 TODO
 
-- Submit a project
 - Figure out how to send mail from Heroku
-- Track invitations
+- Admin view for abuse reports
