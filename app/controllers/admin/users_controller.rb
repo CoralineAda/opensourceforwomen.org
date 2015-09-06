@@ -6,7 +6,7 @@ class Admin::UsersController < Admin::AdminController
 
   def show
     @user = User.find(params[:id])
-    @extended_profile = @user.extended_profile
+    @extended_profile = @user.extended_profile || ExtendedProfile.new
     @abuse_reports_cited = AbuseReport.where(offender_id: @user.id)
     @abuse_reports_filed = AbuseReport.where(reporter_id: @user.id)
   end
