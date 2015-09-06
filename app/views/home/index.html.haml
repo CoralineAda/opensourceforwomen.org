@@ -4,7 +4,10 @@
   .featured-row
     With your help, we're going to change that.
   .featured-row
-    = link_to "Get Started", sign_up_path, class: "boxed-white"
+    - if current_user
+      = link_to "Get Started", dashboard_path(1), class: "boxed-white"
+    - else
+      = link_to "Get Started", sign_up_path, class: "boxed-white"
 
 .row
 

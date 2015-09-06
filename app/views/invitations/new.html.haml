@@ -6,7 +6,7 @@
       %h1 Invite a New Member
       = form_for(@invitation) do |f|
         %div
-          = f.label :invitee_email
+          = f.label :invitee_email, "Your Friend's Email"
           = f.text_field :invitee_email, placeholder: "Required"
         %div
           = f.label :message
