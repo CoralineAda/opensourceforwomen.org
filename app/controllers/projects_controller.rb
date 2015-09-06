@@ -16,12 +16,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(
+      name: project_params[:name],
+      repo_url: project_params[:repo_url].strip,
+      has_coc: project_params[:has_coc]
+    )
     if @project.save
       @project.update
       redirect_to project_path(@project)
     else
-      flash[:error] = @extended_profile.errors.full_messages
+      flash[:error] = @project.errors.full_messages
       render 'new'
     end
   end
