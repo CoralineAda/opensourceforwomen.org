@@ -25,10 +25,10 @@
             This project does not have a code of conduct.
         %li.bullet-item
           Created:
-          = @project.details[:created_at].strftime("%m/%d/%Y")
+          = @project.details[:created_at] && @project.details[:created_at].strftime("%m/%d/%Y") || "-"
         %li.bullet-item
           Last activity:
-          = @project.details[:last_activity].strftime("%m/%d/%Y")
+          = @project.details[:last_activity] && @project.details[:last_activity].strftime("%m/%d/%Y") || "-"
         %li.bullet-item
           Open issues:
           = @project.details[:open_issues_count]
