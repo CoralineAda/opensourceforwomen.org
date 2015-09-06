@@ -26,6 +26,7 @@ gem "sorcery"
 gem 'therubyracer'
 gem 'toastr-rails'
 gem 'validates_email_format_of'
+gem 'rails_12factor', group: :production
 
 group :assets do
   gem 'coffee-rails'
