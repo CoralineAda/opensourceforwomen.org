@@ -25,7 +25,7 @@
           = f.password_field :password_confirmation
 
         %div
-          %label.checkbox{ :for => "accepts_coc" }
+          %label.checkbox{ :for => "user_subscribe_me" }
             = f.check_box :subscribe_me, :class => "checkbox", :value => @user.subscribed?
             Subscribe to our mailing list
 
