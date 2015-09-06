@@ -5,7 +5,7 @@ class MentorsController < ApplicationController
   def index
     @extended_profile = current_user.extended_profile
     if current_user.extended_profile
-      @mentors = ExtendedProfile.mentors.excludes(id: current_user.extended_profile.id)
+      @mentors = ExtendedProfile.mentors - [current_user.extended_profile]
     else
       @mentors = ExtendedProfile.mentors
     end

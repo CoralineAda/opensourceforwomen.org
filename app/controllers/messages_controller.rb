@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
   before_filter :scope_recipient, except: [:index, :show, :destroy]
+  before_action :require_login
 
   def index
     @conversations = current_user.conversations.sort_by(&:created_at).reverse.uniq
@@ -9,7 +10,9 @@ class MessagesController < ApplicationController
   def new
     in_reply_to = params[:message_id] && current_user.messages.find(params[:message_id])
     @conversation = in_reply_to ? in_reply_to.conversation : Conversation.new
-    @recipient = @conversation.other_participant(current_user) || User.new
+    @recipient = @conversation.other_participant(current_user)
+    @recipient ||= User.find(params[:recipient_id]) if params[:recipient_id]
+    @recipient ||= User.new
     @message = Message.new(
       conversation: @conversation,
       recipient: @recipient
@@ -22,7 +25,7 @@ class MessagesController < ApplicationController
     else
       recipient = User.find_by(username: message_params[:recipient_username])
     end
-    unless recipient
+    if recipient.nil? || recipient == current_user
       @conversation = Conversation.new
       @message = Message.new(
         sender_id: current_user.id,
@@ -39,7 +42,7 @@ class MessagesController < ApplicationController
       conversation_id: message_params[:conversation_id]
     )
     unless @message.conversation
-      conversation = Conversation.create
+      conversation = current_user.conversation_with(recipient) || Conversation.create
       conversation.participants = [current_user, @message.recipient]
       conversation.save
       @message.conversation = conversation
@@ -47,6 +50,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       flash[:success] = 'Message sent successfully.'
+      MessageWorker.perform_in(5.minutes, @message.id)
       redirect_to user_messages_path(current_user)
     else
       flash.now[:error] = @message.errors.full_messages
@@ -56,8 +60,8 @@ class MessagesController < ApplicationController
 
   def show
     @message = current_user.messages.find(params[:id])
-    @message.update_attribute(:is_read, true)
     @conversation = @message.conversation
+    @conversation.messages.map{|m| m.update_attribute(:is_read, true) if m.recipient = current_user}
   end
 
   private

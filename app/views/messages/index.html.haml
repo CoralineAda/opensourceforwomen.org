@@ -8,21 +8,26 @@
   .row
     .large-12.columns
       - @conversations.each do |conversation|
-        - if conversation.messages.last.is_unread_by?(current_user)
-          = image_tag(conversation.messages.last.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
+        - last_message = conversation.messages.last
+        - other_participant = conversation.other_participant(current_user)
+        - from_or_to = last_message.sender == other_participant ? "From" : "To"
+        - if last_message.is_unread_by?(current_user)
+          = image_tag(other_participant.gravatar_url(default: "identicon"), class: "small-gravatar")
           %em
-            = conversation.messages.last.sender.username
+            = from_or_to
+            = other_participant.username
             %br
-            = link_to truncate(conversation.messages.last.body, length: 30), user_message_path(current_user, conversation.messages.last)
+            = link_to truncate(last_message.body, length: 30), user_message_path(current_user, last_message)
             %br
-            = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M %P")
+            = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
         - else
-          = conversation.messages.last.sender.username
-          = image_tag(conversation.messages.last.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
+          = image_tag(other_participant.gravatar_url(default: "identicon"), class: "small-gravatar")
+          = from_or_to
+          = other_participant.username
           %br
-          = link_to truncate(conversation.messages.last.body, length: 30), user_message_path(current_user, conversation.messages.last)
+          = link_to truncate(last_message.body, length: 30), user_message_path(current_user, last_message)
           %br
-          = conversation.messages.last.created_at.strftime("%m/%d/%Y at %I:%M %P")
+          = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
         %hr
 
     = link_to "New Conversation", new_user_message_path(current_user), class: "small button"

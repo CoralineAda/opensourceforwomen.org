@@ -60,4 +60,4 @@
             %p
               Does this profile look interesting? Take the first step and send them a mentoring or pair request!
             %div
-              = link_to "Send a message", new_message_path(recipient_id: @extended_profile.user_id), class: "button small"
+              = link_to "Send a message", new_user_message_path(current_user, recipient_id: @extended_profile.user_id), class: "button small"

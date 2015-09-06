@@ -1,5 +1,7 @@
 Opensourceforwomen::Application.routes.draw do
 
+#  require 'sidekiq/web'
+
   # Static content
   get "/about" => "home#about", :as => "about"
   get "/be-an-ally" => "home#allies", :as => "allies"
@@ -37,6 +39,8 @@ Opensourceforwomen::Application.routes.draw do
   resources :project_comments, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :subscriptions
+
+#  mount Sidekiq::Web => '/jobs'
 
   # Admin
   namespace :admin do

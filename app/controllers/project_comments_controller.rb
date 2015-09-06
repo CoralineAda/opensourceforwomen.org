@@ -1,5 +1,7 @@
 class ProjectCommentsController < ApplicationController
 
+  before_action :require_login
+
   def create
     comment = ProjectComment.create(
       comment: params[:comment],

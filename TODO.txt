@@ -2,3 +2,7 @@ TODO
 
 - Test project submission
 - Make first page after signup the extended profile page?
+- On conversations screen, show name and gravatar of other participant, not last message sender
+- Should not be able to create a new converation with the same other participant
+- Figure out how to send mail from Heroku
+- Track invitations

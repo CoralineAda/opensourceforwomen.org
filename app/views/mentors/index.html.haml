@@ -39,8 +39,8 @@
             %label Your time zone
             = text_field_tag :time_zone, @extended_profile.time_zone, disabled: true
           %div
-            %label How many years of experience do you have?
-            = text_area_tag :years_experience, @extended_profile.years_experience, disabled: true
+            %label How would you describe your skill level?
+            = text_area_tag :skill_level, @extended_profile.skill_level, disabled: true
           %div
             %label Areas of interest
             = text_area_tag :interests, @extended_profile.special_interests, disabled: true
@@ -48,7 +48,7 @@
             %label Other notes
             = text_area_tag :notes, @extended_profile.notes, disabled: true
         %div
-          = link_to "Edit my profile", edit_extended_profile(@extended_profile.id), class: "button small"
+          = link_to "Edit my profile", edit_extended_profile_path(current_user, @extended_profile.id), class: "button small"
       - else
         %h2 Get Started
         %p

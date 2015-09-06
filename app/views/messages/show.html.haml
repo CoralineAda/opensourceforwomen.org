@@ -9,23 +9,35 @@
       &laquo;
       = link_to "Back to Inbox", user_messages_path(current_user)
 
-    - @conversation.messages.each do |message|
+    - @conversation.sorted_messages.each do |m|
       %table
         %tbody
           %tr
             %td{style: "width: 75px;"}
-              = image_tag(message.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
+              = image_tag(m.sender.gravatar_url(default: "identicon"), class: "small-gravatar")
             %td
-              = message.sender.username
+              = m.sender.username
               %br
-              = message.body
+              = m.body
             %td.pull-right
-              = message.created_at.strftime("%m/%d/%Y at %I:%m %P")
+              = m.created_at.strftime("%m/%d/%Y at %I:%M %P")
+    = form_for(Message.new, :url => user_messages_path(current_user)) do |f|
+      %table
+        %tbody
           %tr
+            %td{style: "width: 75px; vertical-align: top;"}
+              = image_tag(current_user.gravatar_url(default: "identicon"), class: "small-gravatar")
+            %td
+              = f.hidden_field :recipient_id, value: @message.conversation.other_participant(current_user).id
+              = f.hidden_field :conversation_id, value: @conversation.id
+              = f.text_area :body, placeholder: "Your message"
+              .float-right
+                = f.submit "Reply", class: "small button"
 
-    %div
-      = form_for(@message, :url => user_message_path(current_user, @message)) do |f|
-        .float-left
-          = link_to "Reply", new_user_message_path(current_user, message_id: @message.id, conversation_id: @conversation.id), class: "small button"
-        .float-right
-          = link_to "Report Abuse", new_abuse_report_path, class: "small button"
+      %div
+        = link_to "Report Abuse", new_abuse_report_path(offender_id: @conversation.other_participant(current_user).id), class: "small button"
+
+:javascript
+  $(document).ready(function(){
+      $('#message_body').focus();
+  });

@@ -1,7 +1,12 @@
 class AbuseReportsController < ApplicationController
 
   def new
-    @abuse_report = AbuseReport.new(reporter: current_user)
+    if params[:offender_id]
+      offender = User.find(params[:offender_id])
+    else
+      offender = User.new
+    end
+    @abuse_report = AbuseReport.new(reporter: current_user, offender: offender)
   end
 
   def create

@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     [self.sent_messages + self.incoming_messages].flatten.map(&:conversation).uniq
   end
 
+  def conversation_with(participant)
+    conversations.find{|c| c.participants.include? participant}
+  end
+
   def is_signed_in?
     User.signed_in_users.map(&:id).include?(self.id)
   end

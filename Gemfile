@@ -20,6 +20,8 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'pg'
+gem 'sidekiq'
+gem 'sinatra', :require => nil
 gem "sorcery"
 gem 'therubyracer'
 gem 'toastr-rails'
