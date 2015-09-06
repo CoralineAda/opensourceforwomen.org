@@ -19,3 +19,5 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 .console_history
 .env.development
+*.swp
+*.swo
