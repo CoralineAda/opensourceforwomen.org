@@ -139,8 +139,6 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    jqcloud-rails (1.0.0)
-      jquery-rails
     jquery-datatables-rails (3.3.0)
       actionpack (>= 3.1)
       jquery-rails
@@ -332,7 +330,6 @@ DEPENDENCIES
   gravtastic
   haml
   hpricot
-  jqcloud-rails
   jquery-datatables-rails
   jquery-rails
   jquery-ui-rails
