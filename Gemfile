@@ -10,6 +10,7 @@ gem 'gibbon'
 gem 'google-analytics-rails'
 gem 'gravtastic'
 gem 'haml'
+gem 'jqcloud-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
@@ -24,7 +25,6 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem "sorcery"
 gem 'therubyracer'
-#gem 'toastr_rails'
 gem 'validates_email_format_of'
 gem 'rails_12factor', group: :production
 

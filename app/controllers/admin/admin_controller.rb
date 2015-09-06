@@ -7,6 +7,8 @@ class Admin::AdminController < ApplicationController
     @users_count = User.count
     @messages_count = Message.count
     @conversations_count = Conversation.count
+    @mentors_count = ExtendedProfile.mentors.count
+    @pair_partners_count = ExtendedProfile.pair_partners.count
   end
 
   private

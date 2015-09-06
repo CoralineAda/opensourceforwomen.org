@@ -15,6 +15,7 @@
 //= require_tree .
 //= require foundation
 //= require toastr
+//= require jqcloud
 
 $(function(){
   $(document).foundation();

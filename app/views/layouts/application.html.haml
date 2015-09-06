@@ -3,8 +3,8 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %title= content_for?(:title) ? "OS4W | #{yield(:title)}" : "Open Source for Women"
-    = stylesheet_link_tag    "application"
+    %title= content_for?(:title) ? "OS4W | #{yield(:title)}" : "OS4W: Open Source for Women"
+    = stylesheet_link_tag "application"
     = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
     = javascript_include_tag "vendor/modernizr"
     = javascript_include_tag "application"
