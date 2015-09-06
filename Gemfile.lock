@@ -301,7 +301,6 @@ GEM
     tilt (1.4.1)
     timers (4.1.1)
       hitimes
-    toastr_rails (2.1.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -351,7 +350,6 @@ DEPENDENCIES
   sinatra
   sorcery
   therubyracer
-  toastr_rails
   uglifier
   unicorn
   validates_email_format_of
