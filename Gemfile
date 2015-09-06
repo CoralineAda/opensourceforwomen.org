@@ -24,7 +24,7 @@ gem 'sidekiq'
 gem 'sinatra', :require => nil
 gem "sorcery"
 gem 'therubyracer'
-gem 'toastr-rails'
+gem 'toastr_rails'
 gem 'validates_email_format_of'
 gem 'rails_12factor', group: :production
 
