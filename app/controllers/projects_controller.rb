@@ -11,9 +11,34 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def new
+    @project = Project.new
+  end
+
+  def create
+    @project = Project.new(project_params)
+    if @project.save
+      @project.update
+      redirect_to project_path(@project)
+    else
+      flash[:error] = @extended_profile.errors.full_messages
+      render 'new'
+    end
+  end
+
   def show
     @project = Project.find(params[:id])
     @comments = @project.project_comments.order('created_at ASC')
+  end
+
+  private
+
+  def project_params
+    params.require(:project).permit(
+      :name,
+      :has_coc,
+      :repo_url
+    )
   end
 
 end

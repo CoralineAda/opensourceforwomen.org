@@ -56,5 +56,8 @@
 
       :javascript
         $(document).ready(function(){
-            $('#projects').DataTable({'pageLength': 100});
+            $('#projects').DataTable({'pageLength': 50});
         });
+  .row
+    %hr
+    = link_to "Submit a New Project", new_project_path, class: "button small"
