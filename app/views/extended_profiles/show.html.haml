@@ -11,7 +11,7 @@
           %strong
             Preferred Languages
           %br
-            = @extended_profile.languages.map(&:name).sort.join(", ")
+            = @extended_profile.languages.map(&:name).uniq.sort.join(", ")
         %p
           %strong
             General Availability
