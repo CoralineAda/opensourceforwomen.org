@@ -1,4 +1,4 @@
-class MessageMailer < ActionMailer::Base
+class MessageMailer < ApplicationMailer
 
   def notification_email(message_id)
     @message = Message.find(message_id)

@@ -1,4 +1,4 @@
-class InvitationMailer < ActionMailer::Base
+class InvitationMailer < ApplicationMailer
 
   def invitation_email(invitation_id)
     @invitation = Invitation.find(invitation_id)

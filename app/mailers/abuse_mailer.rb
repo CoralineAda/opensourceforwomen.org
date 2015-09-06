@@ -1,4 +1,4 @@
-class AbuseMailer < ActionMailer::Base
+class AbuseMailer < ApplicationMailer
 
   def abuse_email(abuse_report_id)
     @abuse_report = AbuseReport.find(abuse_report_id)
