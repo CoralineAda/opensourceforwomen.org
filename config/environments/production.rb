@@ -20,7 +20,7 @@ Opensourceforwomen::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -44,6 +44,8 @@ Opensourceforwomen::Application.configure do
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
+
+  config.action_mailer.default_url_options = { host: 'http://www.os4w.org' }
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
