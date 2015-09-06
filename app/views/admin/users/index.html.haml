@@ -20,6 +20,8 @@
             %td
               Signup Date
             %td.centered
+              Extended Profile?
+            %td.centered
               Flagged?
         %tbody
           - @users.each do |user|
@@ -30,6 +32,8 @@
                 = link_to user.email, admin_user_path(user)
               %td
                 = user.created_at.strftime("%m/%d/%Y")
+              %td.centered
+                = user.extended_profile.present?
               %td.centered
                 = user.is_frozen?
 
