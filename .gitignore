@@ -21,3 +21,4 @@ config/initializers/secret_token.rb
 .env.development
 *.swp
 *.swo
+.env
