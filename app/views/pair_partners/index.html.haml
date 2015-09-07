@@ -12,7 +12,7 @@
       %h2 Potential Pair Partners
       - if @pair_partners.any?
         %ul
-          - @pair_partners.compact.each do |pair_profile|
+          - @pair_partners.each do |pair_profile|
             %li
               %p
                 = link_to pair_profile.username, extended_profile_path(pair_profile)
