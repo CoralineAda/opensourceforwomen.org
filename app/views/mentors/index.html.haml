@@ -18,7 +18,7 @@
                 = link_to mentor_profile.username, extended_profile_path(mentor_profile)
                 %br
                 Languages:
-                = mentor_profile.languages.map(&:name).to_sentence
+                = mentor_profile.language_list
       - else
         %p
           %strong
