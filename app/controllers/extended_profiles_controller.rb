@@ -13,9 +13,6 @@ class ExtendedProfilesController < ApplicationController
 
   def create
     @extended_profile = ExtendedProfile.new({user: current_user}.merge(profile_params))
-    if profile_params[:other_language].present? && language = Language.find_or_create_by(name: profile_params[:other_language])
-      @extended_profile.languages << language
-    end
     if @extended_profile.save
       redirect_to extended_profile_path(@extended_profile)
     else

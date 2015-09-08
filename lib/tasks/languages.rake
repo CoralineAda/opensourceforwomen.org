@@ -19,4 +19,12 @@ namespace :languages do
     end
   end
 
+  desc "migrate languages to text field"
+  task :languages_fix => :environment do
+    ExtendedProfile.all.each do |profile|
+      profile.language_list = profile.languages.map(&:name).uniq.join(', ')
+      profile.save
+    end
+  end
+
 end

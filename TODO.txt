@@ -1,4 +1,4 @@
 TODO
 
-- Figure out how to send mail from Heroku
-- Admin view for abuse reports
+- Featured project
+- Support Gitlab

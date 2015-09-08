@@ -25,11 +25,5 @@
     = f.submit "Save", class: "small button"
 .large-5.columns
   %div
-    = f.label :languages, "Preferred Languages*"
-    - @languages.each do |language|
-      %label.checkbox{:for => "#{dom_id(language)}"}
-        = check_box_tag "extended_profile[language_ids][]", language.id, @extended_profile.languages.include?(language), id: dom_id(language)
-        = language.name 
-  %div
-    = f.label :other_language, "Other Language"
-    = f.text_area :other_language, placeholder: "Language name"
+    = f.label :language_list, "Languages"
+    = f.text_area :language_list, placeholder: "Language names"
