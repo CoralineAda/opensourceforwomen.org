@@ -17,12 +17,13 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(
-      name: project_params[:name],
+      full_name: project_params[:full_name],
       repo_url: project_params[:repo_url].strip,
       has_coc: project_params[:has_coc]
     )
     if @project.save
       @project.update
+      @project.save
       redirect_to project_path(@project)
     else
       flash[:error] = @project.errors.full_messages
@@ -39,7 +40,7 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(
-      :name,
+      :full_name,
       :has_coc,
       :repo_url
     )
