@@ -54,7 +54,7 @@ class ExtendedProfilesController < ApplicationController
       :special_interests,
       :is_mentor,
       :is_pair_partner,
-      { language_ids: [] },
+      :language_list,
       :notes
     )
   end
