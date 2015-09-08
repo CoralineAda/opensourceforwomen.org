@@ -12,7 +12,7 @@
       %h2 Potential Mentors
       - if @mentors.any?
         %ul
-          - @mentors.compact.each do |mentor_profile|
+          - @mentors.each do |mentor_profile|
             %li
               %p
                 = link_to mentor_profile.username, extended_profile_path(mentor_profile)
