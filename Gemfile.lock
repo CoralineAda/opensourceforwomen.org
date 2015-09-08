@@ -353,6 +353,3 @@ DEPENDENCIES
   uglifier
   unicorn
   validates_email_format_of
-
-BUNDLED WITH
-   1.10.6
