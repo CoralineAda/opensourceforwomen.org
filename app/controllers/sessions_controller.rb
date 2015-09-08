@@ -6,6 +6,11 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
+    unless @user.activation_state == "active"
+      flash.now[:warning] = 'Your account has not yet been activated. Please check your email for the activation link.'
+      render 'new'
+      return
+    end
     if login(params[:email], params[:password])
       if @user.can_sign_in?
         flash[:success] = "Welcome back, #{@user.username}!"
