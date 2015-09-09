@@ -3,10 +3,17 @@
     = f.label :name, "Project Name"
     = f.text_field :full_name, placeholder: "Required"
   %div
-    = f.label :repo_url, "Github URL"
+    = f.label :repo_url, "Repository URL"
     = f.url_field :repo_url, placeholder: "Required"
   %div
     = f.check_box :has_coc
-    = f.label :has_coc, "This project has a Code of Conduct."
+    = f.label :has_coc, "This project has a Code of Conduct.", class: "no-style"
   %div
     = f.submit "Save", class: "small button"
+.large-5.columns
+  %div
+    = f.label :language, "Primary Language"
+    = f.collection_select(:language, @languages, :name, :name)
+  %div
+    = f.label :other_language, "Other Language (Not Listed)"
+    = f.text_field :other_language, placeholder: "Language name"

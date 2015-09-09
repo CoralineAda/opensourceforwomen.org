@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
 
   before_action :require_login
+  before_filter :load_languages, only: [:new, :create]
 
   def index
     @languages = Language.all.order('name ASC')
     if params[:commit] && @language = Language.find_by(name: params[:commit].gsub(/ \(.+/, ''))
-      @projects = Project.where(language: @language.name).sort_by(&:name)
+      @projects = Project.where(language: @language.name).order('name ASC')
     else
       @projects = []
     end
@@ -19,8 +20,12 @@ class ProjectsController < ApplicationController
     @project = Project.new(
       full_name: project_params[:full_name],
       repo_url: project_params[:repo_url].strip,
-      has_coc: project_params[:has_coc]
+      has_coc: project_params[:has_coc],
+      language: project_params[:language] == "Select..." ? "" : project_params[:language]
     )
+    if project_params[:other_language].present? && language = Language.find_or_create_by(name: project_params[:other_language])
+      @project.language = language.name
+    end
     if @project.save
       @project.update
       @project.save
@@ -38,11 +43,19 @@ class ProjectsController < ApplicationController
 
   private
 
+  def load_languages
+    @languages = [Language.new(name: "Select...")]
+    @languages << Language.all.sort{|a,b| a.name.downcase <=> b.name.downcase }
+    @languages.flatten!
+  end
+
   def project_params
     params.require(:project).permit(
       :full_name,
       :has_coc,
-      :repo_url
+      :repo_url,
+      :language,
+      :other_language
     )
   end
 

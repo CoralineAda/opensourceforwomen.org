@@ -6,7 +6,7 @@
       %h1 Project Details
       %p.back-navigation
         &laquo;
-        = link_to "Back to Projects", :back
+        = link_to "More #{@project.language} Projects", projects_path(commit: @project.language)
   .row
     .large-6.columns
       %ul.pricing-table

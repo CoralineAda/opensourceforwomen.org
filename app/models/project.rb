@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :project_comments
 
+  attr_reader :other_language
+
   def self.from(repo_url)
     new(repo_url: repo_url).update
   end
@@ -31,15 +33,16 @@ class Project < ActiveRecord::Base
   end
 
   def update
-    latest = Octokit.repo(repo_path)
-    update_attributes(
-      name:         latest.name,
-      full_name:    latest.full_name,
-      description:  latest.description,
-      homepage:     latest.homepage,
-      language:     latest.language,
-      remote_id:    latest.id
-    )
+    if latest = Octokit.repo(repo_path)
+      update_attributes(
+        name:         latest.name,
+        full_name:    latest.full_name,
+        description:  latest.description,
+        homepage:     latest.homepage,
+        language:     latest.language,
+        remote_id:    latest.id
+      )
+    end
   rescue Exception => e
     errors.add(:update, "failed from #{repo_path} with message #{e}")
   ensure
