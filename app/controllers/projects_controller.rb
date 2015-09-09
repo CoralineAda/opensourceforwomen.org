@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(
-      full_name: project_params[:full_name],
+      name: project_params[:name],
       repo_url: project_params[:repo_url].strip,
       has_coc: project_params[:has_coc],
       language: project_params[:language] == "Select..." ? "" : project_params[:language]
@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(
-      :full_name,
+      :name,
       :has_coc,
       :repo_url,
       :language,
