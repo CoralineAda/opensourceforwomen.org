@@ -1,0 +1,21 @@
+.large-5.columns
+  %div
+    = f.label :name, "Project Name"
+    = f.text_field :name, placeholder: "Required"
+  %div
+    = f.label :repo_url, "URL"
+    = f.url_field :url, placeholder: "Required"
+  %div
+    = f.check_box :is_active
+    = f.label :is_active, "Active", class: "no-style"
+  %div
+    = f.label :language, "Primary Language"
+    = f.collection_select(:language, @languages, :name, :name)
+  %div
+    = f.label :user_id, "Contact"
+    = f.collection_select(:user_id, @users, :id, :username)
+  %div
+    = f.label :description, "Description"
+    = f.text_area :description
+  %div
+    = f.submit "Save", class: "small button"

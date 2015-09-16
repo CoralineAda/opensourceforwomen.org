@@ -1,0 +1,9 @@
+- content_for :title, "Edit A Featured Project"
+
+.content
+  .row
+    %h1
+      Editing
+      = @project.name
+    = form_for(@project, :url => admin_featured_project_path(@project)) do |f|
+      = render partial: "form", locals: {f: f}

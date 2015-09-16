@@ -7,8 +7,28 @@
         = image_tag(current_user.gravatar_url(default: "identicon"), class: "float-right")
         = "#{current_user.formatted_username}'s Dashboard"
 
-  .row
+  - if @featured_project
+    .row
+      .large-12.columns
+        %ul.pricing-table
+          %li.title
+            Featured Project:
+            = @featured_project.name
+          %li.bullet-item.left-align
+            %p
+              = @featured_project.description
+            %p
+              The project's primary language is
+              = succeed '.' do
+                = @featured_project.language
+              More information is available at
+              = succeed '.' do
+                = link_to @featured_project.url, @featured_project.url, target: "_new"
+              To get involved with this project,
+              = succeed '.' do
+                = link_to "contact #{@featured_project.user.username}", new_user_message_path(current_user, recipient_id: @featured_project.user_id)
 
+  .row
     .large-6.columns
 
       %h3

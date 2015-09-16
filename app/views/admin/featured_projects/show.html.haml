@@ -1,0 +1,33 @@
+- content_for :title, @project.name
+
+.content
+  .row
+    .large-6.columns
+      %h1 Project Details
+      %p.back-navigation
+        &laquo;
+        = link_to "Back to Featured Projects", admin_featured_projects_path
+  .row
+    .large-6.columns
+      %ul.pricing-table
+        %li.title
+          = @project.name
+        %li.bullet-item
+          = @project.description
+        %li.bullet-item
+          Language:
+          = @project.language
+        %li.bullet-item
+          - if @project.is_active?
+            Active
+          - else
+            Inactive
+        %li.bullet-item
+          Created:
+          = @project.created_at.strftime("%m/%d/%Y") || "-"
+        %li.bullet-item
+          = link_to @project.url, @project.url, target: "_new"
+        %li.bullet-item
+          = link_to @project.user.username, admin_users_path(@project.user)
+  .row
+    = link_to "Edit Project", edit_admin_featured_project_path(@project), class: "small button"

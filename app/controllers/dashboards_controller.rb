@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
 
   def show
     @dashboard = Dashboard.new(user: current_user)
+    @featured_project = FeaturedProject.active.sample
   end
 
 end

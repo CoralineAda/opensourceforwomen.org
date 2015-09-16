@@ -47,6 +47,7 @@ Opensourceforwomen::Application.routes.draw do
     get "/admin", to: "admin#index", as: :admin_path
     resources :abuse_reports
     resources :abuse_report_comments
+    resources :featured_projects
     resources :users do
       resources :messages
     end

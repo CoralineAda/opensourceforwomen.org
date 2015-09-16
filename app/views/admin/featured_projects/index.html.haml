@@ -1,0 +1,40 @@
+- content_for :title, "OS4W Featured Projects".html_safe
+
+.content
+  .row
+    .large-6.columns
+      %h1 Featured Project Admin
+
+  .row
+    .large-12.columns
+
+      %table#projects
+        %thead
+          %tr
+            %td
+              Name
+            %td
+              Contact
+            %td
+              Language
+            %td
+              Created At
+            %td.centered
+              Active?
+        %tbody
+          - @projects.each do |project|
+            %tr
+              %td
+                = link_to project.name, admin_featured_project_path(project)
+              %td
+                = link_to project.user.username, admin_user_path(project.user)
+              %td
+                = project.language
+              %td
+                = project.created_at.strftime("%m/%d/%Y")
+              %td.centered
+                = project.is_active?
+
+    .row
+      = link_to "New Featured Project", new_admin_featured_project_path, class: "small button"
+
