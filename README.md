@@ -17,13 +17,13 @@ source projects.
 Create a .env file in the root folder, and add the following keys. For development purposes,
 the values don't really matter.
 
-    ENV['ADMIN_EMAIL']
-    ENV['MAILCHIMP_LIST_ID']
-    ENV['MAILCHIMP_API_KEY']
-    ENV['SENDGRID_USERNAME']
-    ENV['SENDGRID_PASSWORD']
-    ENV['GITHUB_USER']
-    ENV['GITHUB_TOKEN']
+    ADMIN_EMAIL=foo
+    MAILCHIMP_LIST_ID=foo
+    MAILCHIMP_API_KEY=foo
+    SENDGRID_USERNAME=foo
+    SENDGRID_PASSWORD=foo
+    GITHUB_USER=foo
+    GITHUB_TOKEN=foo
 
 ### Installation
 
