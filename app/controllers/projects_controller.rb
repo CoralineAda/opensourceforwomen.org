@@ -5,6 +5,9 @@ class ProjectsController < ApplicationController
 
   def index
     @languages = Language.all.order('name ASC')
+    @languages = @languages.reject do |language|
+      Project.where("language = '#{language.name}'").size ==  0
+    end
     if params[:commit] && @language = Language.find_by(name: params[:commit].gsub(/ \(.+/, ''))
       @projects = Project.where(language: @language.name).order('name ASC')
     else
