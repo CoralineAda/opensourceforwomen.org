@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :load_languages, only: [:new, :create]
 
   def index
-    @languages = Language.all.order('name ASC')
+    @languages = Language.all.order('name ASC').select{ |lang| lang.project_count > 0 }
     if params[:commit] && @language = Language.find_by(name: params[:commit].gsub(/ \(.+/, ''))
       @projects = Project.where(language: @language.name).order('name ASC')
     else
