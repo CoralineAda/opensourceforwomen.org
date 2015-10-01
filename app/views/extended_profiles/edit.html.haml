@@ -3,5 +3,8 @@
 .content
   .row
     %h1 Edit Your Profile
-    = form_for(@extended_profile, :url => extended_profile_path(@extended_profile)) do |f|
+    = form_for(@extended_profile, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f|
+      = render partial: "avatar_form", locals: {f: f}
+  .row
+    = form_for(@extended_profile, url: extended_profile_path(@extended_profile)) do |f|
       = render partial: "form", locals: {f: f}

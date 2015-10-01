@@ -1,6 +1,7 @@
 class ExtendedProfilesController < ApplicationController
   before_action :require_login
   before_action :scope_languages, only: [:new, :create, :update, :edit]
+  before_action :set_s3_direct_post
 
   def index
     @extended_profile = current_user.extended_profile
@@ -45,8 +46,13 @@ class ExtendedProfilesController < ApplicationController
 
   private
 
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+  end
+
   def profile_params
     params.require(:extended_profile).permit(
+      :avatar_url,
       :other_language,
       :availability,
       :time_zone,

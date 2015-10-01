@@ -4,6 +4,7 @@ ruby '2.2.1'
 
 gem 'rails', '>= 4.2'
 
+gem 'aws-sdk', '~> 2'
 gem 'dotenv-rails'
 gem 'foundation-rails', '~> 5.5.0'
 gem 'gibbon'
