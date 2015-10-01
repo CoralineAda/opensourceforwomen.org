@@ -9,10 +9,17 @@ class MessagesController < ApplicationController
 
   def new
     in_reply_to = params[:message_id] && current_user.messages.find(params[:message_id])
-    @conversation = in_reply_to ? in_reply_to.conversation : Conversation.new
+    if in_reply_to
+      @conversation = in_reply_to.conversation
+    else
+      @recipient ||= User.find(params[:recipient_id]) if params[:recipient_id]
+      @recipient ||= User.new
+      @conversation = Conversation.new
+      @conversation.participants << current_user
+      @conversation.participants << @recipient
+      @converation.save
+    end
     @recipient = @conversation.other_participant(current_user)
-    @recipient ||= User.find(params[:recipient_id]) if params[:recipient_id]
-    @recipient ||= User.new
     @message = Message.new(
       conversation: @conversation,
       recipient: @recipient
