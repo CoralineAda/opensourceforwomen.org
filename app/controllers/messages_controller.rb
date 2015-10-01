@@ -69,7 +69,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if @message.recipient_id == current_user.id || @message.sender_id == current_user.id
       @conversation = @message.conversation
-      @conversation.messages.map{|m| m.update_attribute(:is_read, true) if m.recipient = current_user}
+      @conversation.messages.map{|m| m.update_attribute(:is_read, true) if m.recipient == current_user}
     else
       redirect_to :index
     end
