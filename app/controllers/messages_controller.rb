@@ -59,7 +59,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @message = current_user.conversations.map(&:messages).to_a.flatten.select{|m| m.id(params[:id]).first
+    @message = current_user.conversations.map(&:messages).to_a.flatten.find{|m| m.id ==params[:id]}
     @conversation = @message.conversation
     @conversation.messages.map{|m| m.update_attribute(:is_read, true) if m.recipient = current_user}
   end
