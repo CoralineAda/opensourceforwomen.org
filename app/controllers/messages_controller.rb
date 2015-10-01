@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
       @conversation = Conversation.new
       @conversation.participants << current_user
       @conversation.participants << @recipient
-      @converation.save
+      @conversation.save
     end
     @recipient = @conversation.other_participant(current_user)
     @message = Message.new(
