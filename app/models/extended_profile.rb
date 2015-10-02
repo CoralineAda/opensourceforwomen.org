@@ -14,9 +14,6 @@ class ExtendedProfile < ActiveRecord::Base
 
   delegate :avatar, to: :user
   delegate :gravatar_url, to: :user
-
-  def username
-    self.user.username
-  end
+  delegate :username, to: :user
 
 end
