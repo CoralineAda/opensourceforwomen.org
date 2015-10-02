@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100#" }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   validates :password, length: { minimum: 8 }, :if => Proc.new { |user|
                 !user.password.blank? ||
                 !user.password_confirmation.blank? ||

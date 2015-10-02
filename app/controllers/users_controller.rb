@@ -61,7 +61,8 @@ class UsersController < ApplicationController
       :accepts_terms,
       :twitter_handle,
       :github_username,
-      :subscribe_me
+      :subscribe_me,
+      :avatar
     )
   end
 
