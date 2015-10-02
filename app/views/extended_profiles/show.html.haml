@@ -3,6 +3,10 @@
 .content
   .row
     %h1
+      - if @extended_profile.avatar.present?
+        = image_tag(@extended_profile.avatar, alt_name: @extended_profile.formatted_username, class: "small-gravatar")
+      - else
+        = image_tag(@extended_profile.gravatar_url(default: "identicon"), class: "small-gravatar")
       = "#{@extended_profile.username}'s Profile"
 
     .large-7.columns

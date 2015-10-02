@@ -23,6 +23,9 @@
         %div
           = f.label :password_confirmation
           = f.password_field :password_confirmation
+        %div
+          = f.label :avatar
+          = f.file_field :avatar
 
         %div
           %label.checkbox{ :for => "user_subscribe_me" }

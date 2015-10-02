@@ -12,8 +12,9 @@ class ExtendedProfile < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :languages
 
-  def username
-    self.user.username
-  end
+  delegate :avatar, to: :user
+  delegate :gravatar_url, to: :user
+  delegate :username, to: :user
+  delegate :formatted_username, to: :user
 
 end
