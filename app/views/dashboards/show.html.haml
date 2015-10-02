@@ -4,7 +4,10 @@
   .row
     .large-12.columns
       %h1
-        = image_tag(current_user.gravatar_url(default: "identicon"), class: "float-right")
+        - if current_user.avatar.present?
+          = image_tag(current_user.avatar, alt_name: current_user.formatted_username, class: "small-gravatar")
+        - else
+          = image_tag(current_user.gravatar_url(default: "identicon"), class: "small-gravatar")
         = "#{current_user.formatted_username}'s Dashboard"
 
   - if @featured_project
