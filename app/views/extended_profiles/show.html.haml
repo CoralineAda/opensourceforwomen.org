@@ -4,10 +4,14 @@
   .row
     %h1
       = "#{@extended_profile.username}'s Profile"
+      - if current_user.avatar.url == User::MISSING_AVATAR
+        = image_tag(@extended_profile.user.avatar.url(:square), class: "avatar float-right")
+      -else
+        = image_tag(@extended_profile.user.gravatar_url(default: "identicon"), class: "avatar float-right")
+    %br
 
     .large-7.columns
       %div
-        = image_tag @extended_profile.avatar_url
         %p
           %strong
             Preferred Languages

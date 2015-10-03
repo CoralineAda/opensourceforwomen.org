@@ -2,9 +2,13 @@
 
 .content
   .row
-    .large-5.columns
-      %h1 Manage Your Account
-      = form_for(@user, :url => user_path(@user)) do |f|
+    %h1 Manage Your Account
+
+  .row
+    = form_for(@user, :url => user_path(@user), multipart: true) do |f|
+
+      .large-5.columns
+
         %div
           = f.label :username
           = f.text_field :requested_username, placeholder: "Required", value: @user.username
@@ -29,5 +33,9 @@
             = f.check_box :subscribe_me, :class => "checkbox", :value => @user.subscribed?
             Subscribe to our mailing list
 
-
         %div= f.submit "Update account", class: "small button"
+
+      .large-5.columns
+        %div
+          = f.label :avatar
+          = f.file_field :avatar

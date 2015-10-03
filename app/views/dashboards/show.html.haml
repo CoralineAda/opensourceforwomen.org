@@ -4,8 +4,12 @@
   .row
     .large-12.columns
       %h1
-        = image_tag(current_user.gravatar_url(default: "identicon"), class: "float-right")
+        - if current_user.avatar.url == User::MISSING_AVATAR
+          = image_tag(current_user.gravatar_url(default: "identicon"), class: "avatar float-right")
+        -else
+          = image_tag(current_user.avatar.url(:square), class: "avatar float-right")
         = "#{current_user.formatted_username}'s Dashboard"
+      %br
 
   - if @featured_project
     .row

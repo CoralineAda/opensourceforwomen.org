@@ -1,10 +1,19 @@
 class User < ActiveRecord::Base
 
+  MISSING_AVATAR = "/avatars/original/missing.png"
+
   include Gravtastic
   gravtastic
 
   authenticates_with_sorcery!
 
+  has_attached_file :avatar, bucket: ENV['S3_BUCKET'], styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates :password, length: { minimum: 8 }, :if => Proc.new { |user|
                 !user.password.blank? ||
                 !user.password_confirmation.blank? ||

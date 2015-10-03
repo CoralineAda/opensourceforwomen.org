@@ -52,7 +52,6 @@ class ExtendedProfilesController < ApplicationController
 
   def profile_params
     params.require(:extended_profile).permit(
-      :avatar_url,
       :other_language,
       :availability,
       :time_zone,

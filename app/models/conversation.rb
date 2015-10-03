@@ -8,7 +8,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def other_participant(participant)
-    (self.participants - [participant]).first
+    (self.participants.uniq - [participant]).first
   end
 
 end
