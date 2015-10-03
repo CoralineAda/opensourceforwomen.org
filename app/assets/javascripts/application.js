@@ -15,9 +15,6 @@
 //= require_tree .
 //= require foundation
 //= require toastr
-//= require jqcloud
-//= require jquery.ui.widget
-//= require z.jquery.fileupload
 
 $(function(){
   $(document).foundation();
