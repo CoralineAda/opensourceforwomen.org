@@ -318,3 +318,29 @@ label.checkbox.small {
 .left-align {
   text-align: left !important;
 }
+
+.progress {
+  max-width: 600px;
+  margin:    0.2em 0 0.2em 0;
+}
+
+.progress .bar {
+  height:  1.2em;
+  padding-left: 0.2em;
+  color:   white;
+  display: none;
+}
+
+.avatar {
+  border: 2px solid #000;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.avatar-tiny {
+  border: 2px solid #000;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
