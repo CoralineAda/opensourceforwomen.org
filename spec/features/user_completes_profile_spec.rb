@@ -17,7 +17,7 @@ describe 'User completes her profile' do
     visit '/dashboards/1'
     click_link 'My Profile'
     fill_in(:extended_profile_availability, with: "Saturday afternoons")
-    check 'Ruby'
+    fill_in :extended_profile_language_list, with: 'Ruby'
     click_button 'Save'
     expect(page).to have_content("Coraline's Profile")
     expect(User.last.extended_profile.availability).to eq("Saturday afternoons")
