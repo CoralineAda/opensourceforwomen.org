@@ -1,7 +1,6 @@
 class ExtendedProfilesController < ApplicationController
   before_action :require_login
   before_action :scope_languages, only: [:new, :create, :update, :edit]
-  before_action :set_s3_direct_post
 
   def index
     @extended_profile = current_user.extended_profile
