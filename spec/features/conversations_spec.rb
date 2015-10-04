@@ -16,7 +16,11 @@ end
 describe "User creates a conversation" do
 
   let(:recipient) {
-    User.create(email: "bonny@idolhands.com", username: "Bonny", password: "foo123456")
+    User.create(
+      email: "bonny@idolhands.com",
+      username: "Bonny",
+      password: "foo123456"
+    )
   }
 
   before do
@@ -33,24 +37,39 @@ describe "User creates a conversation" do
     expect(recipient.incoming_messages.count).to eq 1
   end
 
-  it "displays the last message from a conversation" do
-    Message.create(conversation_id: Conversation.create.id, recipient_id: User.last.id, sender_id: recipient.id, body: "Hi there!")
-    visit "/dashboards/1"
-    click_link "My Inbox"
-    expect(page).to have_content("Hi there!")
-  end
 
-  it "allows replies" do
-    conversation = Conversation.create
-    conversation.participants = [User.first, recipient]
-    Message.create(conversation_id: conversation.id, recipient_id: User.first.id, sender_id: recipient.id, body: "Hi there!")
-    visit "/dashboards/1"
-    click_link "My Inbox"
-    click_link "Hi there!"
-    click_link "Reply"
-    fill_in(:message_body, with: "Hello yourself!")
-    click_button "Send"
-    expect(page).to have_content("Hello yourself!")
+  context "given a converstaion" do
+    let(:conversation) do
+      Conversation.create! do |conversation|
+        conversation.participants = [User.first, recipient]
+      end
+    end
+
+    context "and given a message" do
+      let!(:message) do
+        Message.create!(
+          conversation_id: conversation.id,
+          recipient_id: User.first.id,
+          sender_id: recipient.id,
+          body: "Hi there!"
+        )
+      end
+
+      it "displays the last message from a conversation" do
+        visit "/dashboards/1"
+        click_link "My Inbox"
+        expect(page).to have_content(message.body)
+      end
+
+      it "allows replies" do
+        visit "/dashboards/1"
+        click_link "My Inbox"
+        click_link message.body
+        fill_in(:message_body, with: "Hello yourself!")
+        click_button "Reply"
+        expect(page).to have_content("Hello yourself!")
+      end
+    end
   end
 
 end
