@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
 
   def activation_success_email(user)
     @user = user
-    mail(to: user.email, subject: "OS4W: Your account is now activated")
+    mail(to: user.email, bcc: ENV['ADMIN_EMAIL'], subject: "OS4W: Your account is now activated!")
   end
 
   def reset_password_email(user)
