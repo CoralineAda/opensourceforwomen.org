@@ -6,16 +6,17 @@ RSpec.feature 'Gravatar' do
       sign_in_user
     end
 
+    given(:user) { User.first }
+
     scenario "displays gravatar on Dashboard" do
-      visit "/dashboards/1"
+      visit "/dashboards/#{user.id}"
 
       expect(page.find('.avatar')['src']).to have_content /https:\/\/secure.gravatar.com/
     end
 
     scenario "displays gravatar on Profile Page" do
-      user = User.first
-      user.create_extended_profile
-      visit "/extended_profiles/1"
+      profile = user.create_extended_profile!
+      visit "/extended_profiles/#{profile.id}"
 
       expect(page.find('.avatar')['src']).to have_content /https:\/\/secure.gravatar.com/
     end
