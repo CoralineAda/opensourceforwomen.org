@@ -31,7 +31,7 @@
         .panel
           %div
             %label Preferred Languages
-            = text_field_tag :languages, @extended_profile.languages.map(&:name).join(", "), disabled: true
+            = text_field_tag :languages, @extended_profile.language_list, disabled: true
           %div
             %label General availability
             = text_field_tag :availability, @extended_profile.availability, disabled: true
