@@ -12,10 +12,7 @@
         - other_participant = conversation.other_participant(current_user)
         - from_or_to = last_message.sender == other_participant ? "From" : "To"
         - if last_message.is_unread_by?(current_user)
-          - if other_participant.avatar.url == User::MISSING_AVATAR
-            = image_tag(other_participant.gravatar_url(default: "identicon"), class: "avatar float-right")
-          -else
-            = image_tag(other_participant.avatar.url(:square), class: "avatar float-right")
+          = render partial: 'avatar', locals: { user: other_participant }
           %em
             = from_or_to
             = other_participant.username
@@ -24,10 +21,7 @@
             %br
             = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
         - else
-          - if other_participant.avatar.url == User::MISSING_AVATAR
-            = image_tag(other_participant.gravatar_url(default: "identicon"), class: "avatar-tiny float-right")
-          -else
-            = image_tag(other_participant.avatar.url(:square), class: "avatar float-right")
+          = render partial: 'avatar', locals: { user: other_participant }
           = from_or_to
           = other_participant.username
           %br
