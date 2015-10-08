@@ -4,7 +4,7 @@
   .row
     .large-12.columns
       %h1
-        = render partial: 'avatar'
+        = render partial: 'avatar', locals: { user: current_user }
         = "#{current_user.formatted_username}'s Dashboard"
       %br
 

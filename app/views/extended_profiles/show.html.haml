@@ -3,8 +3,8 @@
 .content
   .row
     %h1
+      = render partial: 'avatar', locals: { user: current_user }
       = "#{@extended_profile.username}'s Profile"
-      = render partial: 'avatar'
     %br
 
     .large-7.columns
