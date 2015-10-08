@@ -1,4 +1,5 @@
+- html_class ||= 'avatar float-right'
 - if user.avatar.url == User::MISSING_AVATAR
-  = image_tag(user.gravatar_url(default: "identicon"), class: "avatar float-right")
+  = image_tag(user.gravatar_url(default: "identicon"), class: html_class)
 -else
-  = image_tag(user.avatar.url(:square), class: "avatar float-right")
+  = image_tag(user.avatar.url(:square), class: html_class)

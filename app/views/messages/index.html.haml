@@ -21,7 +21,7 @@
             %br
             = last_message.created_at.strftime("%m/%d/%Y at %I:%M %P")
         - else
-          = render partial: 'avatar', locals: { user: other_participant }
+          = render partial: 'avatar', locals: { user: other_participant, html_class: 'avatar-tiny float-right' }
           = from_or_to
           = other_participant.username
           %br
