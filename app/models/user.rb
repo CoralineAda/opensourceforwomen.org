@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
   has_one :extended_profile
   has_one :subscription
   has_and_belongs_to_many :projects
-  has_many :feautured_projects
-  has_many :incoming_messages, inverse_of: :recipient, foreign_key: :recipient_id, class_name: "Message"
+  has_many :featured_projects
   has_many :invitations
+  has_many :incoming_messages, inverse_of: :recipient, foreign_key: :recipient_id, class_name: "Message"
   has_many :sent_messages, inverse_of: :sender, foreign_key: :sender_id, class_name: "Message"
   has_and_belongs_to_many :abuse_reports, inverse_of: :reporter, foreign_key: :reporter_id
   has_and_belongs_to_many :abuse_reports, inverse_of: :offender, foreign_key: :offender_id
@@ -109,6 +109,5 @@ class User < ActiveRecord::Base
   def unread_messages
     self.incoming_messages.unread
   end
-
 
 end
