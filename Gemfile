@@ -32,7 +32,7 @@ gem 'rails_12factor', group: :production
 group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'sass-rails', "~> 5.0.0"
+  gem 'sass-rails'#, "~> 5.0.0"
 end
 
 group :development do
