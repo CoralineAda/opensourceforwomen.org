@@ -14,7 +14,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails'
-gem 'less-rails'
+gem 'less-rails', ">= 2.7.1"
 gem 'nokogiri'
 gem 'octokit'
 gem 'omniauth'
