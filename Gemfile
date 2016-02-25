@@ -24,7 +24,7 @@ gem 'paperclip', '~> 4.3.1'
 gem 'pg'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
-gem "sorcery"
+gem 'sorcery'
 gem 'therubyracer'
 gem 'validates_email_format_of'
 gem 'rails_12factor', group: :production
@@ -39,7 +39,6 @@ group :development do
   gem 'unicorn'
   gem 'hpricot'
   gem 'ruby_parser'
-#  gem 'rack-mini-profiler'
   gem 'pry'
 end
 
