@@ -42,7 +42,13 @@ To create an initial admin user, fire up `rails c` and do the following:
 
 - `rails s`
 
-
 ## Code of Conduct
 This project is governed by the Contributor Covenant. All participants agree to
 abide by its rules. For more information, see CODE_OF_CONDUCT.md
+
+## Contributing
+Everyone is welcome to contribute to the project by creating issues or sending pull requests.
+If you plan on sending a pull request, take a look at the following github articles:
+
+- [Working with forks](https://help.github.com/articles/working-with-forks/)
+- [Using pull requests](https://help.github.com/articles/using-pull-requests)
