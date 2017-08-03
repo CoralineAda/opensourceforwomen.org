@@ -30,6 +30,7 @@ the values don't really matter.
 - `bundle install`
 - (start your Postgres db)
 - `rake db:create` (TODO: create seed data)
+- (remember to migrate which in a Rails 4 app is `rake db:migrate`)
 
 To create an initial admin user, fire up `rails c` and do the following:
 
@@ -52,3 +53,4 @@ If you plan on sending a pull request, take a look at the following github artic
 
 - [Working with forks](https://help.github.com/articles/working-with-forks/)
 - [Using pull requests](https://help.github.com/articles/using-pull-requests)
+- [Managing Remotes](https://help.github.com/articles/which-remote-url-should-i-use/)
