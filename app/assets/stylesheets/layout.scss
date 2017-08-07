@@ -137,11 +137,13 @@ td .wide {
 
 .button.small {
   padding: 1em;
+  -webkit-border-radius: 30px;
 }
 
 .button.tiny {
   padding: .5em;
   font-size: 12px;
+  -webkit-border-radius: 30px;
 }
 
 h1 {
