@@ -149,7 +149,7 @@ td .wide {
 }
 
 h1 {
-  border-bottom: 1px dotted #aaaaaa;
+  border-bottom: 10px dotted #aaaaaa;
   margin-bottom: 1em;
   margin-left: -17px;
 }
@@ -273,9 +273,29 @@ em {
   font-size: 11px;
 }
 
-.dataTables_paginate {
-  font-size: 11px;
-}
+//.dataTables_paginate {
+//  .paginate_button {
+//    .current {
+//    color: #549736 !important;
+//    border: 1px solid #cf3cc9;
+//    background-color: white;
+//    box-sizing: border-box;
+//    display: inline-block;
+//    min-width: 1.5em;
+//    padding: 0.5em 1em;
+//    margin-left: 2px;
+//    text-align: center;
+//    text-decoration: none !important;
+//    border-radius: 10px;
+//    }
+//  }
+  //font-size: 11px;
+  //color: #333 !important;
+  //border: 1px solid #979797;
+  //background-color: white;
+  //background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+  //border-radius: 2px;
+//}
 
 .project_select select {
   width: 100px !important;
