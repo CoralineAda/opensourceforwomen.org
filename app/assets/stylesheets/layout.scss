@@ -119,12 +119,14 @@ td .wide {
   color: #eeeeee;
   text-decoration: none;
   font-size: .5em;
+  -webkit-border-radius: 30px;
 }
 
 .boxed-white:hover {
   border: 3px solid #eeeeee;
   color: #eeeeee;
   text-decoration: none;
+  -webkit-border-radius: 30px;
 }
 
 .button a {
