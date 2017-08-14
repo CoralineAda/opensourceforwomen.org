@@ -1,8 +1,8 @@
 os4w.org
 ======================
 
-A resource for connecting women in technology with friendly and welcoming open
-source projects.
+A resource for connecting women and non-binary people in technology with friendly
+and welcoming open source projects.
 
 ## To install and run the application locally
 
