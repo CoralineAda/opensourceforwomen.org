@@ -50,7 +50,8 @@
         %div
           = link_to "Edit my profile", edit_extended_profile_path(current_user, @extended_profile.id), class: "button small"
       - else
-        %h2 Get Started
-        %p
-          Complete your profile now!
-        = link_to "Complete profile", new_extended_profile_path, class: "button small"
+        .panel
+          %h2 Get Started
+          %p
+            Complete your profile now!
+          = link_to "Complete profile", new_extended_profile_path, class: "button small"

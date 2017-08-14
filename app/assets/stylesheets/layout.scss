@@ -119,12 +119,14 @@ td .wide {
   color: #eeeeee;
   text-decoration: none;
   font-size: .5em;
+  -webkit-border-radius: 30px;
 }
 
 .boxed-white:hover {
   border: 3px solid #eeeeee;
   color: #eeeeee;
   text-decoration: none;
+  -webkit-border-radius: 30px;
 }
 
 .button a {
@@ -137,15 +139,17 @@ td .wide {
 
 .button.small {
   padding: 1em;
+  -webkit-border-radius: 30px;
 }
 
 .button.tiny {
   padding: .5em;
   font-size: 12px;
+  -webkit-border-radius: 30px;
 }
 
 h1 {
-  border-bottom: 1px dotted #aaaaaa;
+  border-bottom: 10px dotted #aaaaaa;
   margin-bottom: 1em;
   margin-left: -17px;
 }
@@ -332,15 +336,24 @@ label.checkbox.small {
 }
 
 .avatar {
-  border: 2px solid #000;
+  border: 1px solid #d8d8d8;
   border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100px;
   width: 100px;
 }
 
 .avatar-tiny {
-  border: 2px solid #000;
+  border: 1px solid #d8d8d8;
   border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 50px;
   width: 50px;
+}
+
+.panel {
+  border-radius: 4px;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
